@@ -110,6 +110,22 @@ a{color:var(--r2)}
 .cost .n{display:block;font-size:13px;color:var(--muted)}
 .cost tfoot th,.cost tfoot td{font-weight:600;border-top:2px solid var(--ink);border-bottom:0;font-size:16px}
 .cn{margin:0 0 8px;max-width:70ch;color:var(--muted);font-size:15px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:4px 0 20px}
+.tabs button{font:inherit;font-size:16px;font-weight:600;padding:10px 16px 12px;border:0;background:none;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--r2)}
+.tabs button:hover{color:var(--ink)}
+#tab-koszty h2:first-child{margin-top:0}
+[hidden]{display:none!important}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:6px 0 10px}
+.opt{border:1px solid var(--line);border-radius:12px;padding:16px 16px 6px;background:var(--chip)}
+.opt h3{margin:0 0 4px;font-size:20px;font-weight:600}
+.opt .od{margin:0 0 10px;color:var(--muted);font-size:14px}
+.cost.mini{min-width:0;font-size:14px}
+.cost.mini th,.cost.mini td{padding:8px 6px}
+.cost.mini tfoot th,.cost.mini tfoot td{font-size:15px}
+.opt .tm{font-size:14px;color:var(--muted);margin:10px 0}
+.opt .tm b{color:var(--ink)}
+@media (max-width:720px){.opts{grid-template-columns:1fr}}
 footer{margin-top:28px;font-size:13px;color:var(--muted);max-width:70ch}
 @media (max-width:560px){
   .wrap{padding:20px 14px 32px}
@@ -131,6 +147,11 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);max-width:70ch}
     <div><dt>Dystans</dt><dd>ok. 164 Mm</dd></div>
   </dl>
 
+  <div class="tabs" role="tablist" aria-label="Sekcje strony">
+    <button type="button" role="tab" id="t-trasa" aria-controls="tab-trasa" aria-selected="true">Trasa i plan</button>
+    <button type="button" role="tab" id="t-koszty" aria-controls="tab-koszty" aria-selected="false" tabindex="-1">Kosztorys</button>
+  </div>
+  <section id="tab-trasa" role="tabpanel" aria-labelledby="t-trasa">
   <div class="bar" role="toolbar" aria-label="Widok mapy">
     <button type="button" data-view="all" aria-pressed="true">Całość</button>
     <button type="button" data-view="east" aria-pressed="false">Raftsundet i Vesterålen</button>
@@ -186,42 +207,64 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);max-width:70ch}
   <article class="ds" id="opis-14"><h3><span class="dd">pt 10.09</span> Powrót do Svolvær</h3><p>Start o 8:00 i ok. 28 Mm do Svolvær, w porcie ok. 13:00. Po południu tankowanie, woda, sprzątanie i pakowanie, bo czarter kończy się w sobotę rano.</p><p>Jeśli zostanie siła: Djevelporten (punkt widokowy), 1–1,5 h podejścia, najlepiej przed zachodem Słońca o 20:07. Albo spokojniej: Svinøya i galeria Gunnara Berga z obrazem bitwy w Trollfjordzie, który po rejsie ogląda się już zupełnie inaczej. Wieczorem ostatnia krótka obserwacja nieba.</p><p class="back"><a href="#dzien-14">↑ wróć do planu dnia</a></p></article>
   <article class="ds" id="opis-15"><h3><span class="dd">sob 11.09</span> Zdanie jachtu i wylot</h3><p>Rano zdanie jachtu w Svolvær. Kaucja wraca po sprawdzeniu jachtu. Potem lot do Oslo i przesiadka do Katowic.</p><p class="back"><a href="#dzien-15">↑ wróć do planu dnia</a></p></article>
 
-  <h2 id="wycena">Wycena</h2>
-  <p class="sub">Rejs na Ellinor przez dwa tygodnie, 28.08–11.09.2027, dla 6 osób.</p>
+  <footer>Mapa poglądowa, nie do nawigacji. Linia brzegowa jest uproszczona, a kurs trzeba przenieść na mapy morskie, zwłaszcza w Raftsundet, przy wejściu do Trollfjordu i przy podejściu do Stokmarknes.</footer>
+  </section>
+  <section id="tab-koszty" role="tabpanel" aria-labelledby="t-koszty" hidden>
+  <h2 id="wycena">Wycena rejsu</h2>
+  <p class="sub">Jacht Ellinor na dwa tygodnie, 28.08–11.09.2027, dla 6 osób.</p>
   <div class="tw"><table class="cost">
     <thead><tr><th>Pozycja</th><th>Za całość</th><th>Na osobę</th></tr></thead>
     <tbody>
       <tr><td>Jacht<span class="n">2 × 3 500 € + 200 € sprzątania</span></td><td>31 248 zł</td><td>5 208 zł</td></tr>
-      <tr><td>Loty<span class="n">Katowice → Oslo → Svolvær i z powrotem, z bagażem</span></td><td>12 000 zł</td><td>2 000 zł</td></tr>
-      <tr><td>Porty, paliwo, woda</td><td>4 200 zł</td><td>700 zł</td></tr>
+      <tr><td>Porty, paliwo, woda<span class="n">14 nocy w portach, paliwo do jachtu, woda</span></td><td>4 200 zł</td><td>700 zł</td></tr>
     </tbody>
-    <tfoot><tr><th>Razem</th><td>47 448 zł</td><td>7 908 zł</td></tr></tfoot>
+    <tfoot><tr><th>Razem rejs</th><td>35 448 zł</td><td>5 908 zł</td></tr></tfoot>
   </table></div>
   <p class="cn">Kaucja za jacht wynosi 1 000 € (ok. 4 340 zł). Jest blokowana na karcie i zwracana po rejsie.</p>
-  <p class="cn">Z jedzeniem (1 800–2 800 zł) i ubezpieczeniami (200–400 zł) cała wyprawa to ok. 9 900–11 100 zł na osobę.</p>
+
+  <h2 id="transport">Transport</h2>
+  <p class="sub">Dwie opcje dojazdu do Svolvær i powrotu, dla 6 osób.</p>
+  <div class="opts">
+    <article class="opt" id="wycena-loty">
+      <h3>Samolot</h3>
+      <p class="od">Katowice → Oslo → Svolvær i z powrotem, z bagażem rejestrowanym</p>
+      <table class="cost mini">
+        <thead><tr><th>Koszt</th><th>Za całość</th><th>Na osobę</th></tr></thead>
+        <tbody>
+          <tr><td>Loty<span class="n">Ryanair do Oslo, dalej Widerøe lub przez Bodø</span></td><td>12 000 zł</td><td>2 000 zł</td></tr>
+        </tbody>
+        <tfoot><tr><th>Razem</th><td>12 000 zł</td><td>2 000 zł</td></tr></tfoot>
+      </table>
+      <p class="tm"><b>Czas:</b> dolot ok. 7,5 h od startu w Katowicach do lądowania w Svolvær. Powrót najpewniej z noclegiem w Oslo (nocleg poza kwotą).</p>
+    </article>
+    <article class="opt" id="wycena-auto">
+      <h3>Auto</h3>
+      <p class="od">Przez Litwę, Łotwę i Estonię, prom Tallin–Helsinki, dalej przez Finlandię i Szwecję. Jedno auto dla 6 osób</p>
+      <table class="cost mini">
+        <thead><tr><th>Koszt</th><th>Za auto</th><th>Na osobę</th></tr></thead>
+        <tbody>
+          <tr><td>Paliwo<span class="n">2 × 2 813 km, ok. 8 baków po ok. 400 zł</span></td><td>ok. 3 200 zł</td><td>ok. 535 zł</td></tr>
+          <tr><td>Prom Tallin–Helsinki<span class="n">2 przeprawy</span></td><td>400–1 600 zł</td><td>65–265 zł</td></tr>
+        </tbody>
+        <tfoot><tr><th>Razem</th><td>3 600–4 800 zł</td><td>600–800 zł</td></tr></tfoot>
+      </table>
+      <p class="tm"><b>Czas:</b> ok. 35 h jazdy i 2–2,5 h promu w jedną stronę, czyli ok. 70 h jazdy łącznie. Bez noclegów po drodze, odcinków płatnych i parkingu w Svolvær.</p>
+    </article>
+  </div>
+
+  <h2 id="podsumowanie">Podsumowanie</h2>
+  <div class="tw"><table class="cost">
+    <thead><tr><th></th><th>Z samolotem</th><th>Z autem</th></tr></thead>
+    <tbody>
+      <tr><td>Rejs (jacht, porty, paliwo, woda)</td><td>35 448 zł</td><td>35 448 zł</td></tr>
+      <tr><td>Transport</td><td>12 000 zł</td><td>3 600–4 800 zł</td></tr>
+      <tr><td>Razem za całość</td><td>47 448 zł</td><td>39 048–40 248 zł</td></tr>
+    </tbody>
+    <tfoot><tr><th>Na osobę</th><td>7 908 zł</td><td>6 508–6 708 zł</td></tr></tfoot>
+  </table></div>
+  <p class="cn">Poza kwotami zostają jedzenie (ok. 1 800–2 800 zł na osobę) i ubezpieczenia (ok. 200–400 zł na osobę).</p>
   <p class="cn">Kwota za jacht pochodzi z cennika armatora, pozostałe pozycje to szacunki. Przeliczenia po 4,34 zł za euro i 0,40 zł za koronę.</p>
-
-  <h2 id="wycena-auto">Wariant: dojazd autem</h2>
-  <p class="sub">Trasa według Google Maps: przez Litwę, Łotwę i Estonię, prom Tallin–Helsinki, dalej przez Finlandię i Szwecję do Svolvær. Jedno auto dla 6 osób, bez noclegów po drodze.</p>
-  <div class="tw"><table class="cost">
-    <thead><tr><th>Koszt</th><th>Za auto</th><th>Na osobę</th></tr></thead>
-    <tbody>
-      <tr><td>Paliwo<span class="n">2 × 2 813 km, 45 l na 700 km, ok. 8 baków po ok. 400 zł</span></td><td>ok. 3 200 zł</td><td>ok. 535 zł</td></tr>
-      <tr><td>Prom Tallin–Helsinki<span class="n">2 przeprawy, auto z pasażerami</span></td><td>400–1 600 zł</td><td>65–265 zł</td></tr>
-    </tbody>
-    <tfoot><tr><th>Razem dojazd</th><td>3 600–4 800 zł</td><td>600–800 zł</td></tr></tfoot>
-  </table></div>
-  <div class="tw"><table class="cost">
-    <thead><tr><th>Czas</th><th>W jedną stronę</th><th>Tam i z powrotem</th></tr></thead>
-    <tbody>
-      <tr><td>Jazda<span class="n">2 813 km według Google Maps</span></td><td>ok. 35 h</td><td>ok. 70 h</td></tr>
-      <tr><td>Prom Tallin–Helsinki</td><td>2–2,5 h</td><td>4–5 h</td></tr>
-    </tbody>
-  </table></div>
-  <p class="cn">Z dojazdem autem zamiast samolotem cały rejs (jacht, dojazd, porty) kosztuje ok. 39 000–40 300 zł, czyli ok. 6 500–6 700 zł na osobę.</p>
-  <p class="cn">Kwota nie obejmuje noclegów po drodze, odcinków płatnych oznaczonych przez Google ani parkingu w Svolvær. Czas to sama jazda i prom, bez postojów.</p>
-
-  <footer>Mapa poglądowa, nie do nawigacji. Linia brzegowa jest uproszczona, a kurs trzeba przenieść na mapy morskie, zwłaszcza w Raftsundet, przy wejściu do Trollfjordu i przy podejściu do Stokmarknes.</footer>
+  </section>
 </main>
 <script>
 (function(){
@@ -291,6 +334,22 @@ DAYS.forEach(([d,t,stops,mm,sch])=>{
   list.appendChild(li);
 });
 apply();
+})();
+</script>
+<script>
+(function(){
+const tabs=[...document.querySelectorAll('.tabs [role="tab"]')];
+function show(id,push){
+  tabs.forEach(t=>{const on=t.getAttribute('aria-controls')===id;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!on;});
+  if(id==='tab-trasa')window.dispatchEvent(new Event('resize'));
+  if(push)history.replaceState(null,'',id==='tab-koszty'?'#kosztorys':location.pathname+location.search);
+}
+tabs.forEach((t,i)=>{
+  t.addEventListener('click',()=>show(t.getAttribute('aria-controls'),true));
+  t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.focus();n.click();}});
+});
+function fromHash(){const hsh=location.hash;if(['#kosztorys','#wycena','#transport','#wycena-loty','#wycena-auto','#podsumowanie'].includes(hsh))show('tab-koszty',false);else if(hsh){const el=document.getElementById(decodeURIComponent(hsh.slice(1)));if(el&&document.getElementById('tab-trasa').contains(el))show('tab-trasa',false);}}
+window.addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
 </body>
