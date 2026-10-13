@@ -126,6 +126,18 @@ a{color:var(--r2)}
 .opt .tm{font-size:14px;color:var(--muted);margin:10px 0}
 .opt .tm b{color:var(--ink)}
 @media (max-width:720px){.opts{grid-template-columns:1fr}}
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0 12px}
+.wxc{border:1px solid var(--line);border-radius:12px;padding:16px 18px 8px;background:var(--chip)}
+.wxk{margin:0;font-size:13px;color:var(--muted)}
+.wxc h3{margin:0;font-size:20px;font-weight:600}
+.wxv{margin:4px 0 10px;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--r2)}
+.wxc ul{margin:0 0 10px;padding-left:18px}
+.wxc li{margin:0 0 6px;font-size:15px}
+.wxu{font-size:14px;color:var(--muted);margin:8px 0 10px;padding-top:8px;border-top:1px solid var(--line)}
+.wxu b{color:var(--ink)}
+.wxt{min-width:320px}
+@media (max-width:720px){.wx{grid-template-columns:1fr}}
+@media (max-width:420px){.tabs button{font-size:15px;padding:10px 10px 12px}}
 footer{margin-top:28px;font-size:13px;color:var(--muted);max-width:70ch}
 @media (max-width:560px){
   .wrap{padding:20px 14px 32px}
@@ -149,6 +161,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);max-width:70ch}
 
   <div class="tabs" role="tablist" aria-label="Sekcje strony">
     <button type="button" role="tab" id="t-trasa" aria-controls="tab-trasa" aria-selected="true">Trasa i plan</button>
+    <button type="button" role="tab" id="t-pogoda" aria-controls="tab-pogoda" aria-selected="false" tabindex="-1">Pogoda</button>
     <button type="button" role="tab" id="t-koszty" aria-controls="tab-koszty" aria-selected="false" tabindex="-1">Kosztorys</button>
   </div>
   <section id="tab-trasa" role="tabpanel" aria-labelledby="t-trasa">
@@ -208,6 +221,66 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);max-width:70ch}
   <article class="ds" id="opis-15"><h3><span class="dd">sob 11.09</span> Zdanie jachtu i wylot</h3><p>Rano zdanie jachtu w Svolvær. Kaucja wraca po sprawdzeniu jachtu. Potem lot do Oslo i przesiadka do Katowic.</p><p class="back"><a href="#dzien-15">↑ wróć do planu dnia</a></p></article>
 
   <footer>Mapa poglądowa, nie do nawigacji. Linia brzegowa jest uproszczona, a kurs trzeba przenieść na mapy morskie, zwłaszcza w Raftsundet, przy wejściu do Trollfjordu i przy podejściu do Stokmarknes.</footer>
+  </section>
+  <section id="tab-pogoda" role="tabpanel" aria-labelledby="t-pogoda" hidden>
+  <h2 id="pogoda">Pogoda</h2>
+  <p class="sub">Czego się spodziewać na przełomie sierpnia i września. To średnie z wielu lat; konkretną pogodę sprawdzajcie codziennie w yr.no, gdzie są też ostrzeżenia meteorologiczne.</p>
+  <div class="tw"><table class="cost wxt">
+    <thead><tr><th></th><th>Sierpień</th><th>Wrzesień</th></tr></thead>
+    <tbody>
+      <tr><td>Temperatura w dzień</td><td>ok. 15 °C</td><td>ok. 12–13 °C</td></tr>
+      <tr><td>Temperatura w nocy</td><td>ok. 9–11 °C</td><td>ok. 6–9 °C</td></tr>
+      <tr><td>Opady w miesiącu</td><td>ok. 54–96 mm</td><td>ok. 92–133 mm</td></tr>
+      <tr><td>Dni z deszczem</td><td>ok. 10</td><td>ok. 9–13</td></tr>
+      <tr><td>Woda w morzu</td><td>ok. 12,5 °C</td><td>ok. 11 °C</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cn">Dzień: na początku rejsu Słońce wschodzi ok. 05:00 i zachodzi ok. 21:00, na końcu ok. 05:50 i 20:05.</p>
+
+  <div class="wx">
+    <article class="wxc">
+      <p class="wxk">Na jachcie</p><h3>Za dnia</h3><p class="wxv">10–15 °C, odczuwalnie chłodniej</p>
+      <ul>
+        <li>Pod koniec sierpnia ok. 13–15 °C, we wrześniu ok. 12–13 °C. Na wodzie, przy wietrze i bryzgach, odczuwalnie kilka stopni mniej.</li>
+        <li>Deszcz średnio co trzeci dzień, często przelotny. Między frontami bardzo dobra widoczność.</li>
+        <li>Wiatr zmienny: w wąskich przejściach, jak Raftsundet, słaby i kapryśny, na otwartym Vestfjorden silniejszy, z martwą falą. Pod stromymi zboczami nagłe szkwały.</li>
+        <li>Jesienne niże przynoszą już sztormy; pod koniec września zdarzają się ostrzeżenia z porywami ok. 27–32 m/s. Na takie dni są w planie dni zapasowe.</li>
+        <li>Woda ma 11–12,5 °C.</li>
+      </ul>
+      <p class="wxu"><b>Ubiór:</b> sztormiak (kurtka i ogrodniczki), bielizna termoaktywna, kalosze, rękawice żeglarskie, czapka.</p>
+    </article>
+    <article class="wxc">
+      <p class="wxk">Na jachcie</p><h3>Nocą</h3><p class="wxv">5–9 °C, wilgotno</p>
+      <ul>
+        <li>Noce mają średnio 6–9 °C, najzimniejsze ok. 5 °C.</li>
+        <li>W kabinach wilgoć i skraplanie się pary. Ogrzewanie diesla robi dużą różnicę, ale zużywa prąd, więc najlepiej nocować przy kei.</li>
+        <li>Na pokładzie, przy wachcie kotwicznej albo nocnym wyjściu na Vestfjorden, z wiatrem odczuwalnie bliżej 0 °C.</li>
+        <li>Pełna ciemność: 29.08 tylko ok. 00:00–02:00, 10.09 już ok. 22:20–03:40.</li>
+      </ul>
+      <p class="wxu"><b>Ubiór:</b> kurtka puchowa lub syntetyczna pod sztormiak, czapka, ciepłe rękawice. Na pokładzie kamizelka z szelkami i wpięta lonża.</p>
+    </article>
+    <article class="wxc">
+      <p class="wxk">Na lądzie</p><h3>Za dnia</h3><p class="wxv">10–15 °C w dolinach, chłodniej na szczytach</p>
+      <ul>
+        <li>Przy wodzie podobnie jak na jachcie, ale w osłonie od wiatru odczuwalnie cieplej; przy słońcu bywa ok. 18 °C.</li>
+        <li>Na szczytach (400–800 m n.p.m.) kilka stopni chłodniej i wyraźnie wietrzniej. Chmury potrafią zasłonić wierzchołki.</li>
+        <li>Po deszczu szlaki są błotniste, a skała i kamienne schody śliskie.</li>
+        <li>Pogoda zmienia się szybko: słońce i przelotny deszcz w ciągu jednej godziny.</li>
+      </ul>
+      <p class="wxu"><b>Ubiór:</b> warstwy, lekka kurtka przeciwdeszczowa, wodoodporne buty za kostkę, kije trekkingowe, czołówka.</p>
+    </article>
+    <article class="wxc">
+      <p class="wxk">Na lądzie</p><h3>Nocą, przy zorzy</h3><p class="wxv">ok. 5–8 °C, przy czystym niebie najzimniej</p>
+      <ul>
+        <li>Do obserwacji potrzebne jest bezchmurne niebo, a takie noce są najzimniejsze: ok. 5 °C, przy wietrze odczuwalnie bliżej 0 °C.</li>
+        <li>2–3 godziny stania w jednym miejscu wychładzają dużo szybciej niż marsz. Na trawie i skałach pojawia się rosa.</li>
+        <li>Największe szanse między 22:00 a 02:00; godziny ciemności dla każdej nocy są w planie dnia.</li>
+        <li>Najważniejsze jest zachmurzenie (yr.no). Nad Lofotami wystarcza niska aktywność zorzy.</li>
+      </ul>
+      <p class="wxu"><b>Ubiór:</b> najcieplejsza warstwa, jaką macie, ogrzewacze do rąk, termos, rękawice z odsłanianymi palcami do aparatu, czołówka z czerwonym światłem.</p>
+    </article>
+  </div>
+  <p class="cn">Źródła średnich: timeanddate.no, climate-data.org i normy dla Svolvær; dane różnią się między źródłami, więc podane są przedziały.</p>
   </section>
   <section id="tab-koszty" role="tabpanel" aria-labelledby="t-koszty" hidden>
   <h2 id="wycena">Wycena rejsu</h2>
@@ -342,13 +415,13 @@ const tabs=[...document.querySelectorAll('.tabs [role="tab"]')];
 function show(id,push){
   tabs.forEach(t=>{const on=t.getAttribute('aria-controls')===id;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!on;});
   if(id==='tab-trasa')window.dispatchEvent(new Event('resize'));
-  if(push)history.replaceState(null,'',id==='tab-koszty'?'#kosztorys':location.pathname+location.search);
+  if(push)history.replaceState(null,'',id==='tab-koszty'?'#kosztorys':id==='tab-pogoda'?'#pogoda':location.pathname+location.search);
 }
 tabs.forEach((t,i)=>{
   t.addEventListener('click',()=>show(t.getAttribute('aria-controls'),true));
   t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.focus();n.click();}});
 });
-function fromHash(){const hsh=location.hash;if(['#kosztorys','#wycena','#transport','#wycena-loty','#wycena-auto','#podsumowanie'].includes(hsh))show('tab-koszty',false);else if(hsh){const el=document.getElementById(decodeURIComponent(hsh.slice(1)));if(el&&document.getElementById('tab-trasa').contains(el))show('tab-trasa',false);}}
+function fromHash(){const hsh=location.hash;if(['#kosztorys','#wycena','#transport','#wycena-loty','#wycena-auto','#podsumowanie'].includes(hsh))show('tab-koszty',false);else if(hsh==='#pogoda')show('tab-pogoda',false);else if(hsh){const el=document.getElementById(decodeURIComponent(hsh.slice(1)));if(el&&document.getElementById('tab-trasa').contains(el))show('tab-trasa',false);}}
 window.addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
