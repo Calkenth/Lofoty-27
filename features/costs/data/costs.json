@@ -1,0 +1,63 @@
+{
+  "people": 6,
+  "rates": { "EUR": 4.34, "NOK": 0.40 },
+  "cruise": {
+    "id": "wycena",
+    "title": "Wycena rejsu",
+    "subtitle": "Jacht Ellinor na dwa tygodnie, 28.08–11.09.2027, dla 6 osób.",
+    "totalLabel": "Razem rejs",
+    "items": [
+      { "label": "Jacht", "note": "2 × 3 500 € + 200 € sprzątania",
+        "cost": { "type": "total", "amount": 7200, "currency": "EUR" } },
+      { "label": "Porty, paliwo, woda", "note": "14 nocy w portach, paliwo do jachtu, woda",
+        "cost": { "type": "perPerson", "amount": 700, "currency": "PLN" } }
+    ],
+    "deposit": { "amount": 1000, "currency": "EUR", "text": "Jest blokowana na karcie i zwracana po rejsie." }
+  },
+  "transport": {
+    "id": "transport",
+    "title": "Transport",
+    "subtitle": "Dwie opcje dojazdu do Svolvær i powrotu, dla 6 osób.",
+    "options": [
+      {
+        "id": "wycena-loty",
+        "title": "Samolot",
+        "route": "Katowice → Oslo → Svolvær i z powrotem, z bagażem rejestrowanym",
+        "totalColumn": "Za całość",
+        "items": [
+          { "label": "Loty", "note": "Ryanair do Oslo, dalej Widerøe lub przez Bodø",
+            "cost": { "type": "perPerson", "amount": 2000, "currency": "PLN" } }
+        ],
+        "time": "dolot ok. 7,5 h od startu w Katowicach do lądowania w Svolvær. Powrót najpewniej z noclegiem w Oslo (nocleg poza kwotą)."
+      },
+      {
+        "id": "wycena-auto",
+        "title": "Auto",
+        "route": "Przez Litwę, Łotwę i Estonię, prom Tallin–Helsinki, dalej przez Finlandię i Szwecję. Jedno auto dla 6 osób",
+        "totalColumn": "Za auto",
+        "items": [
+          { "label": "Paliwo", "note": "{trips} × {oneWayKm} km, ok. {tanks} baków po ok. {pricePerTank} zł",
+            "cost": { "type": "fuel", "oneWayKm": 2813, "trips": 2, "litresPer700Km": 45, "tankLitres": 45, "pricePerTank": 400, "currency": "PLN" } },
+          { "label": "Prom Tallin–Helsinki", "note": "2 przeprawy, Eckerö Line, pakiet auto z pasażerami (auto do 5 m długości i 1,9 m wysokości) plus 1 dodatkowa osoba",
+            "cost": { "type": "range", "min": 100, "max": 200, "currency": "EUR" } }
+        ],
+        "time": "ok. 35 h jazdy i 2–2,5 h promu w jedną stronę, czyli ok. 70 h jazdy łącznie. Bez noclegów po drodze, odcinków płatnych i parkingu w Svolvær."
+      }
+    ]
+  },
+  "summary": {
+    "id": "podsumowanie",
+    "title": "Podsumowanie",
+    "columns": { "wycena-loty": "Z samolotem", "wycena-auto": "Z autem" },
+    "rows": {
+      "cruise": "Rejs (jacht, porty, paliwo, woda)",
+      "transport": "Transport",
+      "total": "Razem za całość",
+      "perPerson": "Na osobę"
+    }
+  },
+  "notes": [
+    "Poza kwotami zostają jedzenie (ok. 1 800–2 800 zł na osobę) i ubezpieczenia (ok. 200–400 zł na osobę)."
+  ],
+  "sourcesNote": "Kwota za jacht pochodzi z cennika armatora, pozostałe pozycje to szacunki."
+}

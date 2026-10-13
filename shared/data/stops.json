@@ -1,0 +1,156 @@
+[
+  {
+    "n": 1,
+    "name": "Svolvær",
+    "lat": 68.2336,
+    "lon": 14.569,
+    "x": 700.4,
+    "y": 422.6,
+    "week": 1,
+    "label": {
+      "dx": 14,
+      "dy": -10,
+      "anchor": "start"
+    }
+  },
+  {
+    "n": 2,
+    "name": "Skrova",
+    "lat": 68.1667,
+    "lon": 14.662,
+    "x": 740.2,
+    "y": 499.7,
+    "week": 1,
+    "label": {
+      "dx": -13,
+      "dy": 16,
+      "anchor": "end"
+    }
+  },
+  {
+    "n": 3,
+    "name": "Digermulen",
+    "lat": 68.3127,
+    "lon": 14.9884,
+    "x": 879.7,
+    "y": 331.3,
+    "week": 1,
+    "label": {
+      "dx": 14,
+      "dy": 5,
+      "anchor": "start"
+    }
+  },
+  {
+    "n": 4,
+    "name": "Stokmarknes",
+    "lat": 68.5656,
+    "lon": 14.9044,
+    "x": 843.8,
+    "y": 39.7,
+    "week": 1,
+    "label": {
+      "dx": -14,
+      "dy": 5,
+      "anchor": "end"
+    }
+  },
+  {
+    "n": 5,
+    "name": "Trollfjord",
+    "lat": 68.3638,
+    "lon": 14.935,
+    "x": 856.8,
+    "y": 272.4,
+    "week": 1,
+    "label": {
+      "dx": -14,
+      "dy": -9,
+      "anchor": "end"
+    }
+  },
+  {
+    "n": 6,
+    "name": "Kabelvåg",
+    "lat": 68.2105,
+    "lon": 14.4815,
+    "x": 663.0,
+    "y": 449.2,
+    "week": 1,
+    "label": {
+      "dx": -13,
+      "dy": 15,
+      "anchor": "end"
+    }
+  },
+  {
+    "n": 7,
+    "name": "Henningsvær",
+    "lat": 68.1508,
+    "lon": 14.2016,
+    "x": 543.4,
+    "y": 518.0,
+    "week": 1,
+    "label": {
+      "dx": -14,
+      "dy": -9,
+      "anchor": "end"
+    }
+  },
+  {
+    "n": 8,
+    "name": "Nusfjord",
+    "lat": 68.0348,
+    "lon": 13.3501,
+    "x": 179.5,
+    "y": 651.8,
+    "week": 2,
+    "label": {
+      "dx": 0,
+      "dy": -15,
+      "anchor": "middle"
+    }
+  },
+  {
+    "n": 9,
+    "name": "Reine",
+    "lat": 67.932,
+    "lon": 13.089,
+    "x": 67.9,
+    "y": 770.4,
+    "week": 2,
+    "label": {
+      "dx": 14,
+      "dy": 14,
+      "anchor": "start"
+    }
+  },
+  {
+    "n": 10,
+    "name": "Vindstad (Bunes)",
+    "lat": 67.965,
+    "lon": 13.02,
+    "x": 38.5,
+    "y": 732.3,
+    "week": 2,
+    "label": {
+      "dx": -14,
+      "dy": 5,
+      "anchor": "end"
+    }
+  },
+  {
+    "n": 11,
+    "name": "Ballstad",
+    "lat": 68.066,
+    "lon": 13.535,
+    "x": 258.5,
+    "y": 615.8,
+    "week": 2,
+    "label": {
+      "dx": 13,
+      "dy": -10,
+      "anchor": "start"
+    }
+  }
+]

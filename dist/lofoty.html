@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rejs po Lofotach – plan godzinowy, 28.08–11.09.2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+/* assets/css/tokens.css */
+/* Kolory, fonty i motyw jasny/ciemny. Zmiana palety tylko tutaj. */
+:root {
+  --paper: #F4F7F8; --ink: #16252F; --muted: #56666F; --line: #C8D5DB;
+  --sea: #D7E7EE; --land: #ECE1BF; --land-edge: #A08852; --water-text: #3F7290;
+  --r1: #A8215F; --r2: #1D5C88; --chip: #FFFFFF; --aur: #2E9466;
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0B1820; --ink: #E3ECF0; --muted: #97AAB5; --line: #24394A;
+    --sea: #0F2533; --land: #2F2B21; --land-edge: #77694A; --water-text: #7DB0CC;
+    --r1: #E25B9E; --r2: #5EA6D6; --chip: #132631; --aur: #5FD3A0;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0B1820; --ink: #E3ECF0; --muted: #97AAB5; --line: #24394A;
+  --sea: #0F2533; --land: #2F2B21; --land-edge: #77694A; --water-text: #7DB0CC;
+  --r1: #E25B9E; --r2: #5EA6D6; --chip: #132631; --aur: #5FD3A0;
+}
+
+/* assets/css/base.css */
+/* Reset, typografia i układ strony. */
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+[hidden] { display: none !important; }
+a { color: var(--r2); }
+button:focus-visible, [role="button"]:focus-visible { outline: 2px solid var(--r2); outline-offset: 2px; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 40px; }
+h1 { font-weight: 600; font-size: clamp(28px, 5vw, 44px); line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 6px; }
+h2 { font-weight: 600; font-size: 22px; margin: 36px 0 4px; }
+.dates { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 2.6vw, 22px); color: var(--muted); margin: 0 0 18px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0 0 22px; padding: 0; }
+.facts div { display: flex; flex-direction: column; }
+.facts dt { font-size: 13px; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; }
+.sub { color: var(--muted); margin: 0 0 14px; max-width: 62ch; }
+footer { margin-top: 28px; font-size: 13px; color: var(--muted); max-width: 70ch; }
+.load-error { padding: 12px 14px; border: 1px solid var(--r1); border-radius: 8px; color: var(--r1); }
+
+@media (max-width: 560px) {
+  .wrap { padding: 20px 14px 32px; }
+}
+
+/* assets/css/components.css */
+/* Wspólne elementy: tabele i notatki pod nimi (kosztorys, pogoda). */
+.tw { overflow-x: auto; margin: 6px 0 14px; }
+.cost { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 420px; }
+.cost th, .cost td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.cost thead th { font-size: 13px; font-weight: 600; color: var(--muted); }
+.cost td:nth-child(n+2), .cost th:nth-child(n+2) { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cost .n { display: block; font-size: 13px; color: var(--muted); }
+.cost tfoot th, .cost tfoot td { font-weight: 600; border-top: 2px solid var(--ink); border-bottom: 0; font-size: 16px; }
+.cn { margin: 0 0 8px; max-width: 70ch; color: var(--muted); font-size: 15px; }
+
+/* features/tabs/tabs.css */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin: 4px 0 20px; }
+.tabs button { font: inherit; font-size: 16px; font-weight: 600; padding: 10px 16px 12px; border: 0; background: none; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--r2); }
+.tabs button:hover { color: var(--ink); }
+.panel-content > h2:first-child { margin-top: 0; }
+
+@media (max-width: 420px) {
+  .tabs button { font-size: 15px; padding: 10px 10px 12px; }
+}
+
+/* features/map/map.css */
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.bar button { font: inherit; font-size: 14px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--chip); color: var(--ink); cursor: pointer; }
+.bar button[aria-pressed="true"] { border-color: var(--r2); color: var(--r2); font-weight: 600; }
+.bar .zoom { margin-left: auto; display: flex; gap: 6px; }
+.bar .zoom button { width: 38px; padding: 7px 0; font-size: 18px; line-height: 1; }
+
+.mapbox { position: relative; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--sea); }
+#map { display: block; width: 100%; height: auto; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+#map.drag { cursor: grabbing; }
+
+.under { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; font-size: 13px; color: var(--muted); margin: 10px 2px 0; }
+.key { display: inline-flex; align-items: center; gap: 7px; }
+.key i { display: inline-block; width: 26px; border-top: 3px solid; }
+.scale { display: inline-flex; align-items: center; gap: 8px; }
+.scale b { display: inline-block; height: 8px; border: 1.5px solid var(--muted); border-top: 0; }
+.hint { flex-basis: 100%; margin: 0; }
+
+@media (max-width: 560px) {
+  .bar button { font-size: 13px; padding: 6px 10px; }
+}
+
+/* features/itinerary/itinerary.css */
+/* Legenda kropek */
+.lgd { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+.lgd span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.dot.sail { background: var(--r2); }
+.dot.land { background: var(--land-edge); }
+.dot.aur { background: var(--aur); }
+.dot.note { background: transparent; border: 1.5px solid var(--muted); }
+
+/* Lista dni z harmonogramem */
+ol.days { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.dayb { border-bottom: 1px solid var(--line); }
+.dh { display: grid; grid-template-columns: 96px 1fr auto; gap: 2px 14px; align-items: baseline; cursor: pointer; padding: 12px 6px; border-radius: 8px; }
+.dh:hover { background: color-mix(in srgb, var(--sea) 55%, transparent); }
+.dayb.on .dh { background: var(--sea); }
+.dh .d { font-family: var(--serif); font-style: italic; color: var(--muted); }
+.dh .t { font-weight: 600; }
+.dh .m { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.pins { display: inline-flex; gap: 4px; margin-left: 8px; vertical-align: 1px; }
+.pin { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; font-size: 12px; font-weight: 600; color: var(--paper); }
+.pin.w1 { background: var(--r1); }
+.pin.w2 { background: var(--r2); }
+.sch { list-style: none; margin: 0 0 14px; padding: 0 6px 0 116px; }
+.sch li { display: grid; grid-template-columns: 96px 14px 1fr; gap: 0 10px; align-items: baseline; padding: 4px 0; font-size: 15px; }
+.sch .h { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.sch .dot { transform: translateY(1px); }
+.sch .x { color: var(--ink); }
+.sch li.aur .x, .sch li.note .x { color: var(--muted); }
+.sch li.more a { font-size: 14px; }
+
+/* Szczegółowe opisy dni */
+.ds { padding: 18px 6px 8px; border-bottom: 1px solid var(--line); }
+.ds h3 { font-size: 19px; font-weight: 600; margin: 0 0 8px; line-height: 1.3; }
+.ds .dd { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--muted); margin-right: 6px; }
+.ds p { margin: 0 0 10px; max-width: 70ch; }
+.ds .back { font-size: 13px; }
+
+@media (max-width: 560px) {
+  .dh { grid-template-columns: 78px 1fr; }
+  .dh .m { grid-column: 2; font-size: 14px; }
+  .sch { padding-left: 6px; }
+  .sch li { grid-template-columns: 78px 12px 1fr; font-size: 14px; }
+}
+
+/* features/weather/weather.css */
+.wxt { min-width: 320px; }
+.wx { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0 12px; }
+.wxc { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 8px; background: var(--chip); }
+.wxk { margin: 0; font-size: 13px; color: var(--muted); }
+.wxc h3 { margin: 0; font-size: 20px; font-weight: 600; }
+.wxv { margin: 4px 0 10px; font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--r2); }
+.wxc ul { margin: 0 0 10px; padding-left: 18px; }
+.wxc li { margin: 0 0 6px; font-size: 15px; }
+.wxu { font-size: 14px; color: var(--muted); margin: 8px 0 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+.wxu b { color: var(--ink); }
+
+@media (max-width: 720px) {
+  .wx { grid-template-columns: 1fr; }
+}
+
+/* features/costs/costs.css */
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 6px 0 10px; }
+.opt { border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 6px; background: var(--chip); }
+.opt h3 { margin: 0 0 4px; font-size: 20px; font-weight: 600; }
+.opt .od { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+.opt .tm { font-size: 14px; color: var(--muted); margin: 10px 0; }
+.opt .tm b { color: var(--ink); }
+.cost.mini { min-width: 0; font-size: 14px; }
+.cost.mini th, .cost.mini td { padding: 8px 6px; }
+.cost.mini tfoot th, .cost.mini tfoot td { font-size: 15px; }
+
+@media (max-width: 720px) {
+  .opts { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Rejs po Lofotach</h1>
+  <p class="dates">28 sierpnia – 11 września 2027</p>
+  <dl class="facts">
+    <div><dt>Jacht</dt><dd>Ellinor, Bavaria 42</dd></div>
+    <div><dt>Start i meta</dt><dd>Svolvær</dd></div>
+    <div><dt>Noclegi</dt><dd>14 nocy</dd></div>
+    <div><dt>Dystans</dt><dd>ok. 164 Mm</dd></div>
+  </dl>
+  <p id="load-error" class="load-error" role="alert" hidden></p>
+
+  <div class="tabs" role="tablist" aria-label="Sekcje strony">
+    <button type="button" role="tab" id="t-trasa" aria-controls="tab-trasa" aria-selected="true">Trasa i plan</button>
+    <button type="button" role="tab" id="t-pogoda" aria-controls="tab-pogoda" aria-selected="false" tabindex="-1">Pogoda</button>
+    <button type="button" role="tab" id="t-koszty" aria-controls="tab-koszty" aria-selected="false" tabindex="-1">Kosztorys</button>
+  </div>
+
+  <!-- Zakładka: trasa, mapa, plan dzień po dniu, opisy dni -->
+  <section id="tab-trasa" role="tabpanel" aria-labelledby="t-trasa" data-hash="">
+    <div class="bar" role="toolbar" aria-label="Widok mapy">
+      <button type="button" data-view="all" aria-pressed="true">Całość</button>
+      <button type="button" data-view="east" aria-pressed="false">Raftsundet i Vesterålen</button>
+      <button type="button" data-view="svo" aria-pressed="false">Svolvær i Henningsvær</button>
+      <button type="button" data-view="west" aria-pressed="false">Zachód: Reine</button>
+      <span class="zoom"><button type="button" id="zin" aria-label="Przybliż">+</button><button type="button" id="zout" aria-label="Oddal">−</button></span>
+    </div>
+    <div class="mapbox">
+      <svg id="map" role="img" aria-labelledby="mt">
+        <title id="mt">Mapa trasy jachtu po Lofotach i Vesterålen, ze Svolvær przez Raftsundet do Stokmarknes, Trollfjord, Henningsvær, Nusfjord, Reine i Ballstad z powrotem do Svolvær</title>
+      </svg>
+    </div>
+    <div class="under">
+      <span class="key"><i style="border-color:var(--r1)"></i>tydzień 1</span>
+      <span class="key"><i style="border-color:var(--r2)"></i>tydzień 2</span>
+      <span class="key"><i style="border-color:var(--r2);border-top-style:dashed"></i>wypad do Vindstad</span>
+      <span class="scale"><b id="sb"></b><span id="sl"></span></span>
+      <span>północ u góry</span>
+      <p class="hint">Przeciągnij mapę, żeby ją przesunąć. Przybliżasz kółkiem myszy, dwoma palcami albo przyciskami +/−.</p>
+    </div>
+
+    <h2>Dzień po dniu</h2>
+    <p class="sub">Kliknij nagłówek dnia, żeby przybliżyć mapę do jego odcinka. Godziny są orientacyjne, przy średniej ok. 5,5 węzła; po nocach zorzowych start jest późniejszy.</p>
+    <p class="lgd"><span><i class="dot sail"></i>port i żegluga</span><span><i class="dot land"></i>na lądzie</span><span><i class="dot aur"></i>noc i zorza</span><span><i class="dot note"></i>organizacja</span></p>
+    <ol class="days" id="days"></ol>
+
+    <h2 id="opisy">Opis dni</h2>
+    <p class="sub">Co zobaczycie każdego dnia, z praktycznymi uwagami. Godziny otwarcia pochodzą z poprzednich sezonów, więc przed wyjazdem trzeba je potwierdzić.</p>
+    <div id="descriptions"></div>
+
+    <footer>Mapa poglądowa, nie do nawigacji. Linia brzegowa jest uproszczona, a kurs trzeba przenieść na mapy morskie, zwłaszcza w Raftsundet, przy wejściu do Trollfjordu i przy podejściu do Stokmarknes.</footer>
+  </section>
+
+  <!-- Zakładka: pogoda (treść z features/weather/data/weather.json) -->
+  <section id="tab-pogoda" role="tabpanel" aria-labelledby="t-pogoda" data-hash="pogoda" hidden>
+    <div id="weather" class="panel-content"></div>
+  </section>
+
+  <!-- Zakładka: kosztorys (treść i kwoty z features/costs/data/costs.json) -->
+  <section id="tab-koszty" role="tabpanel" aria-labelledby="t-koszty" data-hash="kosztorys" hidden>
+    <div id="costs" class="panel-content"></div>
+  </section>
+</main>
+<!-- Wygenerowano przez tools/bundler/bundle.py. Nie edytuj ręcznie: zmiany wprowadzaj w plikach źródłowych. -->
+<script>
+window.__BUNDLE_DATA__ = {"features/costs/data/costs.json":{"people":6,"rates":{"EUR":4.34,"NOK":0.4},"cruise":{"id":"wycena","title":"Wycena rejsu","subtitle":"Jacht Ellinor na dwa tygodnie, 28.08–11.09.2027, dla 6 osób.","totalLabel":"Razem rejs","items":[{"label":"Jacht","note":"2 × 3 500 € + 200 € sprzątania","cost":{"type":"total","amount":7200,"currency":"EUR"}},{"label":"Porty, paliwo, woda","note":"14 nocy w portach, paliwo do jachtu, woda","cost":{"type":"perPerson","amount":700,"currency":"PLN"}}],"deposit":{"amount":1000,"currency":"EUR","text":"Jest blokowana na karcie i zwracana po rejsie."}},"transport":{"id":"transport","title":"Transport","subtitle":"Dwie opcje dojazdu do Svolvær i powrotu, dla 6 osób.","options":[{"id":"wycena-loty","title":"Samolot","route":"Katowice → Oslo → Svolvær i z powrotem, z bagażem rejestrowanym","totalColumn":"Za całość","items":[{"label":"Loty","note":"Ryanair do Oslo, dalej Widerøe lub przez Bodø","cost":{"type":"perPerson","amount":2000,"currency":"PLN"}}],"time":"dolot ok. 7,5 h od startu w Katowicach do lądowania w Svolvær. Powrót najpewniej z noclegiem w Oslo (nocleg poza kwotą)."},{"id":"wycena-auto","title":"Auto","route":"Przez Litwę, Łotwę i Estonię, prom Tallin–Helsinki, dalej przez Finlandię i Szwecję. Jedno auto dla 6 osób","totalColumn":"Za auto","items":[{"label":"Paliwo","note":"{trips} × {oneWayKm} km, ok. {tanks} baków po ok. {pricePerTank} zł","cost":{"type":"fuel","oneWayKm":2813,"trips":2,"litresPer700Km":45,"tankLitres":45,"pricePerTank":400,"currency":"PLN"}},{"label":"Prom Tallin–Helsinki","note":"2 przeprawy, Eckerö Line, pakiet auto z pasażerami (auto do 5 m długości i 1,9 m wysokości) plus 1 dodatkowa osoba","cost":{"type":"range","min":100,"max":200,"currency":"EUR"}}],"time":"ok. 35 h jazdy i 2–2,5 h promu w jedną stronę, czyli ok. 70 h jazdy łącznie. Bez noclegów po drodze, odcinków płatnych i parkingu w Svolvær."}]},"summary":{"id":"podsumowanie","title":"Podsumowanie","columns":{"wycena-loty":"Z samolotem","wycena-auto":"Z autem"},"rows":{"cruise":"Rejs (jacht, porty, paliwo, woda)","transport":"Transport","total":"Razem za całość","perPerson":"Na osobę"}},"notes":["Poza kwotami zostają jedzenie (ok. 1 800–2 800 zł na osobę) i ubezpieczenia (ok. 200–400 zł na osobę)."],"sourcesNote":"Kwota za jacht pochodzi z cennika armatora, pozostałe pozycje to szacunki."},"features/itinerary/data/days.json":[{"id":1,"date":"sob 28.08","title":"Svolvær","stops":[1],"nm":null,"schedule":[{"time":"po poł.","kind":"note","text":"Przylot do Svolvær"},{"time":"ok. 15:00","kind":"sail","text":"Odbiór jachtu w porcie, odprawa ok. 2–3 h"},{"time":"18:00","kind":"land","text":"Zakupy na pierwsze dni (Rema 1000, Coop)"},{"time":"20:00","kind":"land","text":"Magic Ice (galeria lodowych rzeźb z barem)"},{"time":"noc","kind":"aur","text":"Sen po podróży (ciemno tylko 00:24–01:45)"}],"description":{"title":"Svolvær: przylot i odbiór jachtu","paragraphs":["Svolvær to główne miasto wschodnich Lofotów, ok. 4 600 mieszkańców. Po przylocie odbieracie Ellinor w porcie: odprawa trwa zwykle 2–3 godziny, potem duże zakupy na pierwsze dni w Rema 1000 albo Coop. Postój w porcie gościnnym kosztuje ok. 400 NOK za dobę z prądem.","Nad miastem stoi Svolværgeita (skalna iglica), na którą wchodzi się tylko ze sprzętem wspinaczkowym i przewodnikiem, więc oglądacie ją z dołu. Na pierwszy wieczór dobrze sprawdza się Magic Ice (galeria lodowych rzeźb z barem) w dawnej chłodni rybnej, gdzie stale panuje −6 °C, a drinki podaje się w szklankach z lodu.","Jeśli zostanie czas, warto przejść mostem na Svinøya (wysepka z rorbuer). W galerii Gunnara Berga wisi obraz „Trollfjordslaget” o bitwie rybaków z 1890 roku. Kilka dni później zobaczycie to miejsce z pokładu. Pierwsza noc jest jeszcze prawie jasna, więc lepiej się wyspać po podróży."]}},{"id":2,"date":"nd 29.08","title":"Svolvær → Skrova","stops":[1,2],"nm":5,"schedule":[{"time":"8:30","kind":"land","text":"Wyjście na Fløyę (szczyt 590 m n.p.m.) z Djevelporten (głaz nad urwiskiem, punkt widokowy), ok. 2 h w jedną stronę"},{"time":"13:00","kind":"note","text":"Powrót na jacht"},{"time":"14:00","kind":"sail","text":"Wyjście z portu"},{"time":"15:00","kind":"sail","text":"Wejście do portu w Skrova (osada rybacka i wielorybnicza)"},{"time":"16:00","kind":"land","text":"Spacer po Skrovie: tunel z galerią starych zdjęć, zatoczki z białym piaskiem"},{"time":"ok. 00:00","kind":"aur","text":"Krótka obserwacja zorzy (ciemno 00:06–02:02)"}],"description":{"title":"Fløya i Skrova","paragraphs":["Rano wejście na Fløyę (szczyt 590 m n.p.m.) prosto z centrum Svolvær, ok. 2 godzin w jedną stronę. Dolna część to kamienne schody ułożone przez szerpów, dalej zwykła górska ścieżka, po deszczu błotnista. Po drodze mijacie Djevelporten (głaz zaklinowany między skałami nad urwiskiem). Miejsce jest bardzo eksponowane i wchodzenie na sam głaz jest ryzykowne. Ostatni odcinek na wierzchołek jest dla doświadczonych, a punkt widokowy ok. 40 m niżej daje praktycznie ten sam widok.","Po południu krótki przelot na Skrovę (5 Mm). Skrova to dziś mała wyspa, ale z dużą historią: prawa handlowe dostała w 1760 roku i przez długi czas była największą osadą rybacką Lofotów. Działa tu jedna z największych stacji wielorybniczych w Norwegii, przyjmująca ok. połowy całego norweskiego mięsa wielorybów.","Na spacer: przez wzgórze prowadzi tunel łączący dwie części osady, który dziś służy jako galeria starych zdjęć z życia wioski, a łatwe ścieżki prowadzą do zatoczek z białym piaskiem. Z osady widać latarnię na wysepce Saltværholmen, stojącą od 1922 roku. Ok. północy krótka obserwacja nieba, bo pełna ciemność trwa tylko dwie godziny."]}},{"id":3,"date":"pn 30.08","title":"Skrova → Digermulen","stops":[2,3],"nm":13,"schedule":[{"time":"8:30","kind":"land","text":"Wyjście na Skrovafjellet (szczyt ok. 250–280 m n.p.m.)"},{"time":"11:00","kind":"sail","text":"Wyjście z portu"},{"time":"13:30","kind":"sail","text":"Wejście do portu w Digermulen (mała osada bez połączenia drogowego)"},{"time":"14:30","kind":"land","text":"Wyjście na Keiservarden (szczyt 384 m n.p.m. z tablicami cesarza Wilhelma II), ok. 3 h"},{"time":"22:30–02:00","kind":"aur","text":"Noc zorzowa nr 1 (ciemno 23:52–02:15)"}],"description":{"title":"Skrovafjellet i Digermulen","paragraphs":["Rano Skrovafjellet (szczyt ok. 250–280 m n.p.m., źródła podają 253 albo 281 m). Na stromych odcinkach są zamocowane liny, ale nie trzeba się wspinać. Ze szczytu widać całą Ścianę Lofotów i północną część Vestfjorden.","Przelot do Digermulen to ok. 13 Mm. Digermulen to mała osada na wyspie Hinnøya, bez bezpośredniego połączenia drogowego z resztą gminy, więc jest tu cicho i ciemno. Po południu Keiservarden (szczyt 384 m n.p.m.): start ze starego nabrzeża promowego, ok. 3 godzin z przerwami, miejscami stromo z linami. Na szczycie stoją kopce z tablicami upamiętniającymi wejścia cesarza Wilhelma II w 1889 i 1906 roku. Dla chętnych trasę można przedłużyć na Snøtinden (szczyt 637 m n.p.m.).","To pierwsza pełnoprawna noc zorzowa: ciemno od 23:52 do 02:15, a następnego dnia start jest późny. Jeśli jacht stoi na kotwicy, ktoś powinien pilnować go także w nocy."]}},{"id":4,"date":"wt 31.08","title":"Digermulen → Stokmarknes","stops":[3,4],"nm":21,"schedule":[{"time":"10:00","kind":"sail","text":"Wyjście z portu, późny start po nocy zorzowej"},{"time":"10:00–13:00","kind":"sail","text":"Przejście przez Raftsundet (cieśnina, 25 km)"},{"time":"13:45","kind":"sail","text":"Wejście do portu w Stokmarknes (miasteczko, kolebka Hurtigruten)"},{"time":"14:00","kind":"land","text":"Hurtigrutemuseet (muzeum żeglugi przybrzeżnej, statek MS Finnmarken na lądzie), czynne do 15:30"},{"time":"noc","kind":"aur","text":"Sen przed najdłuższym odcinkiem"}],"description":{"title":"Raftsundet i Stokmarknes","paragraphs":["Późny start i przejście przez cały Raftsundet (cieśnina, 25 km), wąski przesmyk między stromymi górami, który oddziela Lofoty od Vesterålen. Bieliki są tu częste, więc warto mieć lornetkę. Wejście w cieśninę trzeba zaplanować pod pływy, bo w przewężeniach prądy są silne, a przez Raftsundet przepływają też statki Hurtigruten. AIS i nasłuch na VHF są tu obowiązkowe.","Stokmarknes to miasteczko na wyspie Hadseløya w Vesterålen, w którym Richard With założył Hurtigruten. Główną atrakcją jest Hurtigrutemuseet (muzeum żeglugi przybrzeżnej): statek MS Finnmarken z 1956 roku, ustawiony na lądzie i obudowany szklanym budynkiem. Można wejść na mostek, do salonu dla pań i na pokłady, a z przewodnikiem także do maszynowni. Są też luksusowe salony parowca DS Finmarken z 1912 roku i retro kawiarnia na pokładzie.","Bilet kosztuje ok. 195 NOK. W dni robocze muzeum było czynne do 15:30 (dane z 2023 r.), dlatego przelot zaczyna się o 10:00. Noc snu przed najdłuższym odcinkiem."]}},{"id":5,"date":"śr 1.09","title":"Stokmarknes → Trollfjord → Svolvær","stops":[4,5,1],"nm":35,"schedule":[{"time":"8:00","kind":"sail","text":"Wyjście z portu"},{"time":"ok. 11:30","kind":"sail","text":"Trollfjord (wąski fiord, 2 km): wpłynięcie i wypłynięcie tą samą drogą"},{"time":"ok. 15:00","kind":"sail","text":"Wejście do portu w Svolvær"},{"time":"15:30","kind":"note","text":"Tankowanie i woda"},{"time":"18:30","kind":"land","text":"Lofoten Krigsminnemuseum (muzeum II wojny światowej), jeśli działa wieczorem"},{"time":"noc","kind":"aur","text":"Sen"}],"description":{"title":"Trollfjord i powrót do Svolvær","paragraphs":["Najdłuższy dzień rejsu: ok. 35 Mm, start o 8:00. W środku dnia, przy dobrym świetle, wpływacie do Trollfjordu (wąski fiord) i wracacie tą samą drogą. Fiord ma 2 km długości, wejście szerokie na 100 m, ściany gór 600–900 m i głębokość do 65 m.","Tu w 1890 roku rozegrała się bitwa z obrazu Gunnara Berga. Parowce zamknęły wewnętrzną część fiordu sieciami i żądały od rybaków opłaty za wstęp. Doszło do bójki, w której załogi parowców polewały rybaków wrzątkiem z kotłów. W tamtym sezonie w tym wąskim fiordzie łowiło 1 300–1 400 łodzi i ok. 4 500–5 000 rybaków.","Po południu Svolvær: tankowanie i woda. Wieczorem Lofoten Krigsminnemuseum (muzeum II wojny światowej) z jedną z największych kolekcji mundurów i pamiątek wojennych oraz osobną salą o rajdzie na Lofoty. Wieczorne godziny otwarcia trzeba potwierdzić przed wyjazdem."]}},{"id":6,"date":"czw 2.09","title":"Svolvær → Kabelvåg → Henningsvær","stops":[1,6,7],"nm":12,"schedule":[{"time":"10:30","kind":"sail","text":"Wyjście z portu"},{"time":"11:00","kind":"sail","text":"Wejście do portu w Kabelvåg (miasteczko obok Svolvær)"},{"time":"11:00–15:00","kind":"land","text":"Lofotmuseet (skansen na miejscu średniowiecznego Vágar), Lofotakvariet (akwarium z wydrami i fokami), Galleri Espolin (galeria malarstwa), Lofotkatedralen (drewniany kościół)"},{"time":"15:15","kind":"sail","text":"Wyjście z Kabelvåg"},{"time":"17:00","kind":"sail","text":"Wejście do portu w Henningsvær (osada rybacka na wysepkach)"},{"time":"19:00","kind":"land","text":"Trevarefabrikken (centrum kultury z sauną nad wodą)"},{"time":"22:30–02:00","kind":"aur","text":"Noc zorzowa nr 2 (ciemno 23:21–02:45)"}],"description":{"title":"Kabelvåg i Henningsvær","paragraphs":["Krótki przeskok do Kabelvåg (miasteczko 3 Mm od Svolvær), które uchodzi za miejsce, gdzie zaczęły się połowy lofockie. Zespół Storvågan jest czynny we wrześniu w godzinach 11–15, a na wszystkie trzy obiekty jest wspólny bilet:","Lofotmuseet (skansen) stoi nad samą wodą, na miejscu średniowiecznego Vágar, pierwszego miasta północnej Norwegii: rorbuer, szopy na łodzie, kolekcja tradycyjnych łodzi i dworek z 1815 roku. W Lofotakvariet (akwarium) codziennie karmi się wydry i foki. Galleri Espolin (galeria malarstwa) pokazuje ponad 200 prac Kaare Espolina Johnsona, malarza kultury wybrzeża. W centrum stoi Lofotkatedralen (drewniany kościół), największy taki kościół na północ od Trondheim. Postój ponad 3 godziny oznacza w Kabelvåg pełną stawkę dobową.","Po południu ok. 9 Mm do Henningsvær (osada rybacka na kilku wysepkach połączonych mostami). Wieczorem Trevarefabrikken (centrum kultury z sauną nad wodą). Noc zorzowa: z portu najlepiej przejść na zewnętrzne skały wysepek, poza światła osady."]}},{"id":7,"date":"pt 3.09","title":"Henningsvær (dzień zapasowy)","stops":[7],"nm":null,"schedule":[{"time":"rano","kind":"note","text":"Sen po nocy zorzowej"},{"time":"11:00","kind":"land","text":"KaviarFactory (galeria sztuki współczesnej)"},{"time":"12:30","kind":"land","text":"Boisko na Hellandsøya (boisko piłkarskie na skale)"},{"time":"15:00","kind":"land","text":"Wyjście na Festvågtind (szczyt 541 m n.p.m.), 1–1,5 h w górę"},{"time":"18:30","kind":"note","text":"Powrót na jacht"},{"time":"22:30–02:00","kind":"aur","text":"Noc zorzowa nr 3 (ciemno 23:12–02:54); przy spokojnej pogodzie nocne wyjście na Vestfjorden"}],"description":{"title":"Dzień w Henningsvær (zapasowy)","paragraphs":["Dzień bez przelotu, który służy też jako bufor na pogodę. Jeśli wiatr zablokuje któryś odcinek, przesuwacie plan o dzień, rezygnując z części programu na lądzie zamiast z rejsu.","Po późnej pobudce KaviarFactory (galeria sztuki współczesnej) w dawnej fabryce kawioru, gdzie wystawiali m.in. Ai Weiwei, Marina Abramović i Yoko Ono. Bilet kosztuje ok. 120 NOK, a wrześniowe godziny trzeba potwierdzić. Za darmo jest boisko na Hellandsøya (boisko piłkarskie na skale) na najdalej wysuniętej wysepce, chyba najczęściej fotografowane boisko w Norwegii.","Po południu Festvågtind (szczyt 541 m n.p.m.): start tuż przed pierwszym mostem do osady, stromo i z ekspozycją, 1–1,5 h w górę, z widokiem na całą osadę rozłożoną na wysepkach. W nocy druga noc zorzowa. Przy spokojnej pogodzie możliwe jest nocne wyjście na otwarty Vestfjorden: tylko przy słabym wietrze, na otwartą wodę, z powrotem do portu znanego z dnia, z dwiema osobami na pokładzie."]}},{"id":8,"date":"sob 4.09","title":"Henningsvær → Nusfjord","stops":[7,8],"nm":22,"schedule":[{"time":"11:00","kind":"sail","text":"Wyjście z portu, późny start po nocy zorzowej"},{"time":"ok. 13:00","kind":"sail","text":"Stamsund (osada rybacka) mijany z wody"},{"time":"15:00","kind":"sail","text":"Wejście do portu w Nusfjord (zabytkowa osada-skansen)"},{"time":"16:00","kind":"land","text":"Spacer po osadzie: piekarnia z 1877 r., sklep z 1905 r. z kawiarnią, dawna przetwórnia tranu"},{"time":"19:00","kind":"land","text":"Kolacja w restauracji (zwalnia z biletu wstępu do osady)"},{"time":"noc","kind":"aur","text":"Sen (osada leży między stromymi zboczami, mało nieba)"}],"description":{"title":"Przelot do Nusfjord","paragraphs":["Późny start i ok. 22 Mm wzdłuż południowego brzegu Vestvågøy. Po drodze mijacie z wody Stamsund (osada rybacka), gdzie zatrzymuje się Hurtigruten i są rorbuer, restauracje, galeria i teatry.","Nusfjord (zabytkowa osada rybacka) zwiedza się jak skansen: piekarnia z 1877 roku, sklep z 1905 roku z oryginalnym wnętrzem, w którym działa kawiarnia, dawna przetwórnia tranu, wędzarnia i rorbuer. Jachty cumują w porcie gościnnym. Wejście do osady kosztuje ok. 100 NOK od osoby, ale kolacja w tutejszej restauracji zwalnia z tej opłaty.","Do Nusfjordu wchodzicie za dnia, bo wejście prowadzi między skałami. Noc snu: osada leży w wąskiej dolinie między stromymi zboczami i widać z niej mało nieba."]}},{"id":9,"date":"nd 5.09","title":"Nusfjord → Reine","stops":[8,9],"nm":10,"schedule":[{"time":"8:00","kind":"land","text":"Wyjście na Tønsåsheia (szczyt 769 m n.p.m.), 4–5 h w obie strony"},{"time":"13:00","kind":"note","text":"Powrót na jacht"},{"time":"13:30","kind":"sail","text":"Wyjście z portu"},{"time":"15:30","kind":"sail","text":"Wejście do portu w Reine (osada rybacka)"},{"time":"16:30","kind":"land","text":"Spacer: kościół w Reine (biały, drewniany, z XIX w.)"},{"time":"22:30–02:00","kind":"aur","text":"Noc zorzowa nr 4 (ciemno 22:55–03:08)"}],"description":{"title":"Tønsåsheia i Reine","paragraphs":["Rano Tønsåsheia (szczyt 769 m n.p.m.) prosto z Nusfjordu: 4–5 godzin w obie strony, z odcinkiem śliskiego piargu. Lżejszą alternatywą jest ścieżka wybrzeżem w stronę Nesland (osada), trudniejsza, niż się wydaje; całość to 2–3 godziny w jedną stronę, więc można zawrócić w połowie.","Po południu ok. 10 Mm do Reine (osada rybacka), gdzie jacht stoi przez cztery noce. Najtańszy jest prywatny pomost przy przetwórni ryb: 400 NOK za pierwszą noc, potem 300 NOK, z prądem i wodą (dane z 2022 r.). W Reine jest też diesel. W centrum stoi biały, drewniany kościół z XIX wieku, pamiątka czasów, gdy Reine było bogate.","Noc zorzowa: do obserwacji odejdźcie kilkaset metrów poza zabudowę."]}},{"id":10,"date":"pn 6.09","title":"Reine (jacht w porcie)","stops":[9],"nm":null,"schedule":[{"time":"rano","kind":"note","text":"Sen po nocy zorzowej"},{"time":"11:00","kind":"land","text":"Wyjście na Reinebringen (szczyt 448 m n.p.m., ok. 1 600 kamiennych schodów), 1–1,5 h w górę"},{"time":"14:00","kind":"note","text":"Powrót na jacht"},{"time":"15:00","kind":"land","text":"Spacer przez Sakrisøy i Hamnøy (wysepki z osadami), ok. 1 h 15 min: Eliassen Rorbuer (czerwone domki rybackie), Anita’s Sjømat (bar rybny), Lofoten Leketøymuseum (muzeum zabawek)"},{"time":"noc","kind":"aur","text":"Sen przed dniem w górach"}],"description":{"title":"Reinebringen, Sakrisøy i Hamnøy","paragraphs":["Późnym rankiem Reinebringen (szczyt 448 m n.p.m.): ok. 1 600 kamiennych schodów, 1–1,5 h w górę, z widokiem z lotu ptaka na Reine i fiordy Reinefjorden, Kjerkfjorden i Vorfjorden.","Po południu spacer przez Sakrisøy i Hamnøy (wysepki z osadami połączone mostami), ok. 1 h 15 min wokół zatoki. Na Hamnøy stoją Eliassen Rorbuer (czerwone domki rybackie), jedno z najczęściej fotografowanych miejsc Lofotów. Na Sakrisøy dwa punkty obowiązkowe: Anita’s Sjømat (bar rybny), słynący z fishburgerów ze świeżego łupacza, czarniaka i dorsza, oraz Lofoten Leketøymuseum (muzeum zabawek) z tysiącami starych zabawek, najstarszymi z lat 50. XIX wieku, i dużym sklepem z antykami na strychu.","Noc snu przed najdłuższym dniem w górach."]}},{"id":11,"date":"wt 7.09","title":"Reine (jacht w porcie)","stops":[9],"nm":null,"schedule":[{"time":"rano","kind":"note","text":"Autobus do Sørvågen (wioska), według rozkładu"},{"time":"ok. 9:00","kind":"land","text":"Munkebu (górska dolina z jeziorami i zamkniętą chatą), 5–6 h, albo Munken (szczyt), 6–7 h"},{"time":"ok. 16:00","kind":"note","text":"Powrót autobusem do Reine"},{"time":"22:30–02:00","kind":"aur","text":"Noc zorzowa nr 5 (ciemno 22:41–03:22)"}],"description":{"title":"Munkebu albo Munken","paragraphs":["Jacht zostaje w Reine. Rano autobus do Sørvågen (wioska kilka kilometrów na zachód); rozkład jest w Reis Nordland, a w dni robocze kursów jest więcej.","Do wyboru Munkebu (górska dolina z jeziorami i chatą), 5–6 godzin w obie strony, albo Munken (szczyt) dalej tą samą trasą, 6–7 godzin. Chata Munkebu jest zamknięta od 2025 roku, więc trzeba wziąć pełny prowiant na cały dzień. Hermannsdalstinden odpada, bo z Sørvågen to 11–14 godzin.","Wieczorem noc zorzowa, bo następny dzień jest luźny."]}},{"id":12,"date":"śr 8.09","title":"Reine ↔ Vindstad (dzień zapasowy)","stops":[9,10],"nm":5,"schedule":[{"time":"10:30","kind":"sail","text":"Wyjście z portu (albo lokalny prom z Reine)"},{"time":"11:15","kind":"sail","text":"Postój w Vindstad (osada bez dróg)"},{"time":"11:30","kind":"land","text":"Pieszo na Bunes (plaża), ok. 1 h w jedną stronę; dla chętnych Helvetestinden (szczyt 602 m n.p.m.), 2–3 h"},{"time":"16:00","kind":"sail","text":"Wyjście z Vindstad"},{"time":"16:30","kind":"sail","text":"Wejście do portu w Reine"},{"time":"wariant","kind":"land","text":"Przy złej pogodzie zamiast tego autobus do Å: Norsk Fiskeværsmuseum (muzeum osady rybackiej) i Tørrfiskmuseum (muzeum suszonego dorsza)"},{"time":"noc","kind":"aur","text":"Sen"}],"description":{"title":"Vindstad i Bunes (zapasowy)","paragraphs":["Vindstad (osada bez dróg) leży po drugiej stronie Reinefjorden, ok. 2,5 Mm od Reine. Można tam dopłynąć jachtem, jeśli przy pomoście promowym jest miejsce na kilka godzin, albo lokalnym promem pasażerskim z Reine. Jesienny rozkład promu różni się od letniego i trzeba go sprawdzić w Reis Nordland.","Z Vindstad łatwa ścieżka przez niską przełęcz prowadzi w ok. godzinę na Bunes (plaża), jedną z najbardziej malowniczych i odludnych plaż Lofotów, dostępną tylko od wody. Dla chętnych Helvetestinden (szczyt 602 m n.p.m.) nad plażą: 4 km i 2–3 godziny, umiarkowanie trudny i eksponowany.","Przy złej pogodzie zamiast tego autobus do Å (osada na końcu drogi E10). Norsk Fiskeværsmuseum (muzeum osady rybackiej) to 14 dziewiętnastowiecznych budynków, w tym najstarsza w Europie przetwórnia tranu i kuźnia, w której wciąż robi się lampy tranowe; bilet 150 NOK. Słynna piekarnia z piecem kamiennym może być we wrześniu już zamknięta. Obok Tørrfiskmuseum (muzeum suszonego dorsza), gdzie właściciel osobiście opowiada o suszeniu dorsza na eksport, głównie do Włoch."]}},{"id":13,"date":"czw 9.09","title":"Reine → Ballstad","stops":[9,11],"nm":14,"schedule":[{"time":"9:00","kind":"sail","text":"Wyjście z portu"},{"time":"11:45","kind":"sail","text":"Wejście do portu w Ballstad (czynna osada rybacka)"},{"time":"12:30","kind":"land","text":"Spacer: mural o powierzchni ok. 3 000 m²"},{"time":"13:30","kind":"land","text":"Do wyboru: Nonstind (szczyt 459 m n.p.m.) albo taksówką do Lofotr (muzeum Wikingów w Borg, ok. 25 km; godziny we wrześniu do sprawdzenia)"},{"time":"22:30","kind":"aur","text":"Krótka obserwacja zorzy (ciemno od 22:27)"}],"description":{"title":"Ballstad i opcjonalnie Lofotr","paragraphs":["Ok. 14 Mm przez Vestfjorden, z widokiem na Hamnøy od strony wody. Ballstad to jedna z największych wciąż czynnych osad rybackich Lofotów, z warzelnią tranu i jednym z największych murali w Europie, o powierzchni ok. 3 000 m². Miejsc dla gości jest tu tylko kilka, więc trzeba zadzwonić wcześniej.","Po południu do wyboru. Nonstind (szczyt 459 m n.p.m.) na Ballstadheia to łatwe wejście z widokiem na większość Lofotów, a przy dobrej widoczności nawet na Steigen i Landegode; trudniejszy jest Skottind (671 m n.p.m.). Albo taksówką ok. 25 km do Borg, gdzie stoi Lofotr (muzeum Wikingów) z rekonstrukcją wikińskiego domu wodza w miejscu odkrycia jego pozostałości. Wrześniowe godziny otwarcia trzeba sprawdzić przed wyjazdem.","Wieczorem krótka obserwacja nieba, bo w piątek ostatni przelot."]}},{"id":14,"date":"pt 10.09","title":"Ballstad → Svolvær","stops":[11,1],"nm":28,"schedule":[{"time":"8:00","kind":"sail","text":"Wyjście z portu"},{"time":"13:00","kind":"sail","text":"Wejście do portu w Svolvær"},{"time":"13:30","kind":"note","text":"Tankowanie, sprzątanie, pakowanie"},{"time":"17:00","kind":"land","text":"Opcjonalnie Djevelporten (punkt widokowy) przed zachodem Słońca (20:07) albo galeria Gunnara Berga na Svinøya (galeria malarstwa)"},{"time":"22:30","kind":"aur","text":"Krótka obserwacja zorzy (ciemno od 22:21)"}],"description":{"title":"Powrót do Svolvær","paragraphs":["Start o 8:00 i ok. 28 Mm do Svolvær, w porcie ok. 13:00. Po południu tankowanie, woda, sprzątanie i pakowanie, bo czarter kończy się w sobotę rano.","Jeśli zostanie siła: Djevelporten (punkt widokowy), 1–1,5 h podejścia, najlepiej przed zachodem Słońca o 20:07. Albo spokojniej: Svinøya i galeria Gunnara Berga z obrazem bitwy w Trollfjordzie, który po rejsie ogląda się już zupełnie inaczej. Wieczorem ostatnia krótka obserwacja nieba."]}},{"id":15,"date":"sob 11.09","title":"Svolvær","stops":[1],"nm":null,"schedule":[{"time":"rano","kind":"sail","text":"Zdanie jachtu"},{"time":"potem","kind":"note","text":"Wylot do Polski"}],"description":{"title":"Zdanie jachtu i wylot","paragraphs":["Rano zdanie jachtu w Svolvær. Kaucja wraca po sprawdzeniu jachtu. Potem lot do Oslo i przesiadka do Katowic."]}}],"features/map/data/coastline.json":{"width":1000,"height":807.3,"unitsPerNm":19.221,"land":"M-3.6 719.8l0.1-3.3 1.1-3.4 5 1.6 3.3 2.5 3.6-4.1 1.1 2.7 2.3 0 3-2.4 0.7-1.5-2.4-4.7-0.9-0.2-0.7-4.8-1.5-2.8 0.5-2.9 2.9-5.6-0.7-2.7-2.6-1.9-2.4-3.7 2.8-0.4 1.2-5.3 2.9-0.5 1.6-2.1 0.3-3.1-2.4-2.4-0.3-3.6-2.1-3.2-1-3.4 1.2-1.3 2.9 0 3.1 4.5 4 3.1 2.7-4.1-1.9-2.5 1.6-0.7-2.3-5.4 4.4-6.6 3-2-1.2-3.2 2.5-1.7 2.4 2.1 3-2.3 0.2-4.1 1.5-2.2-2.8-6 3.3-3.2 5.3-1.9 0.8-2.1 2.3-2.1 2.2-8.1-0.3-3.2 0.9-0.7 5.3-0.2 4.2 1.5 3.4 2.5 1.5-0.7 6.5-6.6-1.3-4.7-1.8-2.6-2.4-1.6 0.8-5.1-1.1-1.6 0.8-2.9-4.5-6.7-1.1-2.8 1.3-3.5-1.7-6.5 4.1-1.6 3.1 0.9 2.4 3.3 4.9 2.1 2.1-3.6 2.8-2.6 5 0.4 1.3-2.4 1.3 1.5 1.6-0.9 2 2.2-1 2.1 0 3.9-2.2 9.1 1.5 4.3 4.5 0.8 2.6-0.6 0.6-2.6-0.6-2.4 1-1.5 5.1 1.9 1.7-1.3 2.1 3.3 1.2-0.5 1.3-4.1 1.7 2.3-0.6-2.9 1.8 0.1-0.1 2.1-2.1 2.2 0.5 3.3-0.8 2 1.9 1.6-1.3 3.1-1.3 5.7-4.3-2.8 0.6 2.6-2.3-3.6-1.1 2.3 2 1.3-4.1 4.5-1.3 6-4.3 0.5-2.1 2.4-3.4-0.2-0.1 4.2-2.6 0.9-3.1 8.9 1.5 7.2 1.9 0.3 3.3-1 0.6-2.3-1-1.9 0.3-3.8 1.1-2.6 2.2 1.5 2.9-4.6 4-1.1 0.7 5.7 1 0.9 0.4 4.7-1.3-1.3-2.9 2.7-1-0.3-0.9 5-3.8 1-4 3.6-2.6 0.1-2.7 2.6-1.7-0.4-0.1 2.7 1.2 0.5-2 2.9-3.1 1.1-2.3-2.6-2.6 0-2 2.7 0.8 2.1-3.1 0.2-0.7 2.8 3.5 0.2-0.2 2.7-3.5 0.8-12.3-3.9-3 5 7 5.7 6.5 1 0.7 7.1-1.8 1.5-0.5 2.3 1.9 1.1 3.7-1.5 1.3-2.2-1.1-1 4.2-3.6 3.6-1.6 6-5.9 8.4-11.3 4.4-4.7 4-1.7 0.6 4.8 0 5.3 1.9 4.4-0.3 3 1.7 0.7-0.1 2.2-4.9 5.3 2.5 1.4 3.6 0.3-0.1 2.3 1.8 1.9-3.9 6.5-0.6 2.9 3.1 1.8-3 1.4-1.5 2.3 2.6-1.8 2.9 1.1-0.4 3 1.3 1.5-3.8 6.7-1.5 4.8 1.4 4.2 2.6 3.1 2.7 4.2 1.4 7.2-4.2 4.9-0.8 2.8-3.3 6-1.8-0.2-1.1 4.7-4.1 0.9-1.6-0.6-1.3 4-2.8 5.9 0.2 3-3.1-4.3-5.4-1.4-0.1-3.3-1.5-4-0.8-9.7-1.6-0.6-5.2 1-1.5 4 0.4 11.9-3 1.7-6.9 1.9-1.7-0.8-2.2-4.5-3.6-3.4-3.2-5.9 0.4-5.8-1.1-4.9-6.7-14.1-3.1-3.9 0-4 1.3-2.2-3.2-0.7-1.4 3.3-1.8 2 0.3 6.3-1.6 3.1 3 4.3 1.6-1.3 0.1 4.3 2 6.5 2.5 10.5-1.4 3.4-5.1-3.3-1.1-2.6-2.8-4-3.7-3.2-0.7-1.8-3.2-1.4-0.7 4 3.2 3.6 1.7 0.7 1.3 2.5 1.8 0.6 2.3 3-4.1 3-0.8 2.1-2.6 0.7-1.6 4.1-2 2-1.6 4.4-0.6 4.4 1.3 1.7 2.4-0.5 2-5.8 2.7-0.7 1.9-2.4 5.2-2.1 1.9 2.6 6.3 1.2 3.1-2-0.5 2.2 1.2 2.1 6.4 4.2 5.9 1.2 2.6-0.3 3.5-1.9 2.5-3 5.9 0.5 0.3 1.9-1.9 0.2-3.5 4-5.1-0.6-2.9 1.7 1.9 4.6-0.8 1.1 4.9 3.8 0.6-2.3-0.8-2.4 1.1-3.7 2.8 2.9-1.3 4.5 1.1 1.3-0.1 3.2-1.7 1-1.3-3.4-1.4 1.5-2 4.5-0.2 2.2 1.9 2.9-0.7 4.5-1.5 0.7-3.7-4.9-4.9-3.3-3.3-0.5-3.9 1.8 0.5 2.7 5.6 3.4 8.5 1.5 0.3 1.6-2.2 3.1-2.1-0.8-3.6 1.2-2.2 1.6 1 3.9 2.6 1-2 3.2-3.3 3.3-1.7-0.7 0.4-3.5-6-0.4-1.4 2.4 1.4 0.7 1.4 3.9-0.5 2 2.1 0.7-7.1 4.6 2.1 0.7 3.7-1.9 1.6 0.6 0 4-2.3 2.1-1 2.9-1.7 0.1-2.8-2.5-2.8-0.1-2.6 1.1 3.9-3.6-0.8-1.5-2.1 0.5-2-1.8-0.9 2.4-2.2 0.5 0.4 3.1-3 0.4-3-1-1.4 2.2 1.4 2.4-32.4 0 0-70.7 2.4-4.1-0.4-1.4-2-1.1 0-6.1 1.6-3.1-1.6-0.3 0-2.8 0.6-0.4 0.8-3.5-1.4-3.6 0-7.7zM76.7 774.5l-0.8 2.3-1-1.5zM77.4 758.5l0.4 1.9-1.7 0.7zM76.5 764l3.1-2.9-0.1-1.2 2-2.9-0.3 6.1-3.9 2.8-1-0.6zM78.7 646.1l2.6 0.1-1.1 2.4-1.6-0.9zM79.6 556.3l2 0.6-2.5 0.8zM80.8 768.2l0.2 2.6-1.4-2.7zM84 754.1l-0.8 3.3-1.6-0.8zM82.3 552.8l1.5 2.8-2.1-0.4zM88.8 753.7l-1.6 2.9-1.9-4.3zM95 569.2l3.8-0.1-0.3 2.4-1.6 0.6-1.9-1.2zM104.4 635.6l3-6.9 1-4.1 2.4-3 0.1-2.5 2-2.3 1.9-3.7-1.2-1 1.2-2.5-0.7-3 2.6-1.4 5.3-1.1 4-1.8 3.9 3.9 1.6-1.2-0.3-3.5-2.8-3.5 0-4.1-2.2-4.1 1.1-0.5-0.3-3.4-2.3-1.4 1.2-2 4.4 1 2.8-3.4-0.7-3.8-2.6-1.6 0-3.7 1.8-1.2 1.1 2.9 2-0.1 1.7-1.9 1.2 0.8 4.3-1.4 3.6 1.7 2.9-0.8 3.3 1.2 2.5-1.6 4.2-7 0.4 1.9 3.3 0.3-0.3 1.8 2.2 3.3 2.6 0.5 2.3 1.6-3.7 10.7-3.4 7.8 0.2 2.5-1.6 1.9-3.8-1.8-1.8 1.9 1.7 1.1-0.9 3.1 2.6 1.8 4.1-0.6 1.8 1 3.3-1.2-2.4 2.5 2.6 1.6 1.7-2.2 3.5 1.7 0 2.6 2.2 1.2 2.7-2-3.5-6.9 0.9-1.1-0.2-3.8-1.5-10.4 0.7-5.9 2.7-5-1.6-7.4 1.1-7-2.2-5.3-8.7-6.3-8.9-4.7-0.1-2.5 3.1-2.7 4.1-7.3 0.7-3.7 0.1-15.9-1.6-0.9 2.2-1.2 1-4-0.4-2 1.4-1.9 0.1-4.5 5.6 0.8 5.3 2.6 4.1 1.4 2.7 0.2 3.2 1.5 3.5-1.8 4.6 1.7 5 4.2 3.7 5.3 2.2 0.7 4.2-1.1 0.6 2.4 4.8 5.7 3.3 2.1 3.3-0.3 0.4 3.7 1.8 1.5-0.1 6.2-4.2 3.5-2.5 0.8 0.6 1.9-1.7 1.2-1.1-2.2-2.8 1.9-4.6 1.5 5.9-0.9 1.9 2 2.2 4.6-0.1 4.3-4 4.3-5.5 14.3-1.5 4.4 0.1 3.4-4.5 1.7-1.3 2.6 2.2 0.2 0.4-1.4 3-2.4 1.6 2.1-0.1 6 0.9 2.4-2.4 11.9 0.2 3.1-3.1 2-1.1 2.1 1 4.3-3.5 1.3 2 2.1-2 1.4-3.1 0.3-0.8-1.2-0.7 3 4.8 7.5-1.9 1.7-0.2 4.2 1 0.8 0.2 4.8-2.5 2.3 1.6 1.9-0.2 2.8-2.2 4.1 0.7 3-0.6 2.9-4.7 4.2-4.2-0.2-2.8-1.2 0-2.4-3.1-4.6-1.5-10.6-2.2 0.4 0.4 3.4-0.9 2.9 1.5 3.5-0.1 2.8-2.6 1.9 2.5 2.3 3 0.6-1 3.2-3.2 0.6-3.9-1.7-2.7 0.7 1.9 4-3.4 4.1-1.9 0.2-1.3 3.4-2.9 2.5 0.8 3.9-2.9 2.9-6.1 2.5 0.8 1.5-3.5 1.9-1.2 1.7-1.5-0.6-5.3 2.7-0.8-1.6-1.5 2.7-1.8-1.8-0.4-6.2 0.6-4.2-0.8-2 0.7-4.6-0.2-8.6 0.9-3.3-0.5-4.3-1.8-3.2 1.2-1.9 1-7.9-2.9-4.3-2.9-2.2 0.8-4-0.4-5.2-3.2-4.3-1.8-3.9-2.2 2-0.5 5.5 0.8 5.2 0.9 1.7 0.4 4.7 1.3 5.7-2.4 9.6-1.9 2.9-1.5 0.4-1.4 2.8 1.9 5.1-1.1 4.9 0.5 5.1-3 3.2-0.5 3.5 0.8 1.9-1.2 3.9-2.3 0.8 1.4-8.4-0.9-0.2-1.7 5.4-2.5-1-1.8 1.7-0.8-2.1 2.3-0.4-1.4-4.8-1.4-1.7-0.2-3.2 1.4-0.9 1.2-4.6-5.6 0.7-1.2 1.6-1.4-1.6 0.9-4.7-0.8-3.1-1.5-0.8-0.7-2.9 0.9-4.4-2.4-4.3-3.2-10.2zM106.8 695.3l-0.5-3.2 1.5 1.3 1.6-1.5-3.8 6.8zM111.3 611.1l1.8 3.4-2.8 0.6-0.9-2.7zM110.9 694.2l0.5 3.8-1.3-1zM111.3 603.7l0.8 2.9-1.8-0.7-0.1-2.3zM112.7 592.9l-0.8-3.1 3.3-0.1 0.5 3.3 1.9 4.2-2.2 1-1.8-4.5-2.3 0.8zM117.6 691.8l0.9 1.9-2.2-0.1zM120.9 690.5l-1.2 3-1.3-3zM122.6 583.3l0.9 2.5-1.3 1.5-1.2-2.1zM125.9 695.9l-0.2-3.2 1.4-8.3 1.8-3.2 1.4-0.2 1 3.2-0.9 2.9 2.5-0.5-1 2.2-0.5 5-1.1 1.6-0.3 5.3-0.9-1.4-1.4 3.5-1.6 1.1-1.8-3.2zM126.6 565.4l2.5 2.7 0 2.3-2.6-2.8zM202.3 619.2l-1.3 2.4-1.3-0.3zM217.7 431.3l1.7 1-0.7 2.4-1.3-1.1-1.6 1.8-0.2-1.9zM224.5 433.7l-0.2 2.3-1.5-0.4zM228 587.7l0.6-6.3 2.1-3.5 1.9-1.2 0.1-3.7 1.1-0.6-0.6-2.6 2.9-5.8-1.5-5.8-0.1-2.1 1.7-3.1-1.1-1.8 0.4-4 4.9-6.4 2.4-1.5-0.2-2.5 1.5-1.1 5.3-0.3 0.8-1.4-1.4-1.5 2.2 0.3 3.6-2.8 2.1 0.5 2.5-0.7-2.9-2.1 0.4-0.9 4.9 2.6-0.9-2.5 1.7-2-4.4-2.5-1.8 0.9-0.9-2.2 1-1.8 3.4-1-1.3-2 3-1.2 1.5-3 4.4-4.2-1.7 0.1-1.3-1.8 2.4-0.9 6.3 1.6-2.5 4.4 0.9 1.2-0.1 3.8 1.6-2.4 0.3-3.7 2.5 0 2.3-3 0.7-5.9-1.2-1.5 3.6-2-0.2-2.9 3.5-0.3 1.2 2.7 3.2 0 4.2 1.1 1.8-3-3.8-1.8-2.9 0.6-2.1-1.9-1.7-3.3 1.7 0.4 1.2-1.8 2.4-0.2-1.3-2 0.8-2.3 3.4-3-3 1.3 0.6-3.5-6.8 1.4 1.6 1.6-0.4 6.4-3 3.1-2.5-0.1 0.1-2.2-3.9-1.5-1.1 3.6 1.3 1.3-1.5 4.9-4.3 3.2-2.6-0.4-0.4-2.3-1.9 6.5-3.8 5.4-4.6 4-3 0.8-1.6 1.6-2.3-0.3-1.3 3.6-1.8 1.8-6.3 2.8-2.7 0.2-0.7-1.6-3.9-2-1-2.8 6-1.5 1-1.9-0.5-2.2 1.7-0.8-0.5-5.4 3.3-3.8 1.8-0.4 4.5 0.9 1.5-2.5-1.7-3 4.9 0.6 0.5 2.3 4.4 1.5 3.5-2.1-1.1-1.8 1.9-1.4 0.3-2.8 2.9-1.7-4.1 0.4-1.6 1.2-4.2-0.3-6.5 2.4-2-1.6-2.1 0 0.9-2.2-2 0.7-2.7-2-3.3 0.9-1.5-0.7-3.9 0.4-4.5-1.4-0.6-1.6 7.3-0.6 2.9-3.5-0.5-2.1 2-1.5 3.7 0.3 3 2 3-1.5-2.3 3.5 2.5 1-0.6-1.7 3.8-1 2.4-1.7-0.9-3.9 2.8-3.2 2.3-0.6 0.1-4.3-5.3-6.1-3.6 0.5-6.9 0.1-2.3 0.6-3.8-0.6-3.5-6.3 4.4-5.9 5.9-1.7 2.1-3.3 0.6-3.2 3-1.1 3.5-5.1 11.1-5.7 1.6-2.4 5.4-1.8 2.6 0.9 5.1-2.9 6.6-0.3 4.8 1.3 6.3-2 0.8-1.9 2.2 2 2.6-0.9 4.7 0.5 2.4-3.6 4.7-1.6-3.2-0.6-0.2-2.2-1.4 1.3-2.1-0.5 0.8 2.3-1.4 2.3-0.4-2.3-4.3-2.3-5.7 0.9-3.5-1.9-2.9-0.1 2.2-2.3-4.4 1.3-0.5-2.5 7-3.5 3.5 0.9 2.5-3.5 0.8 1.8 2.2-0.1 2.6-3.2-1.7-1.1 2.8-2.7-5.9 4.3-5.7 1.3-3.2-1.3-2.7 1.7-2.5 3.1-2.8 0.7-1 2.7-2.2-1.9-0.4-2.6-5 0.5-1.3 0.8-0.5 3.1-2.9 1.1-0.3-4.3-3.5-1.2-8.3 0.4-0.4-0.5-11-0.3 3.3-4.1 1.3-4.2 1.8 0 3-2.4 4.1-6.5-1.5-1.7 3.9-1.5 9.9-1.8 5.5-4.3 0.2-1.2-5.1-9.5-3.5-3.2 2.9-5.7 2.1-1 7-0.5 2.7-1.5 2-2.5 4-2.6 3.4-3.5 3.7-1.8 1.7-3.7 5.5-2.8 2.7-4.9 1.8-2.1 5.1-0.1 3 1.5 4.8-1.6 3.1 3.6 2 1.1 0 2.2 3.8 1.2 3.1 3.1-0.2 4 1.5 3.6-0.4 1.3 2.2 1.7 2.1 4.6-1.8 1.2 0.6 1.7-1.8 1.7 1 1.3 3.7-0.3 0 2.9-1 1.3-5.6 2.4 0 1.6 2.5-0.2 0.4-1.9 2.5 1 1.4-0.7 1.4 1.8 3 1 0.7 2.1-1.2 2.3 2.1 0.5-0.4 1.7 3.2 3.4 4.5-2.2 5.2 2.9 2.2 0.1 1 2.8 2.2 1.4 0 2.3-2.5-0.2-0.2 3.2 3.6-1.9 0.8-2.6 3.5 2.6 0.8-1.5 1.4 1.2-1.9 0.8 6 0.3 1.2-1.5 1.7 1.8-1.5 4.7-3.5-0.9-4.4-2.6-1.2 0.7-0.1 3.3-2.8-0.4-0.5 2.7-2.4 2.1 0.2 3.2 2.2 1.7-2.9 4 2.3 1.2 2.1-0.4 1.4 1.8 2.8 1.4 3.8-2.3 8.1-0.5 1.5-2.8 3-0.7 1.6 1.1 4.8-1.8 0.2-1.7-2.7-1.5 2-1.4 0.1-4.1-2.2-0.2 0.7-1.4-2-0.9-1.6-2.9-4.2 0.4-2.1 4.2-2 0.5-1.2-1.5 2.5 0.1 0.1-1.4 2.5-1.9-3.8-1.4-2.3-5.8-6.3-1-1.5-2.3 0.5-4.2-5.2-3.4-1.4-3.1-1.1-4.9-1.2 1.1-0.7-4.8-2.7 2.2 0.6 3.1-2.7-0.1 0-3.6-2.7 3.6-1.6 0.6 1-2.9-3.9 3.9-5.1-0.2-0.6-4.6 2.2-2 3.2-0.8-1.6-2.7 2.9-3.3-1.8-1.6 2.9-2.3 0.9-3.3 4.7-0.8-3.2 3.7 5-2.4 0.7 1.9 1.8-2.1 1.2 3.5-1.4 5.2 1.1-1 1.1-4.9 1.1-1.8 1.2 1.6-0.6 1.9 2.4-0.9 0.9 1.7-0.9 3.1 4.1 4.2 1.8-3-0.3-2.3 2.7 3.2-2.6 4.1-0.9 2.7 3.8-5.6 0.2-2.7-2.3-2.2 2.6-2.2 1.3 3.5 1.1-1.1 1.3 2.5 2.3-4 1.4 2.7-0.2-3.4 1.3-3.8 2.9-1.4-0.7-2.7-2.3-1.9-3.2-5 4.2-2.7 1.6 1.7 2-1.2 3.1 0.1 1.6-2.2-0.6-2.1 3.8 0.2 0.4-2.1-2.6-1.6 1.4-0.9-1-1.9 1.5-2 5.3-1.7-1.3-3.1 0.8-2.7 2.8 0.3 0.8-3-3.2-1.7 2-1.6 0.3-2.8 1.9 0.2 1.3 1.9 2.3-2.2 1.9-0.2-2.7 3.4 8.8 0.1-0.2 2.5 1.8-2.3 2.1-0.8-0.5-5.3 0.9-2.7-1.7-3 1.1-1.1-3.8-1.4 8.3-6.1 7.5-1.7 1.8-2.3 3.3 4 2.6-0.1-0.1-1.8 2.8 1.5 5.4-1.6 3.6 4-0.7 1.8 1.6 2.2 0 7 2.4 5.4 2 1.7 1.3 3.4 2.8 3.1 0 2.9 2.9 5.5-0.7 3.4 0.8 1.3-1.3 6.2-3.1 5.1-2.6 1.6 1.9 2.3-0.2 6 1.3 3.5 2.6 2 3.2 1.1-0.8 1.8 1.7 0.2-4.5 4.2-1 1.8-3.8 0.3-3.3-1.1-3.5 0.4 1.8 2.9-3.1 3.3-3-1.7-1.7 0.8-1.2 5-2.6 1.1-0.6-3.6-3.4 4.2-4.3-2.4-2.8-0.8 3.9-3.1 1.3-4.2-2.2-2.6-3.6-6.9-2.9-3.7-1.9-0.5-3.3-6-5.2 2.3-5.3 0.8-0.1 2-3.2 2-0.2 2.2 1.5 1.5 2.5-0.7 5.5 0.8 2.4 2.2 2.8 5 2.1 1.1 2.2 5.3 2.9 1.4 1.3 5.3-0.7 3.5-2.7 4.8 4.5 3.6 2.3-1.6 0.9-4.8 3.9-3.8 0.6-1.4 5-2.8 2 3.5 2.6-2 3 1.9 1 2.7-0.6 2.2 3.5 1.2 1.7-2.1 2.6-0.4-0.7 2.6 1.7 0.2 1.5 3.7 2.3 0.9 7.1-2.1-1.1-1.1-7.5-0.4-1.8-0.9 1.5-2.1 1.7 2 0.7-1.8 3.9-3.1 1.6 2.9 3.4-1.9 1.2-4-2.8-0.7 0.8-3.1-1.4-0.1 1.2-5.2 3.5-1.2 2 2.4 2.1-3 0.4 1.1 2.5-4.4 2.4-0.4 2.4-2.8 1.2-4.5 3 0.1 1.1-1.6 5.5 3.9 4.5 0.5 1-1.2 0.8 2.1 1.7 0.5 4.8 4.2 5.1 7.3 4.3 7.8 5.5 5.8 0.6 5-1.4 0.4-1.3 4.5-2.8 0.5-2.3 5.1-7.1 3.8-2 1.9-0.8 2.7-1.4-0.8-1.8 9.9 2.1 4-1.8 3 0.6 3.6 1.5 2.4-0.2 2.5-2.1 1.2-4.2 8.4-1.7 0.3-1.3-3.9 1.6-6.4-0.6-4.7-3.1 0.7 0.6-3.2-1.8-1 0.8-1.9-1.1-1.3-2.6 1.8-1.5-0.4-3.1 4.2-3.2 2.1 3.7-0.5 0.9-2.6 3 1.6-1.4 0.7-0.6 3.4 1.4 3-2.3 1.2-1.2-1.3-0.6-4-2.3 0.9 1.6 0.7-0.7 2.6 1.4 0.9 0.1 2.7-2.4-1.8-2.3 0.3 0.4 2.3-1.8 0.8 2.3 4.3-1.9-0.4-0.9 1.9-2.6 0.5 0.8 3.7-1.2 2.2 0.6 2.2-1.2 2.7-2.5-4.8 0.6 5.5-1.6-4.7-2.1 1.6 1.5 3.8-0.7 3.3-1.3-1-0.9 2.9-2.6-2.1-5.6 4.8-0.7 2.7-1.8 0.2 1.5-2.5-2.6-0.6-2.5-2-3.8-6.1-1.3-0.5 1.2-2.4-2 0.9-1.4-1.4-4 0-2.4 3.8 0.6 2.2-1.4 2.4-0.4 3.1-1.7-0.3 0.1 4.9-1.8 0.4-1.5-2 1.8-6.9 0.2-2.9-2.9-0.7-1.6 4.3-1.9-1.3-0.2 4.5-0.8-1.6-3.8 2.6-1.3-0.2-1.7 6.1-5.4 3.8-5.7-0.9-1.9 1.2-0.7-2.8-2.1 0.5-0.8-1.7 0-6.4 2.3-5.9-2.2-0.1 0.4-3.2 2.5-1.8 0.3-2-1.8-3.2-3-1.2-0.2 1.6-2.3 0.5 0.6 3.2 2.3 1-0.9 3.2-6.3 5.7-4.1 1.3-2.4-0.3-2-1.6-5.8-2.4-3.2-0.1-2.5 1.6 2.3 2.3 1.9-0.4 1.3 2.7 2.3-0.3 2 1.9 5-2 2.3 1.4 1.5 3 2.4 0.9 0.4 2.4-1.9 2.7-6.7-1.3 1 2.9-0.8 3-1.7 1.3-1.6 5.1-0.5 5.5-2.6 0.6-7.7-1.4-8.5 1.4-0.3 1.4 2.4 1.1-0.9 2.4-4.5 1.3-3.1-0.8-1.6 1 0.4 1.7 1.9 1.1-2 0.9 0.6 1.5 6.6-0.4 2.7 0.5 2.8-0.6 2.7 1.5-0.3-1.4 11-0.3 0.8-0.4 3.1 2.4 3.9-1.7-1.4 2.7-2.4 0.6-1-2.1-2.5 0.8-0.5 2.9-1.9 1.2 3.4-0.1-0.3 2.2 3.9 3.1-2.9 1.2-1.4-2-3.1 2.3 1.4 1.7-1.5 5.3 3.3 2.1 3.9 1.1-2 4.7 1.5-0.5 3 1.5-3.9 2 2 1.3 0.3 2.3 2.3-0.5-1.6 2.4 1 2.2-1.3 2.6-0.9-4.2 0.7-2.2-3.5 0.7-0.3 2.1-2.3 3.9-1.7 0.6 1.5-3.6-2.7-1.2-2.2 2.9-2.1 0.8-1.9-1-8.8 6.6-4.5-2.4-1.6 1.3 1.3 1.7-3.3 0.3 1.4-1.9-1.8-0.9-0.6-3.9 0.5-3.7-1.4-1.3-0.9 1.6-1.9-0.8 1.3-3.1-2-1.7 4-4.8-2-2.4-0.9 2.3-4.4-0.9-1.8-5.4 2.8-1.4 1.5-1.9-0.4-2.5-1.6-1-0.3 2.5-2.3-0.5 1-1.8-0.4-6.9 0.3-4.8-5.6 0.8-0.4 1.5 2.5-0.4 0.5 1.9-2.9 3.6 0.5 4.2 1.7 1.1-0.9 2.1 3.1 1.7-2.2 2.1-3.3-1-1.1 2.8-0.2 4.1 2.2 9-1.8 0.3 1 2.1-1.3 2.3 0.3 2.4-1.7-0.8-2.5 0.9-2.7-0.5-2.6 0.8-2.7 2.6 0.3 3.6 1.3 1-2.3 1.6-0.4 2.2 2.4 1.6 7.5 0.2-1.3 1.9 1.4 0.5-0.8 3.4-1.9 1.7 1 2.8-2.1 3.4 1.9 2-1.6 4.2 2.7 2.1 0.9 2.4-2.8-1.4-3.9 6.4-2.7 0.2 0.3 2.5-4.4 1.5-1.3-0.5 0.4-4.3-0.6-4.5 0.6-2.2-2.4-2.8-6.6 2.7-5.1 0.5-1.3 2.4-6.2 1.5-0.4 2.4-2.1-1.7-2.3 1.8 0.2 1.7-2.4-0.8 0.6-5 1.8-2.7 1.9-0.7 0.7-2.6 3-1.8 2.1-5.8-1.4-2.2-3.7 2.8-1.6-0.8-3.9 4.2-3.1 0.3 0.3-3.3 1.5-1.8 4.6-1.4-4.3-0.7 0.1-3.2-3.2 0.6 2-2.5-4.4-0.6 3.6-3.4 6.1-3.4 5.5-0.8 0.9-2-3.9-1.3-1.6-2.7-2.3-1.1-0.3-3.9-1.4 1 2.2-3.9-1.9 0.9-2.3-1.4 2.1-1.7 1.5-3.1 3.2-1.7 1.6-2.4-5.5 2.5-2.3-0.1-1.1-3.1-0.9 2-3.1 1.2-1.2 2.6-2-1.7-1.1 2.1-0.2-3.4 1.9-3 4.3-1 1.5-5.1 3.4 0.2 0.2-3.4 2.6 1 3.2-4.3-2.3-0.5-1.1-1.6-1.6 0.7-2.4 4.4-1.6-0.6-1.9 2.2 0.3 1.4-1.8 2.4 0.5-2.5-2.5-0.4 0 4.5-1.9 1.9-1.4-1.3-1.1 1.5-3.8-2.6-3.3-0.6 1.6-1.8 1.7 0.4 3.3-4.3 0.4-2.5-1.4 1.5-3.7 0.3-0.5 2.5-3.9 3.9-0.8-0.9-2.2 3.6-3.1-0.6-0.3 2.5 3.8 0.3 2.6-2.1-0.2 2.4 1.4 0.5-0.5 2.2-5.6 1.7-2.3-1 0.1-2.5-4.1-3.7 0.2 3.7-5.2 4.5 3.8 3.3-0.6 2.1-3.3 2.2 5 0.8 4.1-0.6 0 1.5 7.5 1.1-2.3 2.3 0.9 2.6-2.7-1.8-4.1 0.2 1.1 1.7-0.6 2.8 1 1.4-1.8 2.4-2.7 0.5-1.5 2.4 4.7-0.5 3 1 4.4-0.6 2.1 0.5 0.7 1.6-4 5.7 3.3 2.1 0.6 3.5-2.2-0.1 2.2 2.2-1.6 1.4-1.1-2.5-1 2.8 2.2 2.8-4.1 4.8-2.9 0.7-3.6-0.9-0.2 2.1-2.7-0.8-2.1 1.1 0-1.6-3.5 2.7 4.1 0.4-3.2 3.1-2.4-0.1-1.5 3.6-1.3 1 0.6 3 1.9 2.6 2.4 0 0.8 1.5-3.3 0.8 0.8 2.7-2.1 2-7.9 1.4 0 2.7-2.2 0.7-1.4 2.6-4.6-0.7-0.5-3.2-1.5-1.6 2.5-2.1 0.1-2.8-4.9-5.9-1.6-4.6-4.4-5.9-1.1 0.3-2.3-3 1.3-2.5-1.6-0.6zM230.5 612.9l-0.4 1-3.5-0.8zM233.6 462.4l2 0.2 1.3 1.9-2 2-2.1-2.4zM242.3 628.8l-1.6 1.8-0.1-1.8zM260 632.3l-1.4 2.1-1.7 0.3zM258.8 617.9l2.7-2.7 2.1 0.6 1.4-2.7 1.2 2.7-4.1 1.2 3.1 2.5-6.5 0.3-0.8-2.2zM258.8 607.2l3.4-3.4 0.9-2.5 2.6-1.6 4.6 0.3 1.2 1.7-3.9 3.1 1.1 1.2-3.3 3.8-2 1.2-3.1-0.5-1.5-2.1zM261.5 632.3l2.5-0.1 0.1 2.8-3.6 2.8-1-3zM262.1 620.3l2.7 1.1-3.1 0.1zM270.7 605.9l-1 1.4-1.3-2.7zM274.3 500.1l1.1 0.6-1.1 2.2-2.1 1.3zM274.7 595.9l4.5-2-1.3 2.3-0.8 3.7-3.2-1.1 0-1.2zM280.9 416.4l2.7 0.5-1.5 2.3-2.9-2zM290 546.3l3.2-1.4-1 3.2-0.9-1.4-0.7 2.6-2.4 0.4zM295.1 551.8l1.9-0.2-1.5 2.1-2.1 0.2zM296.3 604.8l0.8 2-2.6 1.1-0.1-2zM300.6 601.8l0.8 2.5-2.2 0.9zM304.5 598.5l-1.4 4.6-0.8-2.2zM307.1 606.9l-0.4-4.3 2.6-2 2.8 0 0.2 3.3-2.1 2.5 1.5 1.1-2.7 2.3-3.4-0.5zM318 602.5l1.8-2.7 0.8 1.1-0.6 3.2-2.7 1.5zM338 317.4l1.1 1.6-2.7-0.4zM341.3 361.1l2.7-1.6 0 4.6 1.6-4.3 3.5 1.7-2.1 2.9-2.1 0.9-5.2-0.5zM342.4 593.8l3-1.4-0.1 3.3-1.6-1.4-2.5 2.2zM343.4 575.7l3.8-1.8 0.2 1.8-2.2 3.6-2-2.6zM347.2 589.9l1.5 0.1-2.6 1.7zM348.2 592.8l1.1 0.5-2 2.3zM353.7 340.2l1.1 1.1-2.6 1.9-2.4-1.1zM352.7 349.7l0.1 2-1.9-0.7zM355.6 342.5l1.5 1-1.5 2.2-1.3-0.5zM354.3 573.9l1.7 1.2-0.9 4.7-0.8-3.9zM357.1 312l-1 2.6-1.7-1.1zM356.3 345.1l3.5-0.9-1.6 1.6 3.3 0.2 2.8-3.1-0.4 4.1-3.6 1.7-4.2-2.2zM358.6 544.3l0.2 1.3-2.4-0.1zM360.2 341.8l0.3 1.6-2.8-0.9zM363.5 319.1l3.8-5.8-3.3 1.6 0.7-3.5 1 1.5 4.5-3.7-1.3 4.3 1.8 0.9 0.2 2.3 1.7-3.9 3.6 1.8 3-2.9-0.4 1.8-3.7 4.4-2.7 0.1-4.4 1.4-1.8 1.7-4.4-0.9zM367.3 308.2l-0.9 1.9-1-1.3zM369.3 322.8l0.6 1.3-1.8 1.5-1-0.8zM368.9 579.9l0 1.7-1.8-0.3zM369.9 560.3l0.9 2.2-2.4 0.8zM373.2 325.5l2.2 0-1.3 3.5-3.9-0.1zM372.4 321.9l0.2 2.5-1.6-0.3zM372.4 572.1l2.5 1-0.8 2 1.9 0.8-1.2 2.7-1.3-0.1-1.3-4.4zM377.2 578.8l0.3 1.3-2.8-0.1zM377.6 344.5l-1.5 1.3-1.1-1.2zM377.3 339.6l-1.4 1.5-0.7-1.5zM378 353.6l2.9 0.4-0.6 2 1.9-0.1-1.8 2.7-0.4-1.6-2.1 0.4zM391.5 554l1.5 0.9 1.8-6.7 0.9 0.3-0.7 5-1.8 2.4-1.7-1.2-1.4 4.3-1.3-1.5zM390.8 318.8l-0.8 2.9-0.6-2.1zM393.9 574.8l-0.6 2.9-1.4-1zM396.4 515.4l4 3 1.3 4-2.7-0.6-2.4-3.9-1.2 0.4-2.8-2zM398.8 551.1l0.5 2.7-3.3 1.6zM399.1 556.4l-0.4 2.4-1.4-0.6zM398.2 531.8l1.8 1.9-0.1 1.8-2.5-0.9-0.1-1.6zM399 308.2l-0.1-4.4 1.8-1.9 2.2 3.2 0.6-2.3 2.4 0.8 3.4-1.5-0.7-5.2 1.6-1.6 0.1 3.8 3.7-0.5 0.9 3 0.2 4.2-1.3 1.3-3.7-1.5 0.5 2.9 2.5-0.3-2.1 1.5-2-2.6-2 4-3.5-0.8-2.5 0.8-3.2-1.4zM400.1 492.6l3.1 0.6-2.7 3.2-1.5-0.4zM400.9 486.2l1.7-0.3 1.3 4.7-2.8 0.5-1.3-2.7zM402.8 535.2l1.5 0.5-0.9 2.2-1.1-0.6zM404.8 518.5l1.6 1.8-2.2-0.7zM406.4 491l1.7 2.9-1.8 2-1.5-3.8zM412.1 491.6l-0.4 2.2-1.9-0.4-1.8-4.8zM410.8 485.7l3.4 4.3-2.1 0.4-2-1.4-0.3-1.9zM414.1 521.8l-0.7 2-1.7-1.9zM415.9 307.9l2.1 2.6-2.6 0.2-0.7-2.4zM416.4 293.9l1.8 0.8 0.5 4-2.9-3.1zM418.3 495.2l-0.7 3.2-1.2-2.2zM422 505.3l-0.4 1.9-1.4-1.3zM422.1 508.1l1.7 0.6-2.2 1.6zM433.6 473.8l1.9-1.5 0.2 3.4-1 2.3-1.3-2.4zM437.4 490.7l-0.8 2.2-2-1.5zM437 472.3l-0.9 2.6-0.3-2.4zM442 488.9l-0.1 2.1-1.7-0.5zM442.4 483.9l1.4 0.8-1.6 2.3-1.7-1.6zM444.7 515.8l0.2 2.1-1.9-0.1zM449.3 468.5l-0.2 2.1-1.7-0.3zM452.2 478.8l-1.4 3.3-1.5 0.8zM450.7 476.7l1.5-1.1 0.3 2.2-2.9 2.3zM452.5 478.9l1 1.6-1.4 2.4 0.2 3.4-1 0.6-0.8-2.9zM453.5 466.2l0.7 3.5-1.3-0.6-0.6-2.8zM456.3 477.6l1.6 1.3-1.8 0.9zM467 476.7l-1.5-0.4 0.3-2.8 3.1 2.1 2.1 2.5-3.7 0.1 0.5 2-3.1-1zM468.2 368.8l2.7 0.3-0.8 1.9-2.4 1.4-1.5-1.9zM471.9 307.6l2.3-1.6 0.1-4.4 1.9 0.6-1.2 3.7 1 3.2-3.2 1.9-1.2-0.5zM474.5 468.7l1 4.3-1.8 0.7 0.3-2.5-1.7 0.3zM480.3 466.2l1.8 1.9 1.2 3.9-1.7-1.2-1.6 1.3-0.8-3.3zM482.1 316.1l4.1 1.3 1.5-0.4 2.3 1.7 0.9-1.4 2.3 0.3 1.4 2.2-2.6 0.5-3.9 2.2 1.7 1.1 2.6-2.1 3.9-0.7-0.1 1.9 3.9 0.3 2.4-2.9-2.1-4.6-6.3-4.3-0.8-3.6-2.4-2.5-0.5-2.6 1.1-4.6 4.3-1.9 4 4.2 2.7 1.2 1.9-1.7-0.9-2.2 2.7 2.1 3.4-1.7 1.7 0.6 0.7-2.7 2.2 0.6 0.8-1.3 4.8 0.9 3-2.8 1.1 3.1 1.5 0.9 0 4.3 2.1 0.5 3.3-2.4-1.9 2.7 0.1 4 1.9 3 3 1.5 1.7 2.8 4.3 3 6.6 3.7 7.8 0.3 1.1 0.6 3.8-1.4 0.2 1.4 3.4 5.4 1.4 6.5 1.9 4.2 2.9 2.8 4.2 7.3 0.2 7.5-0.3 7.3-1.4 1.8-0.4 2.6-1.8 1.9-4.3 8.8-0.2 4-2.9 6.7-1.8 1.8-4.7 3.1-12.2 2.7-5-5.5-2.3-0.4-3.6-3.9-4-2.3-3.7-0.8 2.4-2.2 0.1-2.6-2.7-5.3-1.4 0-0.8-3.5-3.8 2-4.7-7.2 0.3-1.6 2.4 1.8 6.1-1.8-1.3-0.6-5.5-5 0.5-2.5 2 1.3 1.6-2.4-0.7-1.1 2.4-0.6-1.8-2.2 1-1.8-0.9-2.6 2.4-1.1 0.2-3.6 1.6-3.2-1.6-0.2-5.7 1.6-2.9 2.6-1 2.1-2.2-2.1-4.2 1.1-4.2 2.9-4.3-0.4-1.4-1.2-0.6 2.2-3.7-4.2-3.2 2-1.2 2.3-0.8-4.1 1.5-2.9-1.7 0.5-1.6-3.9-4.1-6.4 0.3-5-1.6-4.3zM481.6 473.1l0.1 2.4-1.3-0.4zM481.6 461.8l1 0.3 0.2 3.1-1.7 1.1zM484.3 472.2l-0.8 3.5-1.3-2.8zM489.1 446.2l0.6 1.4-2.6-0.1zM491 349.6l-1.1 2-1-1.1zM491.1 448.5l0.9 1.4-2.6-0.3zM501.8 463.3l1.7 0.3-3 2.8zM506.6 468.8l-0.8 1.9-1.8-0.2zM508.4 355.5l1.2 2-2.4-1.2zM511.3 463.8l0.6 1.4-2.6 0.3zM511.8 364.1l-0.7 2.2-1.7-2.2zM512.6 361.6l0.8 2.8-3.2-2.6zM520.9 530.9l0.9 1.4-3.6-0.1zM520.3 451.2l0.4 2.3-1.4 0.4zM523.2 536.3l2 0.7-2.9 1.3zM532.9 443.1l0.9 1.8-2.3 1.4zM534.7 432.3l1.1-0.8 1 4-2.4 4.1-0.3-1.2zM537.8 438.9l-0.9-6.6 2.6-3.3 2-0.8-1.3 11.9 1.5 1.6-1.4 3.9-2.2-0.2-1.2-4.2zM539.8 493.5l0.4 2.5-1.6-0.5zM542.5 509.3l-1.2 2.8-1.7-0.3zM542.1 515.5l-0.4-1 5.7-5.5 0.8 0.8-2.3 1.5-2.3 5.7 0.3 1 1.8-4.2 1.4-1 0.6 2.3-2.6 1.1 1.6 2.3-1.3 1.6 0.2-2.7-2.2 5.4-1.7 0.3 2.1-4.4-3.3 1.1-0.5-2.6zM542.3 492.4l-0.3 3.8-1.7-3.1zM543.1 506.3l0 2.3-1.9-0.8zM542 432.4l-0.2-4.5 3.1-0.5-1.5 6-2.1 0zM545.3 524.3l-1.2 4.4-1.4-0.4zM546.9 479.7l1.2 1.1-3.4 2.7-1.1-1.5zM546.4 487.9l-0.4-1.5 5.4-6.9 7-5.9 1.5-2.7 2.8-2.6-2.4 0-3.8 2.7-4.3 5.3-2-2-1.1-8 2-5.5 1.5-1.4 4.7-2-0.1-1.9-5.7-0.6-0.6-2 0.9-4.4-3.7-3.5 0.5-6-0.3-4.5 1.4-2.1 0.7-3.9-2.4 1.5-1.2-2.4 1.5-0.6 4.1-7.9 3.7-1.2-0.1 1.8 6.8-1.6 2.6-2.9 4.1-1 7.8-0.6-0.6-2.1-2.1-1 2.7-2.4 7.8 0 1.5-0.6 2.8 2.1 3.6-0.4 3.3 0.8-0.6-3.7 1.8-0.5-1-1.8 11.8-7.7 4.2-1 2.6-1.7 4.4 0.6 2.7-2.4 0-3.1-11.9 3.4-2.3 1.7-11.9 5.7-3.2 3-3.4 1.3-5.4-0.1-1.8 1.8-2-0.9-3.3 2.5-2.2-2.2 0.8-2.8-1.4 1.2-1-4.7-1.7-0.9-0.6-4.4 2.7-4.5 2.4 0.6 2.5-0.9-3-1.1 0.6-1.4-4.7 3.7 1.9-3.7 5.6-3.5 1.3-1.6-2.2-1.7 1.2-1.5-1.1-2.4 4.4-2.2 2.9-2.3 2.3 0.4 0.9-1.8 3.3 1.4 3.4 0.1 0.6 1.3 3.8 2.4 4.7 0.1 0.5 0.9 4.1-3-1.8-2.1 0.4-2-3.9-3.7-2.5 0.1-3.4-1.6-1.5-2.6-4.7-1.6-1.1-1.2-1.7-4.3 1-3.7 2.6-2.1 0-2-2.1-2.6-1.1-3.2 0.6-3.5 1.5-3.3-1.7-4.6-0.3-5.1 3.4-6.2 3.2-2.9 2.1-5.2-0.6-7.7 2.2-1.6-0.2-2.2 4.6-2.7-0.6 2.2 4.3-0.5 2.2 1.3 5.4 0.6 2.9 3.5 5.3 4.4 4.5 6.1 0.7 2.5-0.5 10.8 3.9 6.5 2.1 2 1.6 9.4 3.7 2 2.7-3.2-3.7-7-0.9-4.7-4.6-6.3-1.3-0.8-0.8-3.1 0.8-2.7 1.2 1.5 3.6 0.7 1.2 1.5 4.7-1.4 2.5 1.1 2.8-0.4 2.1-1.8-1.5-0.6-1.5-6 1.5-1.5 0-2.4-4.4-3.6 0.2-1.6 2.5 0-1.4-1.8 1.4-2.7-1.6-0.4 0.1-4.1 4.2-4.6 2.9-0.9-0.3 1.8 2.9 4.3 1 5.9 0.9 2 0.1 5.7-1 2.7-2.7 0.5 0.5 1.9 2.2 0.1 1.5 1.4 0.4 3.6-1 0.2 1.2 3.9-0.1 2.9 3.7 1 0.6-1.6 2.6-0.2-1.9-3.1 0.7-1.4-0.8-3.4 1.8 0.3 2.8 3-0.1 1.5 2.5 1.6 0.5-3.4-1.8-2.1-3.3-0.3 0.4-2.6-1.6-1.9 2-0.8 1.3 1.6 2.9-0.4 1.1 1.4 0.3-2.4 1.9-1.2 1 1.7 0.9-2.9-0.8-0.9-3 0.5-1.1 2.3-3.4-2.1 3.1-1.9 0.2-1.4-5.7-4.1-1.4-2.2 0.5-2-0.9-3.3 2.2-1.7 1.2 0.4 0.8-2.9 1.6-1.8-1.6-4.8-2.9-3.1-0.1-2.2-4.6-5.5-3-0.9-1.5-2.5-2.5 1.8 0.8 3.7 1.7-0.4 3 2.5 0.3 3.1 1.5 1 0.1 2.4 1.7-0.2 1 3.5 1.5-1.2 0.5 3.2-1.5 1.9-3.8-2.7-0.6-1.7-2.9 1.3-2.2-1.6-1.7 1.7-4.4 1.1-3.2-1.3 2.6-2.6-1.3-2.6-1.4 4.1-1-1.2 0.8-2.3-1.5-0.2-1.9 2.3-0.1-2.1 1.9-0.5-1-1.8 0.4-5 2.6 3.1 1.6-3.7 3.4-2.9-2.4 0.5-2.1-0.8-5.1-0.2 0.4-2.6 1.6 0.4 1.3-2.2-2.2 0.3 2.7-2.2 2.7-1.2-2.9-0.4 1.1-0.9-0.8-3 2.7-2.8-4.9 1.5-0.2-1.1 3-2.8-0.9-3.6-4.3 1.6-2.4 3.4-5.3-0.8 0.8-1.6-1.2-1.9-1.5 1.4 0.8-3.1 6.9-4.1 2.3 0.9 1.1-1.4-4.5-1.2-1-1.6-3.7-1.1 2.8-1.8 0.8-2.3 3.2 0.8 4.3-0.6-1.3-2.1 1.8 0.6 4.9-1.5 3.9 2.2 1.7 0 2-2.2 2.6 0.8 1.4-0.8 2 2.6 1.2-0.1 0.9-3.4 5.9-3.2 3.3-4.1 0.4-1.4 3.4-0.4 2.4-1.8 0.4 2.2 3.1 1 1.3 4.8 2.9 4.2-0.2 1.2 1.6 6.4 0.1 4.9 1.6 2 0.5 2.3 4.2 2.4 3.2-0.6-0.2 4.4 0.9 1.7 1.7-2.4-0.2-4.3 1.9-0.9 3.2 2.1 0.3-2.5 4.5-6.2-0.9-3.3-1.7-1.2 0.2-3.2-3.1-3.3-0.1-2.5-3-0.6-1.4 1.1-2.1-1-1.8-5.9 1.4-2.4 0.1-3-2.6-1.3-3.6-0.4-1.4-2.3-3.3 1.1 0.4-3.6-3.1-2 0.8-1.7 3.2-1.5 1.8-2.2 3.2-1 0.1-1.5 2.3-1.5 2.6-0.4 4.2-2.4 5-1.7 2 0.2 3.9-3 2.2-6 3.3 1.1 3.1-1.7-0.2 1.7 4.8-0.8 1.5-0.9 10.1-1.7 3.8 2.1 0.9 1.8 2.8 1.6-1.1 1.3 3.4 1.5-0.2 2.8 1.7 2.5 0.5 3.2-1.2 1.3 1.5 1.6 0.5 3-0.4 3.7 5.7 2.1-3.6 1.2-4.6 2.9-1.4 7.3 2 5.6 2.3 0.6 1.1 2.7 4.5 7.7 4.9 2.3 1.5-2.2 2.6-1.3 0.2-2.5-3.4-6.2-2.5-3.3-1.5-7.1 1.5-2.9-0.5-6.2 0.3-2.3-1-3.9-1.8-2.5 1.2-0.2-0.2-6.6 1.2-3.1-0.7-1.1 2.3-1.8 0.3-3.3 3.4-0.8 1.5-4.2-2.2-1.3 1.3-0.7 3.2 3.1-0.2 1.6-2.5 2.4 3.7 0.3 5.2-5.5 6.3-1.1-2.1 3.4-2.3 1 0.3 2.1 2.6 0.5 2.1-1 0.5 1.5 8.3 0.8 4.3-1.8 1.4 2.3 3.8 0.9 3.6-0.6 2.6-2.9 1.3 4.2 3.6-0.3-1.8 4.8 5.5 0.7-4.7-2 5.4-1.3-1.2-0.8 2.2-1.5 1 3-0.5 3.7 2.4-0.5-1.2 3.4-2.9 1.4-0.3 3.1 1.9 3.3 3.7 1-1.1 3.6-0.6 7.1-1.4 2.2-4.5 5.1 0.2 4.7 1.2 2-0.2 2.4 1.8-2.3 0.5 2.8-6.3 5.9-4.3 0.9-0.5 2.1-2.5 0.5 0.2 2.6-1.5 2-3.1 2.1-6.8 6.6 0.8 1.6-2.6 2.9-2.6 0.1-1.5 1.9 1.2 2.1 2.3-2.8 3.1-2.2 5-2.5 3.9-5.4 5.3-1.3 2-3.9 3-2.1 1.2 0.5 3.9-2.8 2.2-4.1 1.6-0.9 1.8-3.3 2.8-1.7 1.2-2.2 2.8-1.6 4.5 5.1 4.2 3.6 3.3-1.1 1.3-4.4-1-2.3-4-6.7-4.8-6.6 1.3-4-4-3.1-0.8-1.7 1.8-1-2.3-1.7 2.8-3.5 2.3-0.4 0.5-3.1 1.2 0-0.4-2.6 2.3-0.4 2.2-4.8-0.5-12-0.8-2.4-3.2-2.8 2.9-2.6 5.4-1.6-1.3-1.3-3.6 0.1-1.5-2.3 0.1-2.3-2.7-1.8 1.4-4 7.9-0.1 2.7 2-2.1 1.7 0.6 4.7-1.5 2.5 0.8 1.2 3.3 0.1 6.1 1.8 1.6-1.5 4 1.4 2-2.2 3.8-2.1 2.8 0.4 1.9 1.7-4 2.3 6.4 0.1 2.4-1.5 1.2 1.5 0.5 4 2.7-1.5 1.8 6.4 0.4 3 1.6 0.7 2-1.5 1.4 1 1.4-1.3-1.3-7.8-1.1-1.9 0.6-2.5-2.4-5.4 4.9-1 3.6-1.5 6.8-0.6 0.3 5.4 1.7 3.4 2.2 0.3 3.6-4.2-1-5.4 0.9-2.6-1.2-2.7 4.1-2.4 9.5-1.3 5.9 1.1 3.2-0.2 2-1.2 5.1 1.2 3.6-1.6 2.7 0.6 1.9-2 3.4 1 1-2.2 2.9 1 2.1-0.8 1-2-2.4-3.1 3.7-3.5 2.3 0.4 2.1-1.6 4.9 2.5 2.9-4.7 2 1.4 0.1 1.9-3.5 3-2.2-0.9-1.7 2.3 2.2 1.3 4 0.6 0.7 4.1-2.8 6.5-2 3.1-1.4 0.3-0.9 3.7-1.9 2.8-2.4 7.3-2.1 3.7-3.6 2.2-1.1 2.4-1.9 0.6-0.6 3-1.7 1-2.4 6.2 0.3 2.4-2.9 3.8 0.8 1-0.5 6-5.5 5.6-2.5 3.4-1.8 4-2.4 2-3.5 7.1-1.1-1.1-3.7 0.1 0.7 3.3-1.6 6.2-2.9 4.1-0.6 2.6-1.4 0.8-3.3 4.2-0.2 2.1-2.2 1.4-1.9 3.1-2.9 3-3.3 1.4-2.9 2.4-3.1-1.1-2-5.6-4.7-4.5-0.2-2.5 2.9 1.8-1.3-4.6-1.8-1.9-4.7-0.7 1.1 2.2 2.7 1.3-0.7 8.9 0.5 2.4-2 4.6-2.1 2.1-7.5 1.5-18.7-0.9-2.1 1.7 2.7 2.3 3.4 0.2 6.8-2.1 2.5 0.3 8.9-0.6 2.8 0.6-1.5 3.2-2.7 1.6-0.4 3.7-1.3 3.9-1.8 1.6 0.2 3-1.2 1.5 0.6 3.1-2.2 4.3-3.9-0.6-2.1 5.1-2.6 1.7-1.8 3.2-4.2 3.6-3 1.9-1.6-0.4-5.7 0.9 1.4 1.3 3.3-0.3 1 1.4-2.3 1.3-2.7 3.4-4.1 0.8-2.4 2.2-0.6 2.1-1.8 0.8-0.2 1.8-1.6-0.9-3 3 0.8 2.1-2.8 5-2.8 2.4-5.5 3.6-0.5 5.7-1.4 2.6-2.6 1.3 2.5-3 1-3.4-2.6-1.2-6 5.3-2.5 0.4 0.1-1.5-2.5 3.6-0.7 5-2.1 3.1-3.2 2-1.9 0.1-1.7 4.7-4.5 3.1-9.6 3.8-0.4 2.1-3.4 2.3-0.8-2.7-3.3 2.9 0.3 3.5-1.9 3.2-4.3 0.3-1.9 2.2-1.1 4-1.1 0.5 0-3.3 1.4-0.8-2.2-5-0.3-2.3 1.4-3-0.8-4.1 2.6-1.6-0.1-1.5-3.2-2-2.2 1.5 1.3-2.9 2.6-1.3 1.6-3 2.3-7 0.2-3.8-0.9-0.9-0.4-4.2 3.4-5.3 0.5-2.8 2.1-4.5-2.1 0 2-2.8-2.3-2.8 2.9-2.6-0.8-1.7 5.4-4.3 1.8-2.3 3.2 0.2 4.3-3.6 3.9-0.9 2.4-2.9 2.8-0.5-0.2-2.3-2.1-1.2-4.9 1.5-2.1 2.3-0.4-1.7-7.3 2.2-0.5-2.6 1-1.4-1.3-2.2-3.1-2.4-2.3-0.1-1.2-2.2 1.8-3-1.1-9.1 0.5-2.8-1.8-3.1-6.7-3.9-5.9-1.6-2.3-1.8-1 0.9 2.4 2-0.1 1.9 1.9 2-0.8 2.2 3.2 4.4-0.2 4.6-1.4 1.4 0.7 3.8-1 0.6 1.3 2.7-1.9 7.3-1.3 1.6-5.2 0.2 1.6 0.7-0.6 2.8-2.7 0.7 0.3-2.5-1.5-0.3-1.5 3.5-5.4 1.7-4.1-1.6-3.5 0.4-1.4-1.8-2 1.2 1.7 4.5 4.1 0.5 6.8-2.2 4.8-2.4 5.2 0.6 1.6-1.5 4.9 0.9-2.1 1.9 3.4-0.6-0.4 2.6-1.8-1.1-2.6 0.2-0.7 1.5-2.2-2.9-1 3.4 2.2 1.4 4.6 1.4 4-0.2-3.3 4.9-1 0.5-0.6 4.5-1.7 3.3 1 4.4-2.2 3.6-1.8 1.2 0.5 3.5-2 0.1 0.1 4-2.5 8.7-0.8-0.8-3.6 4.8-1.6-0.5 1.5-2.9-2.6 0.9-5.4-0.9-3 0.3-2.9 1.9 0.4 2.2-2.9-0.1 2-1.3-1.1-3-2.7-0.2-2.6 0.9-1-3.7-1.2 2.4-2.2 0.9-1.5 6.3 1.4 1.5 2.6 0.1 1.3 1.9 9.4 0.9 3-3.7-1.5-2.5 0.5-2.8 1.9 0.3-0.1 2.9 2.2-0.2-0.8 2.1 2.4 2.8 0.1 1.6 4.6 2.1-0.3 3.3-2.3 1.1 1.8 1.4-0.4 3.6-1.3 1.9 1 3.8 0.1 5-2.7-1.3-0.6 5.5-3.2 0.9-1.5-0.9-2.5-3.6 0.3-9.9 1.1-4.1-2.1-3.3-2.6 0.3 2.6 4.1-1.4 2.5-2.4 0.6-1.6-1.3 1.3 3.1-2.5 3.4-0.4-2.7 1.6-0.6-0.7-1.9-1.6 1.2-1.5 4.4-2.8 2.5 2.1 3.2 0-1.7 3.3 0.6-0.5 2.1 3.1-0.8 1.8 0.5-1.1 3.1 1.4 0.6 0.7-2.8 2.4 2.4-1.8-0.1 1.4 4 1.4-2-0.4-1.9 1.9 0.1-0.9 1.6 2.1 2.5 1.7-1.2 1.3 1.1-0.6 5.3-0.9 2.5-2.3 2.8-3.7 1-3.3-0.4 1.3-6.7 1.4-2.9-3.7 1 0.8 6.3-1.1 0.4-0.9 2.9-3.6 0.2 0.5-6.1-1.5-2.7 0.3-3.4-3.8 1.2-4.4 0.4-8 2.6-2.7-0.3-4.8 1-0.3-1.1-4.5 3.9 5.2-1.6-2 2 0.7 3.1-1.8 0.5-1.7 4.4 0.4 2.4-2.5 0.5-2.4 2 1 3.5-2.4-0.1 0.4-4.7 2.4-3.9 0.5-3.7-3 5.8-1.4-0.5 2-3.6 0.5-3-2.4-0.1 2.9-5.8 4.7-1.6 2.4-2.8-2.6-0.1-0.1-2.9-2.2-1.7-2.2 2.9-0.9 2.8 1.5 2-3.5 2.7-1.6-1.9-2.7-0.6-2.9 3.1 2 2.7 2.2-2.6 1.2 3.9-2.2 1.5-1.5 3.1-1.4 0.2 3.3 3.6-0.9 1.7-0.4 6.2-1.6 0.4 1.5 1.7-0.7 1.8-3.4-0.7-1.1-3.3-2.3 0.2-2-2-1.2 3.8 0.4 4.5-3.8 0 0.4-2.1-2.3 1.2-4.7 0.2-1 1.9-2.4 0.7 7.3 1.3-0.9 2.7-2.1-1.2-5.2 4.5 2.4 1.8-0.2 2.3-1.9-0.8-2.5 1.1-3.8 0 3.6 1.5-0.8 1.4-3.3 1.9-5 0.8-3.7-0.3 1.4-1.7 6.2-3.8-2.5-2.5-1.9 0.7 0.2 1.6-4.2 3.1-2.7 0.6 5.2-5.5 0.7-2.6 3.5-2.4-4.9 1.5-0.9 2.2-2.4 0.5 1.9-7.3 1.8-2.2-2-1.6-1.2 2.5 0.9 0.9-1.6 5.1-1.9 1.8 0 2.7-1.5 2.7-3.6 2.4-1.6-1.6 2.9-2-1.5-0.6 3.9-4.5-6.4 0.1-3.5-4.1-0.6-3.1-1.9 0.2 0.1 6.3-3.3-1.5 1.1 4.8-2.8 6.1 1.5 0.8 1.1-1.8 3 2-0.6 1.8 1.5 1 0.2 2.5-4.3 3-1.4-1.3-0.1-2.9-1.3 3.5-0.3-2.4-2.3-0.7-0.8 2.2 1.1 3.3-4.6 2.7 0.1-3.4-2.4 4.3-0.6-2.1 1.1-1.4-0.8-4.2-2.4 6-1-2.8-0.6 1.3-5.1-2.6-0.5-4.9 1.2-6-0.4-5.3-2.2-3.6 1.2-2.1-3.8-0.8-2.7 1.9 0.4 1.8 6.1 5-0.7 3.9-1.3 1.8 1.1 2.5-1.5 2.7-1.9 0.7 2.3 3.1 3.1 2.3 3.8 1.4 0.1 2.5-2.7 1.5-1.3-3.7-0.9 2.1-2.4-2.3 0.2 2.5 2 0.7 1.5 3.7-3.4 3.9-5.6 0.8 0.1-2.2-1.7 1.1-4.9 0.9-2.2-1.3-2.5 2-1.6-1-2.1 1.5-3-0.2-4.4 3.1-1.1 1.9-4.9 1-1.4 3.4-6.2-1.4-0.3 3.4-4-1.1-1.2 2.3-2.3-0.1-1.7-4.2-1.7 0.2-1.4 2.4-2.6-0.9 1.2-1.4-1.7-3.2zM546.8 434.9l0.7 1.7-1.7 0.4zM548 420.5l0.3 1.5-2 0.2zM548.6 523l1.1 0.7-1.1 4.6-2.1-0.1zM547.9 423.9l0.3 2-1.6-0.3zM548.7 474.4l-0.7 1.4-1.1-2.5zM553 510.9l-2.4-0.5-0.1-2 1.4-1.4 3.4 0.1 0.1 2.9zM549.4 506.8l-0.2-0.8 2.7 1zM553.7 502.4l-4.9 1.9-0.4-1.7 0-2.1 2.3-0.9 2.6 1.5zM560.3 408.3l0.7-2.2 2.4-0.5-1.3 1.8 1.6 0.2 0.3 2-2.3 1.7-1.1-0.9 2.4-2.3-3.4 1.3-1.8-0.2zM562.8 315.2l-1.2-0.4-0.2-2.9 3.5-0.2 1.4 3.3-2.5 3.7-4.9-0.8zM562 318.3l0.3 1.1-2.6-0.2zM560.8 510.9l2.6 0.3 0.1 1.6-3.1-0.4zM563.1 504.3l1 1.7-1.9-0.1zM565.4 501.3l1.9 2.6-1.8 1.6-1.9-3zM567.5 309.7l-0.8 1-2.2-0.9zM567.1 405.5l-0.8-1.3 1.2-2.6 1.9-1.2-0.7 3.7 0.5 1.5-2.2 3.5-1.3-1.8zM567.7 313.6l1.5 1.7-2.2-0.4zM573.8 382.1l0.8 1.3-1.5 2.1-3 1.7-0.6-0.7zM571.5 498.9l-0.9 1.7-0.8-2.6zM573.7 378.1l0.4-1.9 2.1 1.9-0.4 1.8-4.9 1.3zM571.6 403.7l1 2.1-1.5 1.1zM576.5 494.7l1.5 1.8-3.2 2.1zM577.4 376.1l-1.7 1.2-0.2-1.9zM578 15.4l2.3 0-2.2 1.8-1.3-0.3zM587 1.1l-1 2.1-1.4-1.1zM587 3.9l-0.3 2.5-1.6-0.9zM588.4 5.8l0.6-3.9 2.5-1.7 3-0.1 3.8-1.4-1.2 3.2-2.1-0.3 0.7 1.7-0.3 3.6-4.2 2.7-4.3-1.7zM589.4 -9.8l0.7 0.9-1.7 2.3-0.9-1.2zM591.2 10.2l-0.2 1.7-1.7-0.5zM604.1 -21.3l-0.2 3.2-1.9 1.5-0.3 5.6-1.6 2.4-4.6 2.4-2.4-0.4-1.2-3.5 2.2-1.1 0.3-1.7 2.4-2.3 0.1-1.6-2 0.7 1.8-2.5-2.6 0.3 1.4-1.7 5.9-3.1 2 0zM603.8 484.7l-1.4 2.6-0.9-0.7zM610.5 493.6l1 1.2-2.3 1.1zM640.4 -22.1l-1.8 1.2 0.5-2.2 1.7 0zM693.9 -21.3l0.8 0.6-0.6 4.2-1.7 1.8-2.1 4.8-2.4-0.9-1.4 3-1.7 1-1.9 5.1-2.5-1.9 1.2-3.8-1.3 0.6 0.1-2.5-1.5 0.4-2.9 3.9-3.8 1.1-1.2 2.8-2.9 2.1-2.2-1.5-1-2.9 2.6-3.1-2.5 1-0.6-1.5 2-3.8-2.9 0.3-0.2-5.3-0.9 0.2-2.2 4.4-2.1 2.2-0.9 4.2-2.3 1.1 0.6-3.3-2.7 0.4 1-2.1-0.4-2.5 2.1-2.1-0.7-2.9-3 2.3-1.6-0.4-2.4 5.3-1.5-0.8 1.2-1.6-3 1.2 0.4 1.3-2.9 3.4 1.2-5.5 1.6-0.2 2.3-5.5-2-0.1 3.6-3.6-1.9-0.8-3 3.5-0.7-2.2 3-3.2 48.8 0zM712.9 -22.2l-1.7 1.4-0.8 2.7-2.8 1.5 0.5-2.2-5.8-0.5-0.6-2.3 2.6-1.5 8.6 0zM718.3 -20.5l-1.4-1.1-2.5 2.6 0.8-3.7 0.3-0.4 5 0zM960 -20.7l-0.2 3.8-6.9 3.3-5.1-0.7-0.4-2-1.9-1-2.6 0.9-3.4 3.2 1.6-0.4-0.8 3.1-2.4 2.4-8.7 2.8-2.3 3.1-3-0.1-1 2.2-2.4 1.5-4.9 4.5-2.4 4.7-3.2 2.4-4.5 9.8-3.4 0.9-3 1.7-2.5-2.5-7.4-0.4-4.3-3.6-1.3 0.2-2.2-2.2-2.6 0.7-3.8-1.8-9.7-0.8 2.1-2.2-2.4-0.3-5.5 2.3-2.5-0.1-7.8 2.5-2.2 2.7-3.9-1.8-1.3-1.6-3.5-0.9-5.8 0.5-5-1.9-1.2 1.6-6.8-3 0.5-0.9 4-1.7-3.1-1.6-1.8-2.2-0.6-2.7 0.4-4.3 1.6-0.1-0.3-2 1.9 0-1.3-3.7 2.8-0.5 11.2 3 0.6-3-7.6-9.8 0.3-3-2.5-1.6-2.7 0.9-2.1-0.4-4.5 1.5-4.2 0.4-0.5 1.7-3-1.5 3.1-0.1 0.4-1.6-3.2-1.3-2.9 0.5-1-1.9 156.4 0zM621.8 279.8l2.9-2 0.5 3.8 1.1 1.5-1.8 1.7-3.5-3zM625.4 253.4l1.6 0.8 1.5-1.4-0.7 3.2-4.7-0.3zM627.2 248.3l0.1 2.4-3.7 0.2zM625.5 266.1l-0.6-1.8 2.5-0.5 0.2 5.1-1.5-1.9-0.5 3.2-1.8-0.4zM625.4 274.6l1 0.7-2 1.7zM626.5 470.2l0.2 1.6-2 1zM626.6 289.9l2.4 0.1 0.5 2.9-3.3 0.6-1.2-2.4zM627 -20l4.7-2-2.5 7.1-3.2-1.2-0.7-1.6zM628 276.6l-0.6 3.6-1.4-1.2zM629.4 281.7l3.3-3.8 0.3 3.4-1.1-0.6-1.9 4.1-2.4-2.2zM629.9 509.1l1.7 0.2-1.6 2.7-0.9-0.9zM631 268.6l1.4-0.5-0.2 4.6-0.9 2-1.9-1.6zM631.5 245.4l0.6 2.4-2.5 0.8zM632.5 -8.7l-0.7 2.1-1.7-1zM634 0.3l-1.3 1.7-1.8-0.2zM635.1 2.6l-0.5 2.1-2.4-0.9zM634.7 -5l0.2 2.3-2.1 0.5zM635.1 289.9l0.7-3.1 2.6-0.1-0.9 1.7 1 1.7 1.9-0.4-0.3 3.1 1.3 0.9-0.3 2.8-2.1-0.2-1.2 1.8-4.6-6.4zM635.5 -22.8l-0.8 3.8-1.2-0.5zM634.8 463.5l2 1.3-2.8 1zM640.6 255.8l0.7-2.1 2.5-0.8-0.6 2.2-3.7 3.6-1.5-1.4zM642.7 -13.1l1.7 0.4-2.6 2-1-0.7zM644.2 293.1l0.8 1.3-2.6 2.2zM648 2.3l-0.1 2.6-1.6-0.8zM651.8 -9.4l0.1 1.3-2 4.5-1.8 0.8zM654.9 289.6l0 2.5-1.5-2.6zM657.9 309.1l0.8 2-1.7 0.4zM659.4 460.5l1.6 0.8-2.8 0.9zM693.8 438.8l0.1 2.1-1.6-1.2zM696.2 235.6l1.3 2-1.8 1-0.8-1.8zM699.7 431.3l0.7-2.8 2.2-2.8 3.7-2.3-3.1 3.4-0.3 4.4-2 0.1-3.3 2.1zM699.2 -18.7l0.6 2-1.6 0.7zM707.8 418.5l-1 4.6-0.6-1.7-2.8 2.5 0-1.3zM710.3 421.9l1.4-0.6-1.6 3.1zM719.5 46.1l-0.8-1 3.2-3.7-3.4 0.1 1.1-2.1 3-1.4-1.4-0.4 4.2-1.3-1.2-0.6 2.9-4.8 1.1-0.3 0.6-3.4 3.2 0.8 1-1.7 2.2 0.3 3-4.7 1.6 0.4 2-3.5-0.2-1.3 3-2.2 4.9-1.2 3.1 0.4 2.4-1 1.5 4.3-0.3 1.6 1.8 3.4 3.9 2 1.5-0.2 4.3 1.6 4.1 0.2 2.8-1 1.5 1.2 5.4-2.2 6.3 1.1 1.5-1.4 2.5-0.2-0.7 1.8 1.2 1.1 4.4-2.1 3.4 2.7 3.1-0.1 5.3 1.9 1.8 5 4.3 0.8 3.1 2.2 3.7 0.3 0.7-5.4 1.7-0.4 2.8-2.3 4.9 0 1.2 1.8 3 0.8 0.9 3.8 1.4 0.3 5.6-1.4 2.6 0.3 0.7-1.4 1.6 5.9-2.1 3.8 1.1 1.6 5.2 1.1-0.3-1.2 3.5 0.7-2.7 2.2 4.7-0.5 9 0.1 0.4 1.5 4.1-0.4 2.1-1.8-0.3 2.9 2.1 0.4 5.4-2.7 0 2.8 3.3 2.9 0.9 3.9 0.2 4.3-1.5 12-1.5 3.9-2.5 3.8-0.7-1.7-3.4 0.5-2.8 3.8-3.3 0.6-2 3.2-4.4 2.3-4.2 5.9-1.4 0.5-2.7 3.9-0.6 3 0.7 1.5-3.1 1.4-0.8 2.3-4.5 2.2-1.7 4.1-3.4 1.9-4.1-1-1.8 3-1.3-1.9-1.6 0.3-1.9-2.7-2-0.4-3.8 1.6-2.8-0.7-1.1 1.2-2.2-1.8-1.7 2.2-3.5-2.2-5.8 0-6.2 0.6-2.8 0.9 0.4 3.2-2.2 0.1 0-1.3-5.7 0.2-1.8 1.7-3.4-0.4-6.2 0.9 2-2.1 2.5-0.6-2.6-3.6-2.2 0.1-2.4-1.7-3.6 2.7-1 3.1 0.5 4-6.6 2.8-2.1-5.4 3.9-2.7 3-0.9-3.9-0.4-1.1-1.5-0.4 2.2-3-0.2 0.8-2.1-4.1 0.2-0.2-0.8 5.5-4.5-0.9-2 1.5-0.8 4.7 0.6-0.1-1.9-2.5-1.7-1.3-3.2-1.6 1.2-1.9-0.5-3.4-3.9-2.5-1.8 0.8-4.5-1.3-2-2.7-0.6 0.3-2-1.9 1.6-2.9 0-1.9-2-2.1-0.3 1.3-1.3 0.6-3.3-0.9-1.5-4.1-1.8 1.9-1.1-2.3-6.1-3.1 0.1-1.4-1.7-1.5 0.5-3-1.6-0.3-3-4.7-0.9 3.6-1.3-2-4.3-3.9-2-6.6 1.4 2.3-4.4 0.4-2.5-2.5 0.9-0.8-2zM727.5 421.6l3.3 2-1.6 1.4-2-1.8zM734.6 514.5l1.5 2.3-2.3-1.4zM734.4 500.6l5.4-4.9 1.8 0 2.7 1.8-2.2 2.4-0.3-2.2-3 3.7-4.8 1zM736.6 388.7l-0.6 3.2-1.8-2.2zM736.2 511.1l-1.7 0.7-0.2-1.7zM737.7 512.3l0.1 3.5-2.7-3.1zM740.6 505.9l-0.4-1.4 3.2-1.8 0.3-3.3 2.3-2.9 2.3-0.8 2.5 1.2-0.1-1.3 4.4 0-2.6-1 2.6-0.9 1.2 2 1.8 0.5-0.9 1.7 2.1 2.5-5.2 9.9-4.4 1.8-4.5 3.1 0.5-3.5-1.8 1.5-1.3 2.9-0.3-5 2-1.3-4-0.5-3.1 1.9-0.4-3.1zM740.7 511.4l-1.3 3.3-1.1-2.7zM742 501l1.8-0.6-1.1 2.1-2.9 0.8zM740.3 98.9l2.5-0.1-2.7 1.4zM750.9 514.4l-1.2-0.3 3.4-1.7-2.3 3-2.6 1.1zM751.3 370.6l0.7 2.6-1.8 1.6-0.9-2.8zM752.3 488.3l4.2-0.3-0.8 1.4-3.8 0.6zM754.4 446.9l3-0.9-1.9 2.6-1.4-0.2zM758.1 503.8l1.7-2.8 1.4 1.4 3.3 0.1-1.1 1.4-6.3 5.1zM758.7 439.5l3.6-1.2-2.5 1.6-1 2.2-1.6-0.6zM763.2 495.9l2.6 1.8-3.6 2.5-2.2-2.6zM762.9 439.7l0.2 1.2-2.7 0.2zM761.1 166.3l1.9 0.9-2.2 0.9zM764.7 460.3l0-2.1 4.9-4.6 1.6-5.5-1-2.9 1.6-5.7 2-2.2 3.8-1.2 2.8 0 4.8 1.5 5.1 0.4 1.5 2.2 1.6-0.1 1.3-2.1 2.7-0.1 3.8 1.1 1.9 3 3.9-0.6 4.8 1-1.2 2.3 2.8 2.6-1.2 2.9-2-0.2 0.9 2.6-3.6 0.7 0.2 1.6-4.1 2.9-2.1-0.8 3.4-3.6-3 1.8 1.7-3.1 2.7-2.6-2.6-1.1 0.3-2.3-5.4 0.4-4.8 11.7-0.4 5-2.1-0.6 1.6 2.1-1.2 4.3-4.6 2.2-7 0.2-4 1.3-1.8-1.9-1.7-0.1-2.9-2.2-1.1-3.2-5.9 1.3 0.8-1.3-2.3-0.7zM762.4 473.4l4.1 0 1.3 2.8-2.5 0.6-3.5-0.7-0.4-1.2zM765 470.3l-1.3 1.2-1.1-1.4zM767 478.6l-0.5 1.9-2.7-1.2zM766.6 399.6l-0.9 2.1-1.4-0.7zM768.5 480.6l0.8 4.8-3.2-0.1-1.6-4zM765.8 438.6l1.7 0.7-2.3 1.5zM768.6 429.5l2.1 0.2-2.6 1.4zM770.3 389.6l0.1 3-1.2 1.2-0.6-3zM771 392.8l-0.2 3-1.8 0zM775.9 476.9l3.9 0.8-2.9 0.2 1.3 2.3-0.8 0.9-3.5-1.2-1.7 0.3-2-2.5zM771.6 177.1l3.9-1.7 1.9 4.3-3.1 0.4 0.5 1.6-3 1.9-1.5-0.2zM771.7 388.6l2.7-0.6-3 2.2zM772.2 391.1l2.6-3.3 2.1-0.8-0.6-1.7 2.6 1.1-0.8 5.1-4.8 3-1.4-1.1zM778 181.6l-1.1 1.7-2-0.1zM780.1 131.1l-1 1.2-2.2-1.4zM779.3 473.7l1.3 0.3 1.6 3-4.1-0.8zM780.8 478.5l-0.7 1.9-1.2-1.3zM782.6 168l3.3-1.5 1.2 1.5 2.1-0.5 0 2.4-2.7 1.5-5-1.6zM785.4 -16.9l1.6 0.7-0.1 2.1-3.3 1.3-1-2.8zM789 172.4l0.3 2.2-3-0.3zM788.6 405.3l-1 2.4-0.9-2.3zM790.7 -18.6l1.5 2.2-2.4 3.3-1.9-2.1zM789.5 407.9l1.3 1.4-1.1 1.5-1.4-1.4zM790 389.5l1 0.8-1.3 2.2-1.1-0.6zM790.9 404.4l0.3 1.9-1.7-0.2zM790.1 419.7l2.7-1.4 6.7 0.5 2.7 1.2-0.2 3.7-4.1 2.9-2.4-0.2 3-4.9-1.9 1.1-1.7 3.1-1.4 0.3-1.5-3 1.4-3.3-3.1 3.2-0.5-1zM793.3 119l-1.3 2-1.4-1.4zM796.9 -18.2l2.4 2.2 0.8 3.2-2.2 3.5-1.1-3.1 1-2-2.8 0.1 2.2-1.7-2.3-0.4zM796.9 381.6l2.1-1.3-0.4 2.2-1.8 2.7-1.8-0.4zM799.3 398l-0.8-3.8 2.3-2.6 3.2-5.1 0.9-3.6 2.1-4.4-0.4-2.7 4.1-4.3 8.7-13 6.1-3.9 3.3-3.1 1.6-6.1 2.8-1.7 0.8 1.2 1.4-3.4 2.5-3 4.6 0.5-0.5-1.9 3.4-1.3 3.4-2.1 3.5-0.1 2.2 2.6 2.3-0.1 1.2 2-1.6 0.7 1.8 3.1 3 0.2 0.3 3.1 2.7 3.1 3.7 2-0.3 4.3 1.6 3.3-0.7 3.9-3.7 5.4-2.4 0.2-2.8 2.3-2.1-2.7-1.7 2.9-0.8-0.8-3.2 3.9-1.5-1.3-4.9-0.6-2.1 1.2-4.6-1.3-4.4-0.2 0.2 1.4 3 1.1 5.3-0.5 2.1 2.7 1.9-1.2 2.4 0.5 6.5-0.5 2.1 2.2-0.9 0.7-0.1 3.4-1 1.7-1.2 5.1-5.2 2.8 4.3 1.3-1.7 4-1.7 0.3 1.2 3.1-1.7 4.6-4.3 3.6-0.9-1.4-1.3 4-1.8 2.2-2-1.5 1.6-1.9 1.4-4.7-2.9 0.6-1.1 1.3-1.2-3.9-2 1.7 0.9 2.5-2.8 4.4-0.3 4.8-3 3.8-0.8 4 3.1 2.9-1.7 1.5-3.7 6.9-1.4-0.4 1-3.7-1.3-0.3-2.1 2.4-1.9-1.8 2.2-4.2 0.2-3.6-4.3-2.5 0.3 5.7-3.1 0.3-0.5 3.1-2.6 1-0.4-1.7 1.4-2-3.7 1.5 0 2.8-4.3-0.3 1.2-1.8 2.5-0.5-1.1-1.3 3-1.7-3.9-0.9-1.2-1.8-3.1 0.7 0.6-4-3-2-1.7 0.5-2-1 1-3.5-0.8-1.6 1.6-1.5-1.4-4.6 0.4-1.4-1.3-4.2zM801.2 -11.2l0.4 1.2-2.5 2zM802.6 175.2l2.5 0.1-1.5 1.3-3.1 0.3zM803.3 120l0.7 1.6-2.3-0.1zM807.2 115.9l1.7 2.1-0.9 2-3.8-0.6 1.7-0.9-2.2-0.7zM807.6 0.3l1.7 1.8 4.8 1.1-1 2.3-3.3-0.9-1.9-1.9-1.2 0.5zM811.2 185.6l0.4-3.1 2 0 1.3 3.6-2.6 2.2-3.3-1.5zM817.6 194l2.2 1-2.6 1zM817.9 202.9l5.8-5.4-2.9-1.4-0.6-3.1 5.1 0.2 2.2-0.8 2 0.9 1 2.4-1.5 0.9-2.9 3.6 0.4 1.1-6.6 6.5-2.3-0.8zM837.5 406.6l0.1 3-1.4 1.4-0.3-2.6zM850.6 31.8l3.1 0 1.6-1.7 2.8 0.5 3.8-1.9 1.2 1.4 2.2-0.4 0.5 2.4-1.1 1.2 4.6 1.4 0.1 5.1-1.9 1.5-6.4-2.3-3.6 0.8-4.3-1.6-3.2-2.1zM855.8 165.9l5.7-1 2.6-1.9 2 1.1-4.1 3.5-3.6 0.9-4.6-1.3zM857.4 371l-0.2 2.2-1.6-3zM859.4 155.9l2 0.7 3.7-1.5 2 2.5 0.3 2 2 1.7-4.9-0.2-0.9-2 2.2-0.7-1.9-0.9-1.9 0.8-4.2-1.3zM1007.1 247.5l-1.5 2.2-0.9 6.9-0.7 0.3-1.7-4.6-1.4 6.6-1.6 3.4-0.5-1.2-2.3 1.1-1.2 4.7-1.1 0.9-4.8-0.6-1.8-2.8-3.4 1.2-2.2-2.6-0.3 1.9-3.8-0.2-13.1-2.7-0.6 2.1-3 1.7 0.1 3 2 2.6 5.5-0.8-2-1.1-0.6-2.6 1.8-0.8 1.6 2.3 2-0.6-0.2 3.1 3.7 0.5 3.2-2.1 5.9 0.5-1.1 2.9 2.3-0.3 3.5 2.8-0.1 1.3 3 0.2 0.9 3.8-4.4 6.3-2.2 6.5-0.3 3.3-5.3 8.9-0.9-4.9-1.9 2.9-0.8 2.9-1.5-1-2.1 3.9-3.6 0.5-3.4 5.7 1.1 2.5-3.3 6-0.9 2.8-3 3.9-2.2-0.1 1.3-5.2 2.3-1.2 0.7-1.9-2.1-0.1-4.1 2.2-0.4-2 1.5-1 1.8-4 2.9-2-4.3 1-1-1.8-1.5 1.6-4.4-1-3.3 3.4-2.1-1.2-1.4 1.9-1.5 4.6 2.1 1.2-1.1 2.2-1.9 0.9 0.4 5.7-2.2-2.4 0.3-3.5-2.5-0.9 1.7 4.5 0.5 4.6-1.8 4.8-5.1 2.6-0.2 2.3-3 0.9-0.8-1.6 1.2-2.3-2.9-1.9 1.1 2.4-2.6 3.3-0.7-1.5-3.1 1.4-2.1-2.4 0.1-1.9-2.7 1.3-1.9 2.4-4.8-1.6 3.1-8.8-5.4 4.1 2.9-4.8-0.3-1.6-3.3 3.3 0.8 2.2-1 2.6-3.8 1.4-1 2.2-2.8 2.1-3.6-2-5.6 0.3-3-0.7-0.3-1.6 2.3-1.4-4.2-1.7-4.8 1.2-0.4-6.5-2.1 1.8-2.7-3 1.1-1.4 0-4.4 2.2-0.1-0.4 2 1.5-0.5 2.6-4.1 3-1.7-2-0.3 1.1-2.9 2.7-0.7-0.1-2.1 4-4.5 0.3-2.3 2.4-1.9 0.7-2 5.9-4.3 4.2-1.9-1.2-1.5 0.6-1.7 2.3-1.3 0.7-5.1 2.1-0.8-0.5-5.3 4.8 0.2 6.1-2-0.5-1.8-3.2 1 0.1-2.1-3.5 1.4-1.5-3 3.2-3.8-1.5-1.4 1.1-3.6 5.1-12 4-6.2 0.6-5 1.7-1.1 3.4-5.5 2.1-1.3-1.2-3.1 2.6 1.9 2.4-1.2 5.5-0.5 1.1-2.5-2.9-0.1-1.7-2.3-3.6-1.3-1.5 0.6 1.3-2.6 8.7-12.1 2.6-5.7 2.7-3.5 1 3.6 1.3-3.9 3.6-1.9-2.1-2.7 3.3-0.7 0.6-6.1 2-4.2 0.6 1.1 5.4-2.6 3.4-5.4 2.5-0.5 0-3.2 1.7-0.1 0.7-5-3.6-4.9 1.9-5.4 3.8-3.3-0.2-2.7 4.5-5.5 2.7-0.9 2-2.6 4.4 0.5 6.7 1.9 1.4 4.5 3.8-3.1 2.4 1.3 1-1.4-0.3-2.6 4.3 0.2 2.1 1.4-3.7 3.4 1 1.5 3.9-1.7 0 93.8zM1007.3 109.7l-1.6-1.3-0.9-2.6 0.9-1.8 2.1 0.3 0.6-2.6-0.2-4.3-3.3-4.6-0.8-3.9-5.5-4.7-3.5-3.6-8.6-1.8-3.8 1.2-8.1-0.4-3.2-1-8.3-0.4-2.7-0.9 1.6-2.2-1.8-1.7 3.6-1.5 2.3-4.2 0.3-7.8 0.9-3.3 6.9-5.9 1.4-2.4-1.3-3.4-0.3-3.1-1.7-1.2 0.6-3.1-1-5.2 1.2-2.9 3.2 1.3 2.6-1.4 4.6-6.3 1.1 4.4 4.8-2.5 6.1 0.1 5.8 0.5 7.2 3.3 0 80.9zM1008.5 143.5l-11.8-3.9-3.5-2.8 0.3-3.7-4.8-5.5-1.3-0.1-1.1-6-1.2-1.1-3.6 1.9 1-2.4-1.1-2.5-4.2-3.1-0.5-2.2 1.6-1.9 2.5 0.2 1.1-1.4 5.8 3.5 2.7-3.8-0.3-1.6-4.2-2.5-1.1 0.3 1.5-3.4-2.8-1.9 2-2 2.8 1.9 1.5-4 2.2-0.3 3.6-4.8 1.9 2.5-2.2 4.4 1.7-0.8 1.5 4.4 2.8 0.7-0.1 4.9 2.3 3 0 3.4 3.5 4.5 1.5-0.1zM877.7 370.3l2.7-2.9 0.8-2.3-0.4-2.6 4.5-8.6 3.5-3.1 2-0.2 3.6-1.9-0.5-1.4 4.2-0.8-0.1 3.3 2.2-2 4.2-1.9 5-0.2-2.3 1 2.5 1.5 7.8 0.3 4.5 1.6 1.9-0.8 1.5 2.9 1.1 4-3.4 4-1.5 0.3-0.3 2.4-3.9 0.7 1.3-3.7-1.9 2.2-2.6 0-2.1 1.8-0.4 4.2-1.9 1-3.6 6.6-4.2 2.9-0.9-1.4-2.8 1.2-4.5 3.8-1.1 2.9-2.1 1.2-3.3-0.2-0.3-1.8 3-4-4 4-2.9-0.6 2.9-3.5 0.4-1.6-3.5 1.1-4.4-1.8-2.2-1.7zM879.6 176.7l-1.1 1.6-1-2.4zM878.3 397.8l2.7 0-2.7 1.3zM880.7 347.4l0.5 2.3-1.7 0zM881.7 341.7l0 2-1.6-1.1zM882.9 295.2l3.9-3.3 3.7 0.2-3 4.6-1.1 3.3-1.4 0-0.9 2.4-2.9-1.4 0-1.1zM882.1 386.3l2-0.2-2.1 1.8zM884.1 306.9l0.4 2.1-2.2-1zM885.5 47.3l3.4-0.9 1.7 2-3.9 2.1-2.3-0.3zM885.8 286.3l2.6-0.8 1.2-5.2-1.4-1 1.7-3.7 4.3-3.7-0.8-1 2.8-2.2 3.8 0.2 0.5 1.2 3-0.3-0.2 3.7-2.5 5.8-2.6 2.1 1.2 1-4.9 6.4-2.3 0.1 0-1.7-2.6 2.6-3.6 0.5-0.5-2.1zM890.4 418.5l1.7 2.1-0.6 1.3-1.5-1.9zM890.5 160.3l3.4 1.1 0.9 3.6-2.2 0.2 1.1-2-3.4-0.8zM899.8 433.2l1.5 1.2-3.7 6.1-1.6-1.4zM899.3 400.3l0.4 1.1-2.2 2zM900.9 398.4l0.4 1.5-2.4-0.4zM901.4 389.8l-1.3 2.8-0.9-0.8zM905.7 394.2l-0.2 2.7-2.1 0.8zM910.2 386.9l1.8 0.7-6.6 5.8-0.7-1zM907.9 387l1.6-0.1-2.6 2.2zM909.8 391l3-3.8 0.9 0.8-3.6 6.9-3 0.7zM908.5 65.3l1 1.9-0.6 2.7-1.7 0.8zM912.9 402.1l2.5-0.7-4.6 4.7-0.3-1.2zM918 393.9l0.4 2.5-2.1 2.3-1.1-0.6zM929.9 381.2l1.5-0.5-1.7 2.6zM931.5 383.6l2.6-4 2.6 0-5.9 8.3zM933.5 391.9l0.9 2.3-2.3 0.8zM937.8 378.5l1.1 3-5.4 3.6zM936.3 399.8l0.1 2.8-2.8 1.1zM938.6 401.8l-0.2 3-0.9-2.3zM940 399l2.2 0.2-0.7 3.6-2.2-0.2zM942.1 132l3.4 0.2 1.4 2.1 1.6-0.9-0.4-3.3 1.2-0.8 0.9 2.2 1.9-2.1 5.2-2.5 1.5-2.5 2.2 0 1.7 2.9 2.5 1.2 2.8-0.3-0.7 3.1 0.9 0.7-2.2 3.1-0.8-1.8-0.8 2.6 4.2 0.1-0.3-1.5 2.8-0.5 0.7 1.5-1.6 3.4-6.4 1-9.5 0.7-1.3-1.7-1.8 2.5-3.7-1.6-2.4 3.4-3.3-5.3-0.2-4.5zM944.4 329.4l0.7 2.5-2.2 1.6zM945.5 370l0.7 1.1-2.4 2.6-0.6-1.3zM947.4 319.4l-1.7 2-0.4-1.3zM951 319.4l1.1 0.9 0.2 3-0.9 2.9-1.7 0.3-0.5-5.3zM955.6 317.4l-1.2 2.9-0.4-2zM964.8 108.7l0-1.8 1.9-0.6 1.3 1.8-2.4 1.5-1.2 3.4-2-2.1zM964.6 342.4l2-0.1-1 2.7-2-1zM970.6 339.2l0.1 2.5-2.8 2.3-0.4-1.4zM968.9 382.9l2.4-1.4-3 3.4zM972.7 340.3l4.5-1.2-1.9 1.8-1 3-2.5 1.5-0.5-0.9-2.6 1.5zM974.1 152.6l-1.7 2.3-0.2-2.1zM973.6 125.4l0.4-2.8 4.5 1.2-0.3 1.9-2.3 2.3-3.5-3.1zM975.6 87.2l-0.5 1.4-1.9-1zM975.8 384.8l-1.2 3.5-1-0.2zM976.4 395.6l1.7 0.2-2.9 1.8zM976.4 399.4l2.8-2.1 1.4 0.9-2.8 2.6-2.5 1.1zM977.2 355.6l1.6-1.1 0.1 3.7-2.2 1.4-0.4-1.5zM979.9 367l0.4 1.3-2.3 0.7zM979.4 340.8l1.2 0.8-1.1 2.7-0.9-1.1zM984 398.7l3.4-1 1 1.6-1.5 2.6-2.1 1.1-2.9 0zM986 374.6l1.8-0.1-0.5 2.3-2.2 0.1zM987.8 336l1.1 1-2.4 1.3zM987.7 338.1l6.3-2.2-0.3 3.1-1.6 1.7-1.2-2.8-4.2 1.8zM991.7 342.6l1.5-1.4 1.3-3.3 0.3 3-3.6 5.6-2.1 0.9zM991.9 333.2l0.1 1.4-2.1 1.8zM994.4 345.3l2-0.5-0.7 2-2.9 0.8zM1008.5 329.2l-6.2 3-0.4 2.5-4.2 4.1-2.4 1.4-0.3-1.2 1.3-2.3-1.1-1.2 2.6-4.9-2.2 2.8 0.4-3.3 3.1-1.5 0.6-2.8 1.7-1.8-1-2.3-3 3.5-0.6-1.7 2.5-2.8 3-0.6 0.9 1.8 1.1-1.7 2.9-1.3 0.5-2.6 0.8-0.5zM1003.7 333.8l-0.8 4-2.3-1.9zM1007.2 150.9l-0.8-2.9-2.6 1.6-1.9-0.6 4.2-3.5 1.2 1.9 1.2 0.3 0 3.1zM1005.5 331.3l0.1 1.8-1.9-1.4z","labels":[{"kind":"land","name":"Moskenesøya","x":55.6,"y":703.5,"anchor":"middle"},{"kind":"land","name":"Flakstadøya","x":136.8,"y":576.6,"anchor":"middle"},{"kind":"land","name":"Vestvågøy","x":350.4,"y":438.2,"anchor":"middle"},{"kind":"land","name":"Austvågøya","x":692.3,"y":311.4,"anchor":"middle"},{"kind":"land","name":"Hadseløya","x":777.8,"y":57.7,"anchor":"middle"},{"kind":"land","name":"Gimsøya","x":508.5,"y":311.4,"anchor":"middle"},{"kind":"water","name":"Vestfjorden","x":564.1,"y":692.0,"anchor":"middle"},{"kind":"water","name":"Hadselfjorden","x":713.7,"y":149.9,"anchor":"middle"},{"kind":"water","name":"Norskehavet","x":200.9,"y":173.0,"anchor":"middle"}]},"features/map/data/route.json":{"week1":"M700.3 423.8 703.2 423.8 708.9 426.7 714.7 432.5 731.8 467.1 737.6 472.8 746.2 490.1 746.2 493.0 740.4 501.7M740.4 501.7 749.0 490.1 754.7 487.3 769.1 493.0 786.2 493.0 814.9 478.6 849.2 444.0 869.3 403.6 869.3 371.9 875.0 360.4 875.0 351.7 872.1 346.0 872.1 334.4 875.0 331.6M875.0 331.6 872.1 328.7 872.1 325.8 875.0 320.0 886.5 311.4 897.9 294.1 923.7 239.3 923.7 236.4 929.4 233.5 929.4 230.7 932.3 224.9 938.0 219.1 943.7 204.7 952.3 190.3 960.9 181.6 963.8 175.9 963.8 167.2 969.5 155.7 969.5 152.8 978.1 138.4 969.5 124.0 958.0 115.3 929.4 86.5 917.9 63.4 897.9 43.2 892.2 40.4 877.9 40.4 872.1 43.2 849.2 40.4M849.2 40.4 857.8 43.2 892.2 40.4 897.9 43.2 917.9 63.4 929.4 86.5 958.0 115.3 969.5 124.0 978.1 138.4 969.5 152.8 969.5 155.7 963.8 167.2 963.8 175.9 960.9 181.6 952.3 190.3 938.0 216.2 932.3 222.0 929.4 227.8 929.4 233.5 923.7 236.4 923.7 239.3 912.2 262.4 906.5 268.1 889.3 268.1 883.6 271.0M882.5 271.9 878.6 272.1 867.5 272.2 856.8 272.4 867.5 272.2 878.6 272.1 882.5 271.9M883.6 271.0 883.6 279.7 880.7 285.4 880.7 291.2 869.3 314.3 863.5 320.0 840.6 331.6 823.5 348.9 817.7 351.7 814.9 357.5 806.3 366.2 803.4 371.9 794.8 377.7 786.2 386.3 780.5 397.9 751.9 426.7 734.7 435.4 726.1 435.4 703.2 423.8 700.3 423.8M700.3 423.8 703.2 429.6 703.2 435.4 700.3 441.1 694.6 446.9 683.2 452.7 668.8 452.7 666.0 449.8M666.0 449.8 668.8 452.7 668.8 464.2 666.0 470.0 648.8 487.3 585.8 519.0 557.2 519.0 545.7 513.2 540.0 516.1 540.0 519.0","week2":"M540.0 519.0 505.6 533.4 465.6 573.7 276.6 668.9 193.5 668.9 179.2 654.5M179.2 654.5 185.0 660.2 185.0 674.7 170.6 703.5 119.1 755.4 90.5 769.8 67.6 764.0 64.7 769.8M64.7 769.8 67.6 764.0 79.0 769.8 93.3 769.8 156.3 738.1 245.1 648.7 256.5 625.6 259.4 622.8 259.4 617.0M259.4 617.0 262.3 619.9 273.7 625.6 282.3 625.6 288.0 628.5 408.3 628.5 643.1 510.3 694.6 458.4 703.2 441.1 703.2 432.5 700.3 426.7 700.3 423.8","excursion":"M64.7 769.8 59.0 758.3 47.5 746.7 44.7 741.0 44.7 735.2 41.8 732.3M41.8 732.3 44.7 735.2 44.7 741.0 47.5 746.7 53.2 752.5 61.8 758.3 64.7 764.0 64.7 769.8"},"features/map/data/views.json":{"all":[500.0,403.65,1000],"east":[653,280,694],"svo":[700,391,400],"west":[150,686,300]},"features/weather/data/weather.json":{"title":"Pogoda","intro":"Czego się spodziewać na przełomie sierpnia i września. To średnie z wielu lat; konkretną pogodę sprawdzajcie codziennie w yr.no, gdzie są też ostrzeżenia meteorologiczne.","climate":{"columns":["Sierpień","Wrzesień"],"rows":[["Temperatura w dzień","ok. 15 °C","ok. 12–13 °C"],["Temperatura w nocy","ok. 9–11 °C","ok. 6–9 °C"],["Opady w miesiącu","ok. 54–96 mm","ok. 92–133 mm"],["Dni z deszczem","ok. 10","ok. 9–13"],["Woda w morzu","ok. 12,5 °C","ok. 11 °C"]]},"daylight":"Dzień: na początku rejsu Słońce wschodzi ok. 05:00 i zachodzi ok. 21:00, na końcu ok. 05:50 i 20:05.","cards":[{"place":"Na jachcie","time":"Za dnia","summary":"10–15 °C, odczuwalnie chłodniej","items":["Pod koniec sierpnia ok. 13–15 °C, we wrześniu ok. 12–13 °C. Na wodzie, przy wietrze i bryzgach, odczuwalnie kilka stopni mniej.","Deszcz średnio co trzeci dzień, często przelotny. Między frontami bardzo dobra widoczność.","Wiatr zmienny: w wąskich przejściach, jak Raftsundet, słaby i kapryśny, na otwartym Vestfjorden silniejszy, z martwą falą. Pod stromymi zboczami nagłe szkwały.","Jesienne niże przynoszą już sztormy; pod koniec września zdarzają się ostrzeżenia z porywami ok. 27–32 m/s. Na takie dni są w planie dni zapasowe.","Woda ma 11–12,5 °C."],"wear":"sztormiak (kurtka i ogrodniczki), bielizna termoaktywna, kalosze, rękawice żeglarskie, czapka."},{"place":"Na jachcie","time":"Nocą","summary":"5–9 °C, wilgotno","items":["Noce mają średnio 6–9 °C, najzimniejsze ok. 5 °C.","W kabinach wilgoć i skraplanie się pary. Ogrzewanie diesla robi dużą różnicę, ale zużywa prąd, więc najlepiej nocować przy kei.","Na pokładzie, przy wachcie kotwicznej albo nocnym wyjściu na Vestfjorden, z wiatrem odczuwalnie bliżej 0 °C.","Pełna ciemność: 29.08 tylko ok. 00:00–02:00, 10.09 już ok. 22:20–03:40."],"wear":"kurtka puchowa lub syntetyczna pod sztormiak, czapka, ciepłe rękawice. Na pokładzie kamizelka z szelkami i wpięta lonża."},{"place":"Na lądzie","time":"Za dnia","summary":"10–15 °C w dolinach, chłodniej na szczytach","items":["Przy wodzie podobnie jak na jachcie, ale w osłonie od wiatru odczuwalnie cieplej; przy słońcu bywa ok. 18 °C.","Na szczytach (400–800 m n.p.m.) kilka stopni chłodniej i wyraźnie wietrzniej. Chmury potrafią zasłonić wierzchołki.","Po deszczu szlaki są błotniste, a skała i kamienne schody śliskie.","Pogoda zmienia się szybko: słońce i przelotny deszcz w ciągu jednej godziny."],"wear":"warstwy, lekka kurtka przeciwdeszczowa, wodoodporne buty za kostkę, kije trekkingowe, czołówka."},{"place":"Na lądzie","time":"Nocą, przy zorzy","summary":"ok. 5–8 °C, przy czystym niebie najzimniej","items":["Do obserwacji potrzebne jest bezchmurne niebo, a takie noce są najzimniejsze: ok. 5 °C, przy wietrze odczuwalnie bliżej 0 °C.","2–3 godziny stania w jednym miejscu wychładzają dużo szybciej niż marsz. Na trawie i skałach pojawia się rosa.","Największe szanse między 22:00 a 02:00; godziny ciemności dla każdej nocy są w planie dnia.","Najważniejsze jest zachmurzenie (yr.no). Nad Lofotami wystarcza niska aktywność zorzy."],"wear":"najcieplejsza warstwa, jaką macie, ogrzewacze do rąk, termos, rękawice z odsłanianymi palcami do aparatu, czołówka z czerwonym światłem."}],"sources":"Źródła średnich: timeanddate.no, climate-data.org i normy dla Svolvær; dane różnią się między źródłami, więc podane są przedziały."},"shared/data/stops.json":[{"n":1,"name":"Svolvær","lat":68.2336,"lon":14.569,"x":700.4,"y":422.6,"week":1,"label":{"dx":14,"dy":-10,"anchor":"start"}},{"n":2,"name":"Skrova","lat":68.1667,"lon":14.662,"x":740.2,"y":499.7,"week":1,"label":{"dx":-13,"dy":16,"anchor":"end"}},{"n":3,"name":"Digermulen","lat":68.3127,"lon":14.9884,"x":879.7,"y":331.3,"week":1,"label":{"dx":14,"dy":5,"anchor":"start"}},{"n":4,"name":"Stokmarknes","lat":68.5656,"lon":14.9044,"x":843.8,"y":39.7,"week":1,"label":{"dx":-14,"dy":5,"anchor":"end"}},{"n":5,"name":"Trollfjord","lat":68.3638,"lon":14.935,"x":856.8,"y":272.4,"week":1,"label":{"dx":-14,"dy":-9,"anchor":"end"}},{"n":6,"name":"Kabelvåg","lat":68.2105,"lon":14.4815,"x":663.0,"y":449.2,"week":1,"label":{"dx":-13,"dy":15,"anchor":"end"}},{"n":7,"name":"Henningsvær","lat":68.1508,"lon":14.2016,"x":543.4,"y":518.0,"week":1,"label":{"dx":-14,"dy":-9,"anchor":"end"}},{"n":8,"name":"Nusfjord","lat":68.0348,"lon":13.3501,"x":179.5,"y":651.8,"week":2,"label":{"dx":0,"dy":-15,"anchor":"middle"}},{"n":9,"name":"Reine","lat":67.932,"lon":13.089,"x":67.9,"y":770.4,"week":2,"label":{"dx":14,"dy":14,"anchor":"start"}},{"n":10,"name":"Vindstad (Bunes)","lat":67.965,"lon":13.02,"x":38.5,"y":732.3,"week":2,"label":{"dx":-14,"dy":5,"anchor":"end"}},{"n":11,"name":"Ballstad","lat":68.066,"lon":13.535,"x":258.5,"y":615.8,"week":2,"label":{"dx":13,"dy":-10,"anchor":"start"}}]};
+</script>
+<script>
+(function () {
+"use strict";
+const __modules = {};
+// ---- shared/js/data.js ----
+__modules["shared/js/data.js"] = (function () {
+// Wczytywanie danych JSON.
+// W wersji modułowej (GitHub Pages) pliki są pobierane przez fetch.
+// W wersji sklejonej przez bundler dane są osadzone w window.__BUNDLE_DATA__.
+async function loadJSON(path) {
+  const bundled = window.__BUNDLE_DATA__;
+  if (bundled && Object.prototype.hasOwnProperty.call(bundled, path)) return bundled[path];
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`Nie udało się wczytać ${path} (HTTP ${res.status})`);
+  return res.json();
+}
+return { loadJSON };
+})();
+
+// ---- features/tabs/tabs.js ----
+__modules["features/tabs/tabs.js"] = (function () {
+// Zakładki: przełączanie paneli, obsługa klawiatury i adresów z #.
+// Każdy panel ma atrybut data-hash, np. data-hash="kosztorys" -> adres .../#kosztorys.
+function initTabs() {
+  const tabs = [...document.querySelectorAll('.tabs [role="tab"]')];
+  const panelOf = (tab) => document.getElementById(tab.getAttribute('aria-controls'));
+
+  function show(panelId, updateUrl) {
+    for (const tab of tabs) {
+      const on = tab.getAttribute('aria-controls') === panelId;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      panelOf(tab).hidden = !on;
+    }
+    // Mapa liczy rozmiary z wymiarów elementu, więc po pokazaniu panelu trzeba je odświeżyć.
+    window.dispatchEvent(new Event('resize'));
+    if (updateUrl) {
+      const hash = document.getElementById(panelId).dataset.hash;
+      history.replaceState(null, '', hash ? `#${hash}` : location.pathname + location.search);
+    }
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => show(tab.getAttribute('aria-controls'), true));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus();
+      next.click();
+    });
+  });
+
+  function fromHash() {
+    const hash = decodeURIComponent(location.hash.slice(1));
+    if (!hash) return;
+    const panels = tabs.map(panelOf);
+    const byHash = panels.find((p) => p.dataset.hash === hash);
+    if (byHash) return show(byHash.id, false);
+    const target = document.getElementById(hash);
+    const owner = target && panels.find((p) => p.contains(target));
+    if (owner) show(owner.id, false);
+  }
+
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+}
+return { initTabs };
+})();
+
+// ---- shared/js/dom.js ----
+__modules["shared/js/dom.js"] = (function () {
+// Pomocnicze funkcje do tworzenia elementów DOM i SVG.
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function h(tag, attrs = {}, children = []) {
+  const node = document.createElement(tag);
+  setAttrs(node, attrs);
+  append(node, children);
+  return node;
+}
+
+function s(tag, attrs = {}, parent = null) {
+  const node = document.createElementNS(SVG_NS, tag);
+  setAttrs(node, attrs);
+  if (parent) parent.appendChild(node);
+  return node;
+}
+
+function setAttrs(node, attrs) {
+  for (const [key, value] of Object.entries(attrs)) {
+    if (value === null || value === undefined || value === false) continue;
+    if (key === 'class') node.className = value;
+    else if (key === 'text') node.textContent = value;
+    else node.setAttribute(key, value);
+  }
+}
+
+function append(node, children) {
+  for (const child of [].concat(children)) {
+    if (child === null || child === undefined || child === false) continue;
+    node.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
+  }
+}
+return { h, s };
+})();
+
+// ---- features/map/map.js ----
+__modules["features/map/map.js"] = (function () {
+// Mapa trasy: rysowanie SVG, przesuwanie, przybliżanie i gotowe widoki.
+const { s } = __modules["shared/js/dom.js"];
+
+let api = null;
+
+function initMap({ coastline, route, views, stops }) {
+  const { width: W, height: H, unitsPerNm: PPM } = coastline;
+  const ASP = H / W;
+  const svg = document.getElementById('map');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.aspectRatio = `${W} / ${H}`;
+
+  // Warstwy rysowane od spodu: morze, ląd, nazwy geograficzne, kurs, nazwy portów, numery postojów.
+  s('rect', { x: -2000, y: -2000, width: 5000, height: 5000, fill: 'var(--sea)' }, svg);
+  s('path', { d: coastline.land, fill: 'var(--land)', stroke: 'var(--land-edge)', 'stroke-width': '0.7', 'vector-effect': 'non-scaling-stroke', 'stroke-linejoin': 'round' }, svg);
+  const geo = s('g', { style: 'font-family:var(--serif);font-style:italic' }, svg);
+  const routes = s('g', { fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+  const line = { 'stroke-width': '2.6', 'vector-effect': 'non-scaling-stroke' };
+  s('path', { d: route.week1, stroke: 'var(--r1)', ...line }, routes);
+  s('path', { d: route.week2, stroke: 'var(--r2)', ...line }, routes);
+  s('path', { d: route.excursion, stroke: 'var(--r2)', 'stroke-dasharray': '5 4', ...line }, routes);
+  const names = s('g', { style: 'font-family:var(--sans);font-weight:600' }, svg);
+  const badges = s('g', { style: 'font-family:var(--sans);font-weight:600' }, svg);
+
+  const geoEls = coastline.labels.map((l) => {
+    const t = s('text', { x: l.x, y: l.y, 'text-anchor': l.anchor, 'dominant-baseline': 'central', fill: l.kind === 'water' ? 'var(--water-text)' : 'var(--muted)' }, geo);
+    t.textContent = l.name;
+    return t;
+  });
+
+  const marks = stops.map((stop) => {
+    const g = s('g', {}, badges);
+    const circle = s('circle', { cx: stop.x, cy: stop.y, fill: stop.week === 1 ? 'var(--r1)' : 'var(--r2)', stroke: 'var(--paper)', 'stroke-width': '1.5', 'vector-effect': 'non-scaling-stroke' }, g);
+    const num = s('text', { x: stop.x, y: stop.y, 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: 'var(--paper)' }, g);
+    num.textContent = stop.n;
+    const name = s('text', { 'text-anchor': stop.label.anchor, 'dominant-baseline': 'central', fill: 'var(--ink)', stroke: 'var(--sea)', 'stroke-width': '3.5', 'paint-order': 'stroke', 'stroke-linejoin': 'round' }, names);
+    name.textContent = stop.name;
+    return { stop, circle, num, name };
+  });
+
+  const vb = { x: 0, y: 0, w: W };
+
+  function clamp() {
+    vb.w = Math.max(W / 14, Math.min(W, vb.w));
+    const h = vb.w * ASP;
+    vb.x = Math.max(0, Math.min(W - vb.w, vb.x));
+    vb.y = Math.max(0, Math.min(H - h, vb.y));
+  }
+
+  // Elementy opisowe (numery, nazwy, podziałka) mają stały rozmiar na ekranie niezależnie od przybliżenia.
+  function apply() {
+    clamp();
+    const h = vb.w * ASP;
+    svg.setAttribute('viewBox', `${vb.x.toFixed(2)} ${vb.y.toFixed(2)} ${vb.w.toFixed(2)} ${h.toFixed(2)}`);
+    const ppu = (svg.getBoundingClientRect().width || W) / vb.w;
+    const k = 1 / ppu;
+    const r = Math.max(9, Math.min(12, 9 + ppu * 1.5));
+    for (const m of marks) {
+      m.circle.setAttribute('r', (r * k).toFixed(3));
+      m.num.setAttribute('font-size', (11 * k).toFixed(3));
+      m.name.setAttribute('x', (m.stop.x + m.stop.label.dx * k).toFixed(2));
+      m.name.setAttribute('y', (m.stop.y + m.stop.label.dy * k).toFixed(2));
+      m.name.setAttribute('font-size', (13 * k).toFixed(3));
+      m.name.style.strokeWidth = `${3.5 * k}px`;
+    }
+    names.style.display = ppu >= 1.15 ? '' : 'none';
+    for (const t of geoEls) t.setAttribute('font-size', (13 * k).toFixed(3));
+    geo.style.display = ppu >= 0.55 ? '' : 'none';
+    let nm = 1;
+    for (const n of [1, 2, 5, 10, 20]) { nm = n; if (n * PPM * ppu >= 56) break; }
+    document.getElementById('sb').style.width = `${Math.round(nm * PPM * ppu)}px`;
+    document.getElementById('sl').textContent = `${nm} Mm`;
+  }
+
+  function setView(cx, cy, w) { vb.w = w; vb.x = cx - w / 2; vb.y = cy - (w * ASP) / 2; apply(); }
+
+  function press(name) {
+    document.querySelectorAll('.bar [data-view]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.view === name ? 'true' : 'false'));
+  }
+
+  function zoomAt(px, py, factor) {
+    const rect = svg.getBoundingClientRect();
+    const fx = (px - rect.left) / rect.width, fy = (py - rect.top) / rect.height;
+    const mx = vb.x + fx * vb.w, my = vb.y + fy * vb.w * ASP;
+    const nw = Math.max(W / 14, Math.min(W, vb.w / factor));
+    vb.w = nw; vb.x = mx - fx * nw; vb.y = my - fy * nw * ASP;
+    apply(); press('');
+  }
+
+  const zoomCenter = (factor) => { const r = svg.getBoundingClientRect(); zoomAt(r.left + r.width / 2, r.top + r.height / 2, factor); };
+
+  document.querySelectorAll('.bar [data-view]').forEach((b) => b.addEventListener('click', () => {
+    const [cx, cy, w] = views[b.dataset.view];
+    setView(cx, cy, w); press(b.dataset.view);
+  }));
+  document.getElementById('zin').addEventListener('click', () => zoomCenter(1.6));
+  document.getElementById('zout').addEventListener('click', () => zoomCenter(1 / 1.6));
+  svg.addEventListener('wheel', (e) => { e.preventDefault(); zoomAt(e.clientX, e.clientY, Math.exp(-e.deltaY * 0.0015)); }, { passive: false });
+
+  // Przeciąganie jednym palcem lub myszą, przybliżanie dwoma palcami.
+  const pointers = new Map();
+  svg.addEventListener('pointerdown', (e) => { svg.setPointerCapture(e.pointerId); pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); svg.classList.add('drag'); });
+  svg.addEventListener('pointermove', (e) => {
+    if (!pointers.has(e.pointerId)) return;
+    const prev = pointers.get(e.pointerId);
+    if (pointers.size === 1) {
+      const rect = svg.getBoundingClientRect();
+      vb.x -= ((e.clientX - prev.x) / rect.width) * vb.w;
+      vb.y -= ((e.clientY - prev.y) / rect.height) * vb.w * ASP;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      apply(); press('');
+    } else if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      const d0 = Math.hypot(a.x - b.x, a.y - b.y);
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      const [a2, b2] = [...pointers.values()];
+      const d1 = Math.hypot(a2.x - b2.x, a2.y - b2.y);
+      if (d0 > 0) zoomAt((a2.x + b2.x) / 2, (a2.y + b2.y) / 2, d1 / d0);
+    }
+  });
+  const release = (e) => { pointers.delete(e.pointerId); if (!pointers.size) svg.classList.remove('drag'); };
+  svg.addEventListener('pointerup', release);
+  svg.addEventListener('pointercancel', release);
+  window.addEventListener('resize', apply);
+
+  api = { setView, press, ASP, stops };
+  apply();
+}
+
+// Przybliża mapę do podanych postojów (numery z shared/data/stops.json).
+function focusStops(numbers) {
+  if (!api) return;
+  const points = numbers.map((n) => api.stops.find((st) => st.n === n));
+  const xs = points.map((p) => p.x), ys = points.map((p) => p.y);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const pad = 55;
+  const w = Math.max(170, x1 - x0 + 2 * pad, (y1 - y0 + 2 * pad) / api.ASP);
+  api.setView((x0 + x1) / 2, (y0 + y1) / 2, w);
+  api.press('');
+}
+return { initMap, focusStops };
+})();
+
+// ---- features/itinerary/itinerary.js ----
+__modules["features/itinerary/itinerary.js"] = (function () {
+// Plan dzień po dniu (harmonogram godzinowy) i szczegółowe opisy dni.
+const { h } = __modules["shared/js/dom.js"];
+
+function renderItinerary({ days, stops, onFocus }) {
+  const list = document.getElementById('days');
+  const descriptions = document.getElementById('descriptions');
+  const weekOf = (n) => stops.find((st) => st.n === n).week;
+
+  for (const day of days) {
+    const uniqueStops = day.stops.filter((n, i, all) => all.indexOf(n) === i);
+    const pins = h('span', { class: 'pins' }, uniqueStops.map((n) => h('span', { class: `pin w${weekOf(n)}`, text: String(n) })));
+    const head = h('div', { class: 'dh', tabindex: '0', role: 'button' }, [
+      h('span', { class: 'd', text: day.date }),
+      h('span', { class: 't' }, [day.title, pins]),
+      h('span', { class: 'm', text: day.nm ? `${day.nm} Mm` : 'bez przelotu' }),
+    ]);
+    const schedule = h('ul', { class: 'sch' }, [
+      ...day.schedule.map((item) => h('li', { class: item.kind }, [
+        h('span', { class: 'h', text: item.time }),
+        h('i', { class: `dot ${item.kind}` }),
+        h('span', { class: 'x', text: item.text }),
+      ])),
+      h('li', { class: 'more' }, [h('span'), h('span'), h('a', { href: `#opis-${day.id}`, text: 'Szczegółowy opis dnia ↓' })]),
+    ]);
+    const item = h('li', { class: 'dayb', id: `dzien-${day.id}` }, [head, schedule]);
+
+    const focus = () => {
+      onFocus(day.stops);
+      document.querySelectorAll('.dayb.on').forEach((n) => n.classList.remove('on'));
+      item.classList.add('on');
+      const bar = document.querySelector('.bar');
+      const top = bar.getBoundingClientRect().top;
+      if (top < 0 || top > window.innerHeight * 0.5) bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    head.addEventListener('click', focus);
+    head.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focus(); } });
+    list.appendChild(item);
+
+    descriptions.appendChild(h('article', { class: 'ds', id: `opis-${day.id}` }, [
+      h('h3', {}, [h('span', { class: 'dd', text: day.date }), ` ${day.description.title}`]),
+      ...day.description.paragraphs.map((p) => h('p', { text: p })),
+      h('p', { class: 'back' }, [h('a', { href: `#dzien-${day.id}`, text: '↑ wróć do planu dnia' })]),
+    ]));
+  }
+}
+return { renderItinerary };
+})();
+
+// ---- features/weather/weather.js ----
+__modules["features/weather/weather.js"] = (function () {
+// Zakładka Pogoda: tabela średnich i karty warunków.
+const { h } = __modules["shared/js/dom.js"];
+
+function renderWeather(data) {
+  const root = document.getElementById('weather');
+  const { columns, rows } = data.climate;
+  root.append(
+    h('h2', { id: 'pogoda', text: data.title }),
+    h('p', { class: 'sub', text: data.intro }),
+    h('div', { class: 'tw' }, [h('table', { class: 'cost wxt' }, [
+      h('thead', {}, [h('tr', {}, [h('th'), ...columns.map((c) => h('th', { text: c }))])]),
+      h('tbody', {}, rows.map((row) => h('tr', {}, row.map((cell) => h('td', { text: cell }))))),
+    ])]),
+    h('p', { class: 'cn', text: data.daylight }),
+    h('div', { class: 'wx' }, data.cards.map((card) => h('article', { class: 'wxc' }, [
+      h('p', { class: 'wxk', text: card.place }),
+      h('h3', { text: card.time }),
+      h('p', { class: 'wxv', text: card.summary }),
+      h('ul', {}, card.items.map((i) => h('li', { text: i }))),
+      h('p', { class: 'wxu' }, [h('b', { text: 'Ubiór:' }), ` ${card.wear}`]),
+    ]))),
+    h('p', { class: 'cn', text: data.sources }),
+  );
+}
+return { renderWeather };
+})();
+
+// ---- features/costs/calc.js ----
+__modules["features/costs/calc.js"] = (function () {
+// Obliczenia kosztorysu. Każda pozycja daje kwotę w złotych jako przedział {min, max}
+// oraz informację, czy to szacunek (approx). Sumy liczone są wyłącznie z pozycji w costs.json.
+
+function itemTotal(cost, { rates, people }) {
+  const rate = (currency) => (currency === 'PLN' ? 1 : rates[currency]);
+  switch (cost.type) {
+    case 'total':     // kwota za całą grupę
+      return exact(cost.amount * rate(cost.currency));
+    case 'perPerson': // kwota na osobę
+      return exact(cost.amount * rate(cost.currency) * people);
+    case 'range':     // przedział za całą grupę
+      return { min: cost.min * rate(cost.currency), max: cost.max * rate(cost.currency), approx: false };
+    case 'fuel': {    // paliwo liczone z dystansu, spalania i ceny baku
+      const tanks = fuelTanks(cost);
+      const value = tanks * cost.pricePerTank * rate(cost.currency);
+      return { min: value, max: value, approx: true };
+    }
+    default:
+      throw new Error(`Nieznany typ kosztu: ${cost.type}`);
+  }
+}
+
+function fuelTanks(cost) {
+  const km = cost.oneWayKm * cost.trips;
+  return Math.round((km * cost.litresPer700Km) / 700 / cost.tankLitres);
+}
+
+function sum(values) {
+  return values.reduce((acc, v) => ({ min: acc.min + v.min, max: acc.max + v.max, approx: acc.approx || v.approx }),
+    { min: 0, max: 0, approx: false });
+}
+
+function perPerson(value, people) {
+  return { min: value.min / people, max: value.max / people, approx: value.approx };
+}
+
+function exact(v) { return { min: v, max: v, approx: false }; }
+return { itemTotal, fuelTanks, sum, perPerson };
+})();
+
+// ---- features/costs/format.js ----
+__modules["features/costs/format.js"] = (function () {
+// Formatowanie kwot. Kwoty dokładne do 1 zł; przedziały i szacunki zaokrąglane
+// do 10 zł (za całość) albo do 5 zł (na osobę).
+
+const group = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const roundTo = (n, step) => Math.round(n / step) * step;
+
+function money(value, scope = 'total') {
+  const step = scope === 'perPerson' ? 5 : 10;
+  if (value.min === value.max) {
+    if (!value.approx) return `${group(value.min)} zł`;
+    return `ok. ${group(roundTo(value.min, step))} zł`;
+  }
+  return `${group(roundTo(value.min, step))}–${group(roundTo(value.max, step))} zł`;
+}
+
+function number(n) { return group(n); }
+
+function decimal(n, digits = 2) { return n.toFixed(digits).replace('.', ','); }
+return { money, number, decimal };
+})();
+
+// ---- features/costs/costs.js ----
+__modules["features/costs/costs.js"] = (function () {
+// Zakładka Kosztorys: wycena rejsu, opcje transportu i podsumowanie.
+const { h } = __modules["shared/js/dom.js"];
+const { itemTotal, fuelTanks, sum, perPerson } = __modules["features/costs/calc.js"];
+const { money, number, decimal } = __modules["features/costs/format.js"];
+
+function renderCosts(data) {
+  const root = document.getElementById('costs');
+  const ctx = { rates: data.rates, people: data.people };
+
+  const priced = (items) => items.map((item) => ({ ...item, value: itemTotal(item.cost, ctx) }));
+  const cruise = priced(data.cruise.items);
+  const cruiseTotal = sum(cruise.map((i) => i.value));
+  const options = data.transport.options.map((o) => {
+    const items = priced(o.items);
+    return { ...o, items, total: sum(items.map((i) => i.value)) };
+  });
+
+  // Wycena rejsu
+  const deposit = data.cruise.deposit;
+  root.append(
+    h('h2', { id: data.cruise.id, text: data.cruise.title }),
+    h('p', { class: 'sub', text: data.cruise.subtitle }),
+    table({ head: ['Pozycja', 'Za całość', 'Na osobę'], items: cruise, total: cruiseTotal, totalLabel: data.cruise.totalLabel, people: data.people }),
+    h('p', { class: 'cn', text: `Kaucja za jacht wynosi ${number(deposit.amount)} € (ok. ${number(deposit.amount * data.rates[deposit.currency])} zł). ${deposit.text}` }),
+  );
+
+  // Transport: karty z opcjami
+  root.append(
+    h('h2', { id: data.transport.id, text: data.transport.title }),
+    h('p', { class: 'sub', text: data.transport.subtitle }),
+    h('div', { class: 'opts' }, options.map((o) => h('article', { class: 'opt', id: o.id }, [
+      h('h3', { text: o.title }),
+      h('p', { class: 'od', text: o.route }),
+      table({ head: ['Koszt', o.totalColumn, 'Na osobę'], items: o.items, total: o.total, totalLabel: 'Razem', people: data.people, mini: true }),
+      h('p', { class: 'tm' }, [h('b', { text: 'Czas:' }), ` ${o.time}`]),
+    ]))),
+  );
+
+  // Podsumowanie wariantów
+  const sm = data.summary;
+  const grand = options.map((o) => sum([cruiseTotal, o.total]));
+  root.append(
+    h('h2', { id: sm.id, text: sm.title }),
+    h('div', { class: 'tw' }, [h('table', { class: 'cost' }, [
+      h('thead', {}, [h('tr', {}, [h('th'), ...options.map((o) => h('th', { text: sm.columns[o.id] }))])]),
+      h('tbody', {}, [
+        row(sm.rows.cruise, options.map(() => money(cruiseTotal))),
+        row(sm.rows.transport, options.map((o) => money(o.total))),
+        row(sm.rows.total, grand.map((g) => money(g))),
+      ]),
+      h('tfoot', {}, [h('tr', {}, [h('th', { text: sm.rows.perPerson }), ...grand.map((g) => h('td', { text: money(perPerson(g, data.people), 'perPerson') }))])]),
+    ])]),
+    ...data.notes.map((n) => h('p', { class: 'cn', text: n })),
+    h('p', { class: 'cn', text: `${data.sourcesNote} Przeliczenia po ${decimal(data.rates.EUR)} zł za euro i ${decimal(data.rates.NOK)} zł za koronę.` }),
+  );
+}
+
+function table({ head, items, total, totalLabel, people, mini = false }) {
+  const t = h('table', { class: mini ? 'cost mini' : 'cost' }, [
+    h('thead', {}, [h('tr', {}, head.map((c) => h('th', { text: c })))]),
+    h('tbody', {}, items.map((i) => h('tr', {}, [
+      h('td', {}, [i.label, i.note ? h('span', { class: 'n', text: noteText(i) }) : null]),
+      h('td', { text: money(i.value) }),
+      h('td', { text: money(perPerson(i.value, people), 'perPerson') }),
+    ]))),
+    h('tfoot', {}, [h('tr', {}, [
+      h('th', { text: totalLabel }),
+      h('td', { text: money(total) }),
+      h('td', { text: money(perPerson(total, people), 'perPerson') }),
+    ])]),
+  ]);
+  return mini ? t : h('div', { class: 'tw' }, [t]);
+}
+
+// W notatce paliwa liczby wstawiane są z danych, żeby opis zawsze zgadzał się z wyliczeniem.
+function noteText(item) {
+  if (item.cost.type !== 'fuel') return item.note;
+  return item.note
+    .replace('{trips}', item.cost.trips)
+    .replace('{oneWayKm}', number(item.cost.oneWayKm))
+    .replace('{tanks}', fuelTanks(item.cost))
+    .replace('{pricePerTank}', number(item.cost.pricePerTank));
+}
+
+function row(label, cells) {
+  return h('tr', {}, [h('td', { text: label }), ...cells.map((c) => h('td', { text: c }))]);
+}
+return { renderCosts };
+})();
+
+// ---- main.js ----
+__modules["main.js"] = (function () {
+// Punkt wejścia strony: wczytuje dane i uruchamia moduły.
+const { loadJSON } = __modules["shared/js/data.js"];
+const { initTabs } = __modules["features/tabs/tabs.js"];
+const { initMap, focusStops } = __modules["features/map/map.js"];
+const { renderItinerary } = __modules["features/itinerary/itinerary.js"];
+const { renderWeather } = __modules["features/weather/weather.js"];
+const { renderCosts } = __modules["features/costs/costs.js"];
+
+const DATA_FILES = {
+  stops: 'shared/data/stops.json',
+  coastline: 'features/map/data/coastline.json',
+  route: 'features/map/data/route.json',
+  views: 'features/map/data/views.json',
+  days: 'features/itinerary/data/days.json',
+  weather: 'features/weather/data/weather.json',
+  costs: 'features/costs/data/costs.json',
+};
+
+async function start() {
+  const entries = await Promise.all(Object.entries(DATA_FILES).map(async ([key, path]) => [key, await loadJSON(path)]));
+  const d = Object.fromEntries(entries);
+  initMap({ coastline: d.coastline, route: d.route, views: d.views, stops: d.stops });
+  renderItinerary({ days: d.days, stops: d.stops, onFocus: focusStops });
+  renderWeather(d.weather);
+  renderCosts(d.costs);
+  initTabs();
+}
+
+start().catch((err) => {
+  console.error(err);
+  const box = document.getElementById('load-error');
+  if (box) { box.hidden = false; box.textContent = `Nie udało się wczytać strony: ${err.message}`; }
+});
+return { DATA_FILES };
+})();
+})();
+</script>
+</body>
+</html>

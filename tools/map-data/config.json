@@ -1,0 +1,283 @@
+{
+  "_opis": "Konfiguracja generatora danych mapy. Postoje (nazwy i współrzędne) są w shared/data/stops.json.",
+  "display": {
+    "lon": [
+      12.93,
+      15.27
+    ],
+    "lat": [
+      67.9,
+      68.6
+    ],
+    "width": 1000,
+    "refLat": 68.25,
+    "simplify": 0.00025,
+    "minArea": 1.5e-06,
+    "routeSimplifyPx": 0.8
+  },
+  "mainlandExclusion": {
+    "_opis": "Pomija ląd stały po drugiej stronie Vestfjorden",
+    "maxLat": 68.13,
+    "minLon": 14.45
+  },
+  "routing": {
+    "bbox": [
+      12.6,
+      67.75,
+      15.45,
+      68.72
+    ],
+    "grid": {
+      "lat": [
+        67.84,
+        68.63,
+        0.0025
+      ],
+      "lon": [
+        12.8,
+        15.3,
+        0.0067
+      ]
+    },
+    "simplify": 0.0025
+  },
+  "points": {
+    "Wejście do Trollfjordu": [
+      68.3642,
+      14.995
+    ]
+  },
+  "legs": [
+    {
+      "from": "Svolvær",
+      "to": "Skrova",
+      "week": 1
+    },
+    {
+      "from": "Skrova",
+      "to": "Digermulen",
+      "week": 1
+    },
+    {
+      "from": "Digermulen",
+      "to": "Stokmarknes",
+      "week": 1
+    },
+    {
+      "from": "Stokmarknes",
+      "to": "Wejście do Trollfjordu",
+      "week": 1
+    },
+    {
+      "manual": [
+        [
+          68.3642,
+          14.995
+        ],
+        [
+          68.3641,
+          14.986
+        ],
+        [
+          68.364,
+          14.96
+        ],
+        [
+          68.3638,
+          14.935
+        ],
+        [
+          68.364,
+          14.96
+        ],
+        [
+          68.3641,
+          14.986
+        ],
+        [
+          68.3642,
+          14.995
+        ]
+      ],
+      "week": 1,
+      "_opis": "Trollfjord: wejście 100 m, za wąskie dla siatki, więc kurs zadany ręcznie"
+    },
+    {
+      "from": "Wejście do Trollfjordu",
+      "to": "Svolvær",
+      "week": 1
+    },
+    {
+      "from": "Svolvær",
+      "to": "Kabelvåg",
+      "week": 1
+    },
+    {
+      "from": "Kabelvåg",
+      "to": "Henningsvær",
+      "week": 1
+    },
+    {
+      "from": "Henningsvær",
+      "to": "Nusfjord",
+      "week": 2
+    },
+    {
+      "from": "Nusfjord",
+      "to": "Reine",
+      "week": 2
+    },
+    {
+      "from": "Reine",
+      "to": "Vindstad (Bunes)",
+      "week": "excursion"
+    },
+    {
+      "from": "Vindstad (Bunes)",
+      "to": "Reine",
+      "week": "excursion"
+    },
+    {
+      "from": "Reine",
+      "to": "Ballstad",
+      "week": 2
+    },
+    {
+      "from": "Ballstad",
+      "to": "Svolvær",
+      "week": 2
+    }
+  ],
+  "labels": [
+    {
+      "kind": "land",
+      "name": "Moskenesøya",
+      "candidates": [
+        [
+          67.99,
+          13.06
+        ],
+        [
+          68.0,
+          13.05
+        ],
+        [
+          68.02,
+          13.07
+        ],
+        [
+          68.03,
+          13.06
+        ]
+      ]
+    },
+    {
+      "kind": "land",
+      "name": "Flakstadøya",
+      "candidates": [
+        [
+          68.1,
+          13.25
+        ],
+        [
+          68.09,
+          13.3
+        ]
+      ]
+    },
+    {
+      "kind": "land",
+      "name": "Vestvågøy",
+      "candidates": [
+        [
+          68.22,
+          13.75
+        ],
+        [
+          68.2,
+          13.7
+        ]
+      ]
+    },
+    {
+      "kind": "land",
+      "name": "Austvågøya",
+      "candidates": [
+        [
+          68.33,
+          14.55
+        ],
+        [
+          68.32,
+          14.5
+        ]
+      ]
+    },
+    {
+      "kind": "land",
+      "name": "Hadseløya",
+      "candidates": [
+        [
+          68.55,
+          14.75
+        ],
+        [
+          68.54,
+          14.7
+        ]
+      ]
+    },
+    {
+      "kind": "land",
+      "name": "Gimsøya",
+      "candidates": [
+        [
+          68.32,
+          14.1
+        ],
+        [
+          68.33,
+          14.12
+        ]
+      ]
+    },
+    {
+      "kind": "water",
+      "name": "Vestfjorden",
+      "candidates": [
+        [
+          68.0,
+          14.25
+        ]
+      ]
+    },
+    {
+      "kind": "water",
+      "name": "Hadselfjorden",
+      "candidates": [
+        [
+          68.47,
+          14.6
+        ],
+        [
+          68.46,
+          14.5
+        ]
+      ]
+    },
+    {
+      "kind": "water",
+      "name": "Norskehavet",
+      "candidates": [
+        [
+          68.45,
+          13.4
+        ],
+        [
+          68.48,
+          13.5
+        ]
+      ]
+    }
+  ]
+}

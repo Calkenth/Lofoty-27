@@ -1,0 +1,20 @@
+/* Kolory, fonty i motyw jasny/ciemny. Zmiana palety tylko tutaj. */
+:root {
+  --paper: #F4F7F8; --ink: #16252F; --muted: #56666F; --line: #C8D5DB;
+  --sea: #D7E7EE; --land: #ECE1BF; --land-edge: #A08852; --water-text: #3F7290;
+  --r1: #A8215F; --r2: #1D5C88; --chip: #FFFFFF; --aur: #2E9466;
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0B1820; --ink: #E3ECF0; --muted: #97AAB5; --line: #24394A;
+    --sea: #0F2533; --land: #2F2B21; --land-edge: #77694A; --water-text: #7DB0CC;
+    --r1: #E25B9E; --r2: #5EA6D6; --chip: #132631; --aur: #5FD3A0;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0B1820; --ink: #E3ECF0; --muted: #97AAB5; --line: #24394A;
+  --sea: #0F2533; --land: #2F2B21; --land-edge: #77694A; --water-text: #7DB0CC;
+  --r1: #E25B9E; --r2: #5EA6D6; --chip: #132631; --aur: #5FD3A0;
+}

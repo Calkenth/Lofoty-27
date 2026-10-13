@@ -1,0 +1,20 @@
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.bar button { font: inherit; font-size: 14px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--chip); color: var(--ink); cursor: pointer; }
+.bar button[aria-pressed="true"] { border-color: var(--r2); color: var(--r2); font-weight: 600; }
+.bar .zoom { margin-left: auto; display: flex; gap: 6px; }
+.bar .zoom button { width: 38px; padding: 7px 0; font-size: 18px; line-height: 1; }
+
+.mapbox { position: relative; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--sea); }
+#map { display: block; width: 100%; height: auto; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+#map.drag { cursor: grabbing; }
+
+.under { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; font-size: 13px; color: var(--muted); margin: 10px 2px 0; }
+.key { display: inline-flex; align-items: center; gap: 7px; }
+.key i { display: inline-block; width: 26px; border-top: 3px solid; }
+.scale { display: inline-flex; align-items: center; gap: 8px; }
+.scale b { display: inline-block; height: 8px; border: 1.5px solid var(--muted); border-top: 0; }
+.hint { flex-basis: 100%; margin: 0; }
+
+@media (max-width: 560px) {
+  .bar button { font-size: 13px; padding: 6px 10px; }
+}

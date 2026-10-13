@@ -1,0 +1,696 @@
+[
+  {
+    "id": 1,
+    "date": "sob 28.08",
+    "title": "Svolvær",
+    "stops": [
+      1
+    ],
+    "nm": null,
+    "schedule": [
+      {
+        "time": "po poł.",
+        "kind": "note",
+        "text": "Przylot do Svolvær"
+      },
+      {
+        "time": "ok. 15:00",
+        "kind": "sail",
+        "text": "Odbiór jachtu w porcie, odprawa ok. 2–3 h"
+      },
+      {
+        "time": "18:00",
+        "kind": "land",
+        "text": "Zakupy na pierwsze dni (Rema 1000, Coop)"
+      },
+      {
+        "time": "20:00",
+        "kind": "land",
+        "text": "Magic Ice (galeria lodowych rzeźb z barem)"
+      },
+      {
+        "time": "noc",
+        "kind": "aur",
+        "text": "Sen po podróży (ciemno tylko 00:24–01:45)"
+      }
+    ],
+    "description": {
+      "title": "Svolvær: przylot i odbiór jachtu",
+      "paragraphs": [
+        "Svolvær to główne miasto wschodnich Lofotów, ok. 4 600 mieszkańców. Po przylocie odbieracie Ellinor w porcie: odprawa trwa zwykle 2–3 godziny, potem duże zakupy na pierwsze dni w Rema 1000 albo Coop. Postój w porcie gościnnym kosztuje ok. 400 NOK za dobę z prądem.",
+        "Nad miastem stoi Svolværgeita (skalna iglica), na którą wchodzi się tylko ze sprzętem wspinaczkowym i przewodnikiem, więc oglądacie ją z dołu. Na pierwszy wieczór dobrze sprawdza się Magic Ice (galeria lodowych rzeźb z barem) w dawnej chłodni rybnej, gdzie stale panuje −6 °C, a drinki podaje się w szklankach z lodu.",
+        "Jeśli zostanie czas, warto przejść mostem na Svinøya (wysepka z rorbuer). W galerii Gunnara Berga wisi obraz „Trollfjordslaget” o bitwie rybaków z 1890 roku. Kilka dni później zobaczycie to miejsce z pokładu. Pierwsza noc jest jeszcze prawie jasna, więc lepiej się wyspać po podróży."
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "date": "nd 29.08",
+    "title": "Svolvær → Skrova",
+    "stops": [
+      1,
+      2
+    ],
+    "nm": 5,
+    "schedule": [
+      {
+        "time": "8:30",
+        "kind": "land",
+        "text": "Wyjście na Fløyę (szczyt 590 m n.p.m.) z Djevelporten (głaz nad urwiskiem, punkt widokowy), ok. 2 h w jedną stronę"
+      },
+      {
+        "time": "13:00",
+        "kind": "note",
+        "text": "Powrót na jacht"
+      },
+      {
+        "time": "14:00",
+        "kind": "sail",
+        "text": "Wyjście z portu"
+      },
+      {
+        "time": "15:00",
+        "kind": "sail",
+        "text": "Wejście do portu w Skrova (osada rybacka i wielorybnicza)"
+      },
+      {
+        "time": "16:00",
+        "kind": "land",
+        "text": "Spacer po Skrovie: tunel z galerią starych zdjęć, zatoczki z białym piaskiem"
+      },
+      {
+        "time": "ok. 00:00",
+        "kind": "aur",
+        "text": "Krótka obserwacja zorzy (ciemno 00:06–02:02)"
+      }
+    ],
+    "description": {
+      "title": "Fløya i Skrova",
+      "paragraphs": [
+        "Rano wejście na Fløyę (szczyt 590 m n.p.m.) prosto z centrum Svolvær, ok. 2 godzin w jedną stronę. Dolna część to kamienne schody ułożone przez szerpów, dalej zwykła górska ścieżka, po deszczu błotnista. Po drodze mijacie Djevelporten (głaz zaklinowany między skałami nad urwiskiem). Miejsce jest bardzo eksponowane i wchodzenie na sam głaz jest ryzykowne. Ostatni odcinek na wierzchołek jest dla doświadczonych, a punkt widokowy ok. 40 m niżej daje praktycznie ten sam widok.",
+        "Po południu krótki przelot na Skrovę (5 Mm). Skrova to dziś mała wyspa, ale z dużą historią: prawa handlowe dostała w 1760 roku i przez długi czas była największą osadą rybacką Lofotów. Działa tu jedna z największych stacji wielorybniczych w Norwegii, przyjmująca ok. połowy całego norweskiego mięsa wielorybów.",
+        "Na spacer: przez wzgórze prowadzi tunel łączący dwie części osady, który dziś służy jako galeria starych zdjęć z życia wioski, a łatwe ścieżki prowadzą do zatoczek z białym piaskiem. Z osady widać latarnię na wysepce Saltværholmen, stojącą od 1922 roku. Ok. północy krótka obserwacja nieba, bo pełna ciemność trwa tylko dwie godziny."
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "date": "pn 30.08",
+    "title": "Skrova → Digermulen",
+    "stops": [
+      2,
+      3
+    ],
+    "nm": 13,
+    "schedule": [
+      {
+        "time": "8:30",
+        "kind": "land",
+        "text": "Wyjście na Skrovafjellet (szczyt ok. 250–280 m n.p.m.)"
+      },
+      {
+        "time": "11:00",
+        "kind": "sail",
+        "text": "Wyjście z portu"
+      },
+      {
+        "time": "13:30",
+        "kind": "sail",
+        "text": "Wejście do portu w Digermulen (mała osada bez połączenia drogowego)"
+      },
+      {
+        "time": "14:30",
+        "kind": "land",
+        "text": "Wyjście na Keiservarden (szczyt 384 m n.p.m. z tablicami cesarza Wilhelma II), ok. 3 h"
+      },
+      {
+        "time": "22:30–02:00",
+        "kind": "aur",
+        "text": "Noc zorzowa nr 1 (ciemno 23:52–02:15)"
+      }
+    ],
+    "description": {
+      "title": "Skrovafjellet i Digermulen",
+      "paragraphs": [
+        "Rano Skrovafjellet (szczyt ok. 250–280 m n.p.m., źródła podają 253 albo 281 m). Na stromych odcinkach są zamocowane liny, ale nie trzeba się wspinać. Ze szczytu widać całą Ścianę Lofotów i północną część Vestfjorden.",
+        "Przelot do Digermulen to ok. 13 Mm. Digermulen to mała osada na wyspie Hinnøya, bez bezpośredniego połączenia drogowego z resztą gminy, więc jest tu cicho i ciemno. Po południu Keiservarden (szczyt 384 m n.p.m.): start ze starego nabrzeża promowego, ok. 3 godzin z przerwami, miejscami stromo z linami. Na szczycie stoją kopce z tablicami upamiętniającymi wejścia cesarza Wilhelma II w 1889 i 1906 roku. Dla chętnych trasę można przedłużyć na Snøtinden (szczyt 637 m n.p.m.).",
+        "To pierwsza pełnoprawna noc zorzowa: ciemno od 23:52 do 02:15, a następnego dnia start jest późny. Jeśli jacht stoi na kotwicy, ktoś powinien pilnować go także w nocy."
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "date": "wt 31.08",
+    "title": "Digermulen → Stokmarknes",
+    "stops": [
+      3,
+      4
+    ],
+    "nm": 21,
+    "schedule": [
+      {
+        "time": "10:00",
+        "kind": "sail",
+        "text": "Wyjście z portu, późny start po nocy zorzowej"
+      },
+      {
+        "time": "10:00–13:00",
+        "kind": "sail",
+        "text": "Przejście przez Raftsundet (cieśnina, 25 km)"
+      },
+      {
+        "time": "13:45",
+        "kind": "sail",
+        "text": "Wejście do portu w Stokmarknes (miasteczko, kolebka Hurtigruten)"
+      },
+      {
+        "time": "14:00",
+        "kind": "land",
+        "text": "Hurtigrutemuseet (muzeum żeglugi przybrzeżnej, statek MS Finnmarken na lądzie), czynne do 15:30"
+      },
+      {
+        "time": "noc",
+        "kind": "aur",
+        "text": "Sen przed najdłuższym odcinkiem"
+      }
+    ],
+    "description": {
+      "title": "Raftsundet i Stokmarknes",
+      "paragraphs": [
+        "Późny start i przejście przez cały Raftsundet (cieśnina, 25 km), wąski przesmyk między stromymi górami, który oddziela Lofoty od Vesterålen. Bieliki są tu częste, więc warto mieć lornetkę. Wejście w cieśninę trzeba zaplanować pod pływy, bo w przewężeniach prądy są silne, a przez Raftsundet przepływają też statki Hurtigruten. AIS i nasłuch na VHF są tu obowiązkowe.",
+        "Stokmarknes to miasteczko na wyspie Hadseløya w Vesterålen, w którym Richard With założył Hurtigruten. Główną atrakcją jest Hurtigrutemuseet (muzeum żeglugi przybrzeżnej): statek MS Finnmarken z 1956 roku, ustawiony na lądzie i obudowany szklanym budynkiem. Można wejść na mostek, do salonu dla pań i na pokłady, a z przewodnikiem także do maszynowni. Są też luksusowe salony parowca DS Finmarken z 1912 roku i retro kawiarnia na pokładzie.",
+        "Bilet kosztuje ok. 195 NOK. W dni robocze muzeum było czynne do 15:30 (dane z 2023 r.), dlatego przelot zaczyna się o 10:00. Noc snu przed najdłuższym odcinkiem."
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "date": "śr 1.09",
+    "title": "Stokmarknes → Trollfjord → Svolvær",
+    "stops": [
+      4,
+      5,
+      1
+    ],
+    "nm": 35,
+    "schedule": [
+      {
+        "time": "8:00",
+        "kind": "sail",
+        "text": "Wyjście z portu"
+      },
+      {
+        "time": "ok. 11:30",
+        "kind": "sail",
+        "text": "Trollfjord (wąski fiord, 2 km): wpłynięcie i wypłynięcie tą samą drogą"
+      },
+      {
+        "time": "ok. 15:00",
+        "kind": "sail",
+        "text": "Wejście do portu w Svolvær"
+      },
+      {
+        "time": "15:30",
+        "kind": "note",
+        "text": "Tankowanie i woda"
+      },
+      {
+        "time": "18:30",
+        "kind": "land",
+        "text": "Lofoten Krigsminnemuseum (muzeum II wojny światowej), jeśli działa wieczorem"
+      },
+      {
+        "time": "noc",
+        "kind": "aur",
+        "text": "Sen"
+      }
+    ],
+    "description": {
+      "title": "Trollfjord i powrót do Svolvær",
+      "paragraphs": [
+        "Najdłuższy dzień rejsu: ok. 35 Mm, start o 8:00. W środku dnia, przy dobrym świetle, wpływacie do Trollfjordu (wąski fiord) i wracacie tą samą drogą. Fiord ma 2 km długości, wejście szerokie na 100 m, ściany gór 600–900 m i głębokość do 65 m.",
+        "Tu w 1890 roku rozegrała się bitwa z obrazu Gunnara Berga. Parowce zamknęły wewnętrzną część fiordu sieciami i żądały od rybaków opłaty za wstęp. Doszło do bójki, w której załogi parowców polewały rybaków wrzątkiem z kotłów. W tamtym sezonie w tym wąskim fiordzie łowiło 1 300–1 400 łodzi i ok. 4 500–5 000 rybaków.",
+        "Po południu Svolvær: tankowanie i woda. Wieczorem Lofoten Krigsminnemuseum (muzeum II wojny światowej) z jedną z największych kolekcji mundurów i pamiątek wojennych oraz osobną salą o rajdzie na Lofoty. Wieczorne godziny otwarcia trzeba potwierdzić przed wyjazdem."
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "date": "czw 2.09",
+    "title": "Svolvær → Kabelvåg → Henningsvær",
+    "stops": [
+      1,
+      6,
+      7
+    ],
+    "nm": 12,
+    "schedule": [
+      {
+        "time": "10:30",
+        "kind": "sail",
+        "text": "Wyjście z portu"
+      },
+      {
+        "time": "11:00",
+        "kind": "sail",
+        "text": "Wejście do portu w Kabelvåg (miasteczko obok Svolvær)"
+      },
+      {
+        "time": "11:00–15:00",
+        "kind": "land",
+        "text": "Lofotmuseet (skansen na miejscu średniowiecznego Vágar), Lofotakvariet (akwarium z wydrami i fokami), Galleri Espolin (galeria malarstwa), Lofotkatedralen (drewniany kościół)"
+      },
+      {
+        "time": "15:15",
+        "kind": "sail",
+        "text": "Wyjście z Kabelvåg"
+      },
+      {
+        "time": "17:00",
+        "kind": "sail",
+        "text": "Wejście do portu w Henningsvær (osada rybacka na wysepkach)"
+      },
+      {
+        "time": "19:00",
+        "kind": "land",
+        "text": "Trevarefabrikken (centrum kultury z sauną nad wodą)"
+      },
+      {
+        "time": "22:30–02:00",
+        "kind": "aur",
+        "text": "Noc zorzowa nr 2 (ciemno 23:21–02:45)"
+      }
+    ],
+    "description": {
+      "title": "Kabelvåg i Henningsvær",
+      "paragraphs": [
+        "Krótki przeskok do Kabelvåg (miasteczko 3 Mm od Svolvær), które uchodzi za miejsce, gdzie zaczęły się połowy lofockie. Zespół Storvågan jest czynny we wrześniu w godzinach 11–15, a na wszystkie trzy obiekty jest wspólny bilet:",
+        "Lofotmuseet (skansen) stoi nad samą wodą, na miejscu średniowiecznego Vágar, pierwszego miasta północnej Norwegii: rorbuer, szopy na łodzie, kolekcja tradycyjnych łodzi i dworek z 1815 roku. W Lofotakvariet (akwarium) codziennie karmi się wydry i foki. Galleri Espolin (galeria malarstwa) pokazuje ponad 200 prac Kaare Espolina Johnsona, malarza kultury wybrzeża. W centrum stoi Lofotkatedralen (drewniany kościół), największy taki kościół na północ od Trondheim. Postój ponad 3 godziny oznacza w Kabelvåg pełną stawkę dobową.",
+        "Po południu ok. 9 Mm do Henningsvær (osada rybacka na kilku wysepkach połączonych mostami). Wieczorem Trevarefabrikken (centrum kultury z sauną nad wodą). Noc zorzowa: z portu najlepiej przejść na zewnętrzne skały wysepek, poza światła osady."
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "date": "pt 3.09",
+    "title": "Henningsvær (dzień zapasowy)",
+    "stops": [
+      7
+    ],
+    "nm": null,
+    "schedule": [
+      {
+        "time": "rano",
+        "kind": "note",
+        "text": "Sen po nocy zorzowej"
+      },
+      {
+        "time": "11:00",
+        "kind": "land",
+        "text": "KaviarFactory (galeria sztuki współczesnej)"
+      },
+      {
+        "time": "12:30",
+        "kind": "land",
+        "text": "Boisko na Hellandsøya (boisko piłkarskie na skale)"
+      },
+      {
+        "time": "15:00",
+        "kind": "land",
+        "text": "Wyjście na Festvågtind (szczyt 541 m n.p.m.), 1–1,5 h w górę"
+      },
+      {
+        "time": "18:30",
+        "kind": "note",
+        "text": "Powrót na jacht"
+      },
+      {
+        "time": "22:30–02:00",
+        "kind": "aur",
+        "text": "Noc zorzowa nr 3 (ciemno 23:12–02:54); przy spokojnej pogodzie nocne wyjście na Vestfjorden"
+      }
+    ],
+    "description": {
+      "title": "Dzień w Henningsvær (zapasowy)",
+      "paragraphs": [
+        "Dzień bez przelotu, który służy też jako bufor na pogodę. Jeśli wiatr zablokuje któryś odcinek, przesuwacie plan o dzień, rezygnując z części programu na lądzie zamiast z rejsu.",
+        "Po późnej pobudce KaviarFactory (galeria sztuki współczesnej) w dawnej fabryce kawioru, gdzie wystawiali m.in. Ai Weiwei, Marina Abramović i Yoko Ono. Bilet kosztuje ok. 120 NOK, a wrześniowe godziny trzeba potwierdzić. Za darmo jest boisko na Hellandsøya (boisko piłkarskie na skale) na najdalej wysuniętej wysepce, chyba najczęściej fotografowane boisko w Norwegii.",
+        "Po południu Festvågtind (szczyt 541 m n.p.m.): start tuż przed pierwszym mostem do osady, stromo i z ekspozycją, 1–1,5 h w górę, z widokiem na całą osadę rozłożoną na wysepkach. W nocy druga noc zorzowa. Przy spokojnej pogodzie możliwe jest nocne wyjście na otwarty Vestfjorden: tylko przy słabym wietrze, na otwartą wodę, z powrotem do portu znanego z dnia, z dwiema osobami na pokładzie."
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "date": "sob 4.09",
+    "title": "Henningsvær → Nusfjord",
+    "stops": [
+      7,
+      8
+    ],
+    "nm": 22,
+    "schedule": [
+      {
+        "time": "11:00",
+        "kind": "sail",
+        "text": "Wyjście z portu, późny start po nocy zorzowej"
+      },
+      {
+        "time": "ok. 13:00",
+        "kind": "sail",
+        "text": "Stamsund (osada rybacka) mijany z wody"
+      },
+      {
+        "time": "15:00",
+        "kind": "sail",
+        "text": "Wejście do portu w Nusfjord (zabytkowa osada-skansen)"
+      },
+      {
+        "time": "16:00",
+        "kind": "land",
+        "text": "Spacer po osadzie: piekarnia z 1877 r., sklep z 1905 r. z kawiarnią, dawna przetwórnia tranu"
+      },
+      {
+        "time": "19:00",
+        "kind": "land",
+        "text": "Kolacja w restauracji (zwalnia z biletu wstępu do osady)"
+      },
+      {
+        "time": "noc",
+        "kind": "aur",
+        "text": "Sen (osada leży między stromymi zboczami, mało nieba)"
+      }
+    ],
+    "description": {
+      "title": "Przelot do Nusfjord",
+      "paragraphs": [
+        "Późny start i ok. 22 Mm wzdłuż południowego brzegu Vestvågøy. Po drodze mijacie z wody Stamsund (osada rybacka), gdzie zatrzymuje się Hurtigruten i są rorbuer, restauracje, galeria i teatry.",
+        "Nusfjord (zabytkowa osada rybacka) zwiedza się jak skansen: piekarnia z 1877 roku, sklep z 1905 roku z oryginalnym wnętrzem, w którym działa kawiarnia, dawna przetwórnia tranu, wędzarnia i rorbuer. Jachty cumują w porcie gościnnym. Wejście do osady kosztuje ok. 100 NOK od osoby, ale kolacja w tutejszej restauracji zwalnia z tej opłaty.",
+        "Do Nusfjordu wchodzicie za dnia, bo wejście prowadzi między skałami. Noc snu: osada leży w wąskiej dolinie między stromymi zboczami i widać z niej mało nieba."
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "date": "nd 5.09",
+    "title": "Nusfjord → Reine",
+    "stops": [
+      8,
+      9
+    ],
+    "nm": 10,
+    "schedule": [
+      {
+        "time": "8:00",
+        "kind": "land",
+        "text": "Wyjście na Tønsåsheia (szczyt 769 m n.p.m.), 4–5 h w obie strony"
+      },
+      {
+        "time": "13:00",
+        "kind": "note",
+        "text": "Powrót na jacht"
+      },
+      {
+        "time": "13:30",
+        "kind": "sail",
+        "text": "Wyjście z portu"
+      },
+      {
+        "time": "15:30",
+        "kind": "sail",
+        "text": "Wejście do portu w Reine (osada rybacka)"
+      },
+      {
+        "time": "16:30",
+        "kind": "land",
+        "text": "Spacer: kościół w Reine (biały, drewniany, z XIX w.)"
+      },
+      {
+        "time": "22:30–02:00",
+        "kind": "aur",
+        "text": "Noc zorzowa nr 4 (ciemno 22:55–03:08)"
+      }
+    ],
+    "description": {
+      "title": "Tønsåsheia i Reine",
+      "paragraphs": [
+        "Rano Tønsåsheia (szczyt 769 m n.p.m.) prosto z Nusfjordu: 4–5 godzin w obie strony, z odcinkiem śliskiego piargu. Lżejszą alternatywą jest ścieżka wybrzeżem w stronę Nesland (osada), trudniejsza, niż się wydaje; całość to 2–3 godziny w jedną stronę, więc można zawrócić w połowie.",
+        "Po południu ok. 10 Mm do Reine (osada rybacka), gdzie jacht stoi przez cztery noce. Najtańszy jest prywatny pomost przy przetwórni ryb: 400 NOK za pierwszą noc, potem 300 NOK, z prądem i wodą (dane z 2022 r.). W Reine jest też diesel. W centrum stoi biały, drewniany kościół z XIX wieku, pamiątka czasów, gdy Reine było bogate.",
+        "Noc zorzowa: do obserwacji odejdźcie kilkaset metrów poza zabudowę."
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "date": "pn 6.09",
+    "title": "Reine (jacht w porcie)",
+    "stops": [
+      9
+    ],
+    "nm": null,
+    "schedule": [
+      {
+        "time": "rano",
+        "kind": "note",
+        "text": "Sen po nocy zorzowej"
+      },
+      {
+        "time": "11:00",
+        "kind": "land",
+        "text": "Wyjście na Reinebringen (szczyt 448 m n.p.m., ok. 1 600 kamiennych schodów), 1–1,5 h w górę"
+      },
+      {
+        "time": "14:00",
+        "kind": "note",
+        "text": "Powrót na jacht"
+      },
+      {
+        "time": "15:00",
+        "kind": "land",
+        "text": "Spacer przez Sakrisøy i Hamnøy (wysepki z osadami), ok. 1 h 15 min: Eliassen Rorbuer (czerwone domki rybackie), Anita’s Sjømat (bar rybny), Lofoten Leketøymuseum (muzeum zabawek)"
+      },
+      {
+        "time": "noc",
+        "kind": "aur",
+        "text": "Sen przed dniem w górach"
+      }
+    ],
+    "description": {
+      "title": "Reinebringen, Sakrisøy i Hamnøy",
+      "paragraphs": [
+        "Późnym rankiem Reinebringen (szczyt 448 m n.p.m.): ok. 1 600 kamiennych schodów, 1–1,5 h w górę, z widokiem z lotu ptaka na Reine i fiordy Reinefjorden, Kjerkfjorden i Vorfjorden.",
+        "Po południu spacer przez Sakrisøy i Hamnøy (wysepki z osadami połączone mostami), ok. 1 h 15 min wokół zatoki. Na Hamnøy stoją Eliassen Rorbuer (czerwone domki rybackie), jedno z najczęściej fotografowanych miejsc Lofotów. Na Sakrisøy dwa punkty obowiązkowe: Anita’s Sjømat (bar rybny), słynący z fishburgerów ze świeżego łupacza, czarniaka i dorsza, oraz Lofoten Leketøymuseum (muzeum zabawek) z tysiącami starych zabawek, najstarszymi z lat 50. XIX wieku, i dużym sklepem z antykami na strychu.",
+        "Noc snu przed najdłuższym dniem w górach."
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "date": "wt 7.09",
+    "title": "Reine (jacht w porcie)",
+    "stops": [
+      9
+    ],
+    "nm": null,
+    "schedule": [
+      {
+        "time": "rano",
+        "kind": "note",
+        "text": "Autobus do Sørvågen (wioska), według rozkładu"
+      },
+      {
+        "time": "ok. 9:00",
+        "kind": "land",
+        "text": "Munkebu (górska dolina z jeziorami i zamkniętą chatą), 5–6 h, albo Munken (szczyt), 6–7 h"
+      },
+      {
+        "time": "ok. 16:00",
+        "kind": "note",
+        "text": "Powrót autobusem do Reine"
+      },
+      {
+        "time": "22:30–02:00",
+        "kind": "aur",
+        "text": "Noc zorzowa nr 5 (ciemno 22:41–03:22)"
+      }
+    ],
+    "description": {
+      "title": "Munkebu albo Munken",
+      "paragraphs": [
+        "Jacht zostaje w Reine. Rano autobus do Sørvågen (wioska kilka kilometrów na zachód); rozkład jest w Reis Nordland, a w dni robocze kursów jest więcej.",
+        "Do wyboru Munkebu (górska dolina z jeziorami i chatą), 5–6 godzin w obie strony, albo Munken (szczyt) dalej tą samą trasą, 6–7 godzin. Chata Munkebu jest zamknięta od 2025 roku, więc trzeba wziąć pełny prowiant na cały dzień. Hermannsdalstinden odpada, bo z Sørvågen to 11–14 godzin.",
+        "Wieczorem noc zorzowa, bo następny dzień jest luźny."
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "date": "śr 8.09",
+    "title": "Reine ↔ Vindstad (dzień zapasowy)",
+    "stops": [
+      9,
+      10
+    ],
+    "nm": 5,
+    "schedule": [
+      {
+        "time": "10:30",
+        "kind": "sail",
+        "text": "Wyjście z portu (albo lokalny prom z Reine)"
+      },
+      {
+        "time": "11:15",
+        "kind": "sail",
+        "text": "Postój w Vindstad (osada bez dróg)"
+      },
+      {
+        "time": "11:30",
+        "kind": "land",
+        "text": "Pieszo na Bunes (plaża), ok. 1 h w jedną stronę; dla chętnych Helvetestinden (szczyt 602 m n.p.m.), 2–3 h"
+      },
+      {
+        "time": "16:00",
+        "kind": "sail",
+        "text": "Wyjście z Vindstad"
+      },
+      {
+        "time": "16:30",
+        "kind": "sail",
+        "text": "Wejście do portu w Reine"
+      },
+      {
+        "time": "wariant",
+        "kind": "land",
+        "text": "Przy złej pogodzie zamiast tego autobus do Å: Norsk Fiskeværsmuseum (muzeum osady rybackiej) i Tørrfiskmuseum (muzeum suszonego dorsza)"
+      },
+      {
+        "time": "noc",
+        "kind": "aur",
+        "text": "Sen"
+      }
+    ],
+    "description": {
+      "title": "Vindstad i Bunes (zapasowy)",
+      "paragraphs": [
+        "Vindstad (osada bez dróg) leży po drugiej stronie Reinefjorden, ok. 2,5 Mm od Reine. Można tam dopłynąć jachtem, jeśli przy pomoście promowym jest miejsce na kilka godzin, albo lokalnym promem pasażerskim z Reine. Jesienny rozkład promu różni się od letniego i trzeba go sprawdzić w Reis Nordland.",
+        "Z Vindstad łatwa ścieżka przez niską przełęcz prowadzi w ok. godzinę na Bunes (plaża), jedną z najbardziej malowniczych i odludnych plaż Lofotów, dostępną tylko od wody. Dla chętnych Helvetestinden (szczyt 602 m n.p.m.) nad plażą: 4 km i 2–3 godziny, umiarkowanie trudny i eksponowany.",
+        "Przy złej pogodzie zamiast tego autobus do Å (osada na końcu drogi E10). Norsk Fiskeværsmuseum (muzeum osady rybackiej) to 14 dziewiętnastowiecznych budynków, w tym najstarsza w Europie przetwórnia tranu i kuźnia, w której wciąż robi się lampy tranowe; bilet 150 NOK. Słynna piekarnia z piecem kamiennym może być we wrześniu już zamknięta. Obok Tørrfiskmuseum (muzeum suszonego dorsza), gdzie właściciel osobiście opowiada o suszeniu dorsza na eksport, głównie do Włoch."
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "date": "czw 9.09",
+    "title": "Reine → Ballstad",
+    "stops": [
+      9,
+      11
+    ],
+    "nm": 14,
+    "schedule": [
+      {
+        "time": "9:00",
+        "kind": "sail",
+        "text": "Wyjście z portu"
+      },
+      {
+        "time": "11:45",
+        "kind": "sail",
+        "text": "Wejście do portu w Ballstad (czynna osada rybacka)"
+      },
+      {
+        "time": "12:30",
+        "kind": "land",
+        "text": "Spacer: mural o powierzchni ok. 3 000 m²"
+      },
+      {
+        "time": "13:30",
+        "kind": "land",
+        "text": "Do wyboru: Nonstind (szczyt 459 m n.p.m.) albo taksówką do Lofotr (muzeum Wikingów w Borg, ok. 25 km; godziny we wrześniu do sprawdzenia)"
+      },
+      {
+        "time": "22:30",
+        "kind": "aur",
+        "text": "Krótka obserwacja zorzy (ciemno od 22:27)"
+      }
+    ],
+    "description": {
+      "title": "Ballstad i opcjonalnie Lofotr",
+      "paragraphs": [
+        "Ok. 14 Mm przez Vestfjorden, z widokiem na Hamnøy od strony wody. Ballstad to jedna z największych wciąż czynnych osad rybackich Lofotów, z warzelnią tranu i jednym z największych murali w Europie, o powierzchni ok. 3 000 m². Miejsc dla gości jest tu tylko kilka, więc trzeba zadzwonić wcześniej.",
+        "Po południu do wyboru. Nonstind (szczyt 459 m n.p.m.) na Ballstadheia to łatwe wejście z widokiem na większość Lofotów, a przy dobrej widoczności nawet na Steigen i Landegode; trudniejszy jest Skottind (671 m n.p.m.). Albo taksówką ok. 25 km do Borg, gdzie stoi Lofotr (muzeum Wikingów) z rekonstrukcją wikińskiego domu wodza w miejscu odkrycia jego pozostałości. Wrześniowe godziny otwarcia trzeba sprawdzić przed wyjazdem.",
+        "Wieczorem krótka obserwacja nieba, bo w piątek ostatni przelot."
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "date": "pt 10.09",
+    "title": "Ballstad → Svolvær",
+    "stops": [
+      11,
+      1
+    ],
+    "nm": 28,
+    "schedule": [
+      {
+        "time": "8:00",
+        "kind": "sail",
+        "text": "Wyjście z portu"
+      },
+      {
+        "time": "13:00",
+        "kind": "sail",
+        "text": "Wejście do portu w Svolvær"
+      },
+      {
+        "time": "13:30",
+        "kind": "note",
+        "text": "Tankowanie, sprzątanie, pakowanie"
+      },
+      {
+        "time": "17:00",
+        "kind": "land",
+        "text": "Opcjonalnie Djevelporten (punkt widokowy) przed zachodem Słońca (20:07) albo galeria Gunnara Berga na Svinøya (galeria malarstwa)"
+      },
+      {
+        "time": "22:30",
+        "kind": "aur",
+        "text": "Krótka obserwacja zorzy (ciemno od 22:21)"
+      }
+    ],
+    "description": {
+      "title": "Powrót do Svolvær",
+      "paragraphs": [
+        "Start o 8:00 i ok. 28 Mm do Svolvær, w porcie ok. 13:00. Po południu tankowanie, woda, sprzątanie i pakowanie, bo czarter kończy się w sobotę rano.",
+        "Jeśli zostanie siła: Djevelporten (punkt widokowy), 1–1,5 h podejścia, najlepiej przed zachodem Słońca o 20:07. Albo spokojniej: Svinøya i galeria Gunnara Berga z obrazem bitwy w Trollfjordzie, który po rejsie ogląda się już zupełnie inaczej. Wieczorem ostatnia krótka obserwacja nieba."
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "date": "sob 11.09",
+    "title": "Svolvær",
+    "stops": [
+      1
+    ],
+    "nm": null,
+    "schedule": [
+      {
+        "time": "rano",
+        "kind": "sail",
+        "text": "Zdanie jachtu"
+      },
+      {
+        "time": "potem",
+        "kind": "note",
+        "text": "Wylot do Polski"
+      }
+    ],
+    "description": {
+      "title": "Zdanie jachtu i wylot",
+      "paragraphs": [
+        "Rano zdanie jachtu w Svolvær. Kaucja wraca po sprawdzeniu jachtu. Potem lot do Oslo i przesiadka do Katowic."
+      ]
+    }
+  }
+]

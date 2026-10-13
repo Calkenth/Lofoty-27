@@ -1,0 +1,90 @@
+{
+  "title": "Pogoda",
+  "intro": "Czego się spodziewać na przełomie sierpnia i września. To średnie z wielu lat; konkretną pogodę sprawdzajcie codziennie w yr.no, gdzie są też ostrzeżenia meteorologiczne.",
+  "climate": {
+    "columns": [
+      "Sierpień",
+      "Wrzesień"
+    ],
+    "rows": [
+      [
+        "Temperatura w dzień",
+        "ok. 15 °C",
+        "ok. 12–13 °C"
+      ],
+      [
+        "Temperatura w nocy",
+        "ok. 9–11 °C",
+        "ok. 6–9 °C"
+      ],
+      [
+        "Opady w miesiącu",
+        "ok. 54–96 mm",
+        "ok. 92–133 mm"
+      ],
+      [
+        "Dni z deszczem",
+        "ok. 10",
+        "ok. 9–13"
+      ],
+      [
+        "Woda w morzu",
+        "ok. 12,5 °C",
+        "ok. 11 °C"
+      ]
+    ]
+  },
+  "daylight": "Dzień: na początku rejsu Słońce wschodzi ok. 05:00 i zachodzi ok. 21:00, na końcu ok. 05:50 i 20:05.",
+  "cards": [
+    {
+      "place": "Na jachcie",
+      "time": "Za dnia",
+      "summary": "10–15 °C, odczuwalnie chłodniej",
+      "items": [
+        "Pod koniec sierpnia ok. 13–15 °C, we wrześniu ok. 12–13 °C. Na wodzie, przy wietrze i bryzgach, odczuwalnie kilka stopni mniej.",
+        "Deszcz średnio co trzeci dzień, często przelotny. Między frontami bardzo dobra widoczność.",
+        "Wiatr zmienny: w wąskich przejściach, jak Raftsundet, słaby i kapryśny, na otwartym Vestfjorden silniejszy, z martwą falą. Pod stromymi zboczami nagłe szkwały.",
+        "Jesienne niże przynoszą już sztormy; pod koniec września zdarzają się ostrzeżenia z porywami ok. 27–32 m/s. Na takie dni są w planie dni zapasowe.",
+        "Woda ma 11–12,5 °C."
+      ],
+      "wear": "sztormiak (kurtka i ogrodniczki), bielizna termoaktywna, kalosze, rękawice żeglarskie, czapka."
+    },
+    {
+      "place": "Na jachcie",
+      "time": "Nocą",
+      "summary": "5–9 °C, wilgotno",
+      "items": [
+        "Noce mają średnio 6–9 °C, najzimniejsze ok. 5 °C.",
+        "W kabinach wilgoć i skraplanie się pary. Ogrzewanie diesla robi dużą różnicę, ale zużywa prąd, więc najlepiej nocować przy kei.",
+        "Na pokładzie, przy wachcie kotwicznej albo nocnym wyjściu na Vestfjorden, z wiatrem odczuwalnie bliżej 0 °C.",
+        "Pełna ciemność: 29.08 tylko ok. 00:00–02:00, 10.09 już ok. 22:20–03:40."
+      ],
+      "wear": "kurtka puchowa lub syntetyczna pod sztormiak, czapka, ciepłe rękawice. Na pokładzie kamizelka z szelkami i wpięta lonża."
+    },
+    {
+      "place": "Na lądzie",
+      "time": "Za dnia",
+      "summary": "10–15 °C w dolinach, chłodniej na szczytach",
+      "items": [
+        "Przy wodzie podobnie jak na jachcie, ale w osłonie od wiatru odczuwalnie cieplej; przy słońcu bywa ok. 18 °C.",
+        "Na szczytach (400–800 m n.p.m.) kilka stopni chłodniej i wyraźnie wietrzniej. Chmury potrafią zasłonić wierzchołki.",
+        "Po deszczu szlaki są błotniste, a skała i kamienne schody śliskie.",
+        "Pogoda zmienia się szybko: słońce i przelotny deszcz w ciągu jednej godziny."
+      ],
+      "wear": "warstwy, lekka kurtka przeciwdeszczowa, wodoodporne buty za kostkę, kije trekkingowe, czołówka."
+    },
+    {
+      "place": "Na lądzie",
+      "time": "Nocą, przy zorzy",
+      "summary": "ok. 5–8 °C, przy czystym niebie najzimniej",
+      "items": [
+        "Do obserwacji potrzebne jest bezchmurne niebo, a takie noce są najzimniejsze: ok. 5 °C, przy wietrze odczuwalnie bliżej 0 °C.",
+        "2–3 godziny stania w jednym miejscu wychładzają dużo szybciej niż marsz. Na trawie i skałach pojawia się rosa.",
+        "Największe szanse między 22:00 a 02:00; godziny ciemności dla każdej nocy są w planie dnia.",
+        "Najważniejsze jest zachmurzenie (yr.no). Nad Lofotami wystarcza niska aktywność zorzy."
+      ],
+      "wear": "najcieplejsza warstwa, jaką macie, ogrzewacze do rąk, termos, rękawice z odsłanianymi palcami do aparatu, czołówka z czerwonym światłem."
+    }
+  ],
+  "sources": "Źródła średnich: timeanddate.no, climate-data.org i normy dla Svolvær; dane różnią się między źródłami, więc podane są przedziały."
+}

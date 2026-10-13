@@ -1,0 +1,14 @@
+.wxt { min-width: 320px; }
+.wx { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0 12px; }
+.wxc { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 8px; background: var(--chip); }
+.wxk { margin: 0; font-size: 13px; color: var(--muted); }
+.wxc h3 { margin: 0; font-size: 20px; font-weight: 600; }
+.wxv { margin: 4px 0 10px; font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--r2); }
+.wxc ul { margin: 0 0 10px; padding-left: 18px; }
+.wxc li { margin: 0 0 6px; font-size: 15px; }
+.wxu { font-size: 14px; color: var(--muted); margin: 8px 0 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+.wxu b { color: var(--ink); }
+
+@media (max-width: 720px) {
+  .wx { grid-template-columns: 1fr; }
+}

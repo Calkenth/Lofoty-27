@@ -1,0 +1,13 @@
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 6px 0 10px; }
+.opt { border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 6px; background: var(--chip); }
+.opt h3 { margin: 0 0 4px; font-size: 20px; font-weight: 600; }
+.opt .od { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+.opt .tm { font-size: 14px; color: var(--muted); margin: 10px 0; }
+.opt .tm b { color: var(--ink); }
+.cost.mini { min-width: 0; font-size: 14px; }
+.cost.mini th, .cost.mini td { padding: 8px 6px; }
+.cost.mini tfoot th, .cost.mini tfoot td { font-size: 15px; }
+
+@media (max-width: 720px) {
+  .opts { grid-template-columns: 1fr; }
+}

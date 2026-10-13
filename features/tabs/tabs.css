@@ -1,0 +1,9 @@
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin: 4px 0 20px; }
+.tabs button { font: inherit; font-size: 16px; font-weight: 600; padding: 10px 16px 12px; border: 0; background: none; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--r2); }
+.tabs button:hover { color: var(--ink); }
+.panel-content > h2:first-child { margin-top: 0; }
+
+@media (max-width: 420px) {
+  .tabs button { font-size: 15px; padding: 10px 10px 12px; }
+}
